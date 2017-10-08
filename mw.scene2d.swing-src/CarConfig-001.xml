@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<objectConfig>
+	<left>-1.0</left>
+	<right>1.0</right>
+	<front>3.5</front>
+	<back>-1.0</back>
+	<axis>3.0</axis>
+</objectConfig>

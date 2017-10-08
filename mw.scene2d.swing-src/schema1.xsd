@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="SampleGround" type="sampleGround"/>
+
+  <xs:complexType name="sampleGround">
+    <xs:complexContent>
+      <xs:extension base="ground">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ground" abstract="true">
+    <xs:sequence>
+      <xs:element name="width" type="xs:int"/>
+      <xs:element name="height" type="xs:int"/>
+      <xs:element name="tile" type="groundTile" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="groundTile">
+    <xs:sequence>
+      <xs:element name="imageId" type="xs:string" minOccurs="0"/>
+      <xs:element name="tileIndexX" type="xs:int"/>
+      <xs:element name="tileIndexY" type="xs:int"/>
+      <xs:element name="edge" type="edge" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="damageRect" type="rect" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="edge">
+    <xs:sequence>
+      <xs:element name="p0" type="point" minOccurs="0"/>
+      <xs:element name="p1" type="point" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="point">
+    <xs:sequence>
+      <xs:element name="x" type="xs:float"/>
+      <xs:element name="y" type="xs:float"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="rect">
+    <xs:sequence>
+      <xs:element name="x" type="xs:float"/>
+      <xs:element name="y" type="xs:float"/>
+      <xs:element name="width" type="xs:float"/>
+      <xs:element name="height" type="xs:float"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+
