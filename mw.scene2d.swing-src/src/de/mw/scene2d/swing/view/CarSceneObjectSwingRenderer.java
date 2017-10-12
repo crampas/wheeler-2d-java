@@ -16,7 +16,6 @@ import javax.imageio.ImageIO;
 
 import de.mw.scene2d.model.CarSceneObject;
 import de.mw.scene2d.model.SceneObject;
-import de.mw.scene2d.model.SceneObject.Point;
 
 public class CarSceneObjectSwingRenderer extends SceneObjectSwingRenderer
 {

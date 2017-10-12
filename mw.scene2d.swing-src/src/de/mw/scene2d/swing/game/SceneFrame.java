@@ -18,8 +18,8 @@ import javax.xml.bind.Marshaller;
 
 import de.mw.scene2d.model.CarSceneObject;
 import de.mw.scene2d.model.ObjectConfig;
+import de.mw.scene2d.model.Point;
 import de.mw.scene2d.model.Scene;
-import de.mw.scene2d.model.SceneObject.Point;
 import de.mw.scene2d.swing.view.SwingSceneView;
 
 public class SceneFrame extends JFrame

@@ -2,8 +2,6 @@ package de.mw.scene2d.model;
 
 import java.util.List;
 
-import de.mw.scene2d.model.SceneObject.Vector;
-
 
 
 public class CarSceneObject extends SceneObject

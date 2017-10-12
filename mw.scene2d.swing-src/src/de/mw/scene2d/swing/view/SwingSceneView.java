@@ -13,14 +13,14 @@ import java.util.List;
 import javax.swing.JPanel;
 
 import de.mw.scene2d.model.CarSceneObject;
+import de.mw.scene2d.model.Edge;
 import de.mw.scene2d.model.Ground;
+import de.mw.scene2d.model.Point;
 import de.mw.scene2d.model.Scene;
 import de.mw.scene2d.model.SceneObject;
 import de.mw.scene2d.model.SignSceneObject;
 import de.mw.scene2d.model.TempSceneObject;
 import de.mw.scene2d.model.TrailerSceneObject;
-import de.mw.scene2d.model.SceneObject.Edge;
-import de.mw.scene2d.model.SceneObject.Point;
 import de.mw.scene2d.swing.game.SampleGround;
 
 public class SwingSceneView extends JPanel implements SwingRendererContext

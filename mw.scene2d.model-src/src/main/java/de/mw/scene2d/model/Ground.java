@@ -5,10 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import de.mw.scene2d.model.SceneObject.Edge;
-import de.mw.scene2d.model.SceneObject.Point;
-import de.mw.scene2d.model.SceneObject.Vector;
-
 public abstract class Ground
 {
     private int width = 0;
@@ -17,7 +13,7 @@ public abstract class Ground
     
     protected List<Edge> mNavPathEdgeList = new ArrayList<Edge>();
     protected Map<Point, List<Edge>> mNavPointEdgeListMap = new HashMap<Point, List<Edge>>();
-    protected List<Point> mNavPointList = new ArrayList<SceneObject.Point>();
+    protected List<Point> mNavPointList = new ArrayList<Point>();
     
     
 

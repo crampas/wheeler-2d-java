@@ -2,7 +2,7 @@ package de.mw.scene2d.swing.game;
 
 import de.mw.scene2d.model.ObjectConfig;
 import de.mw.scene2d.model.TrailerSceneObject;
-import de.mw.scene2d.model.SceneObject.Vector;
+import de.mw.scene2d.model.Vector;
 import junit.framework.TestCase;
 
 public class TrailerSceneObjectTest extends TestCase

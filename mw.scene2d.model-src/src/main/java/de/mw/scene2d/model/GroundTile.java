@@ -3,10 +3,6 @@ package de.mw.scene2d.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.mw.scene2d.model.SceneObject.Edge;
-import de.mw.scene2d.model.SceneObject.Point;
-import de.mw.scene2d.model.SceneObject.Rect;
-
 public class GroundTile
 {
     public String imageId;

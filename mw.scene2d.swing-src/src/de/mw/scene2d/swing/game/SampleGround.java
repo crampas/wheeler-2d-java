@@ -20,14 +20,14 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import de.mw.scene2d.model.Edge;
 import de.mw.scene2d.model.FloatArray2;
 import de.mw.scene2d.model.FloatArray2.Callback;
 import de.mw.scene2d.model.Ground;
 import de.mw.scene2d.model.GroundTile;
 import de.mw.scene2d.model.IntArray2;
-import de.mw.scene2d.model.SceneObject.Edge;
-import de.mw.scene2d.model.SceneObject.Point;
-import de.mw.scene2d.model.SceneObject.Rect;
+import de.mw.scene2d.model.Point;
+import de.mw.scene2d.model.Rect;
 
 @XmlRootElement(name = "SampleGround")
 public class SampleGround extends Ground implements Serializable
