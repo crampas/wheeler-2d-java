@@ -38,4 +38,11 @@ public class Vector implements Serializable
     {
         return String.format("(%f,%f)", x, y);
     }
+
+    @Override
+    public boolean equals(Object rhs)
+    {
+    	Vector rhsVector = (Vector)rhs;
+    	return rhsVector.x == x && rhsVector.y == y;
+    }
 }

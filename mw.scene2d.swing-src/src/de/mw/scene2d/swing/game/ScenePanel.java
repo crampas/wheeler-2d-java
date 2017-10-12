@@ -192,7 +192,7 @@ public class ScenePanel extends SwingSceneView implements CarDamageListener
         if(ViewportRotateToHeading)
         {
             // auf Blickrichtung des Steuerräder rotieren
-            float viewportRotation = -(mCar.rotation + mCar.steeringAngle + 90); 
+            float viewportRotation = -(mCar.getRotation() + mCar.steeringAngle + 90); 
             setViewportRotation(viewportRotation);
         }
 

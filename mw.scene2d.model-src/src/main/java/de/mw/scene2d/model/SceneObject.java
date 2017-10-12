@@ -7,7 +7,7 @@ import java.util.List;
 
 public class SceneObject implements SceneListener, Serializable
 {
-    public float rotation = 0f;
+    protected float rotation = 0f;
     public float x = 0f;
     public float y = 0f;
     
@@ -81,19 +81,6 @@ public class SceneObject implements SceneListener, Serializable
         return result;
     }
 
-    public static Point getAbsolute(Point p, float rotation, float x, float y)
-    {
-        double rotationRad = rotation / 180.0 * Math.PI;
-        double s = Math.sin(rotationRad);
-        double c = Math.cos(rotationRad);
-
-        double ax = c * p.x - s * p.y + x;
-        double ay = s * p.x + c * p.y + y;
-        
-        Point result = new Point((float)ax, (float)ay);
-        return result;
-    }
-    
     public Point getRelative(Point p)
     {
         double rotationRad = rotation / 180.0 * Math.PI;
