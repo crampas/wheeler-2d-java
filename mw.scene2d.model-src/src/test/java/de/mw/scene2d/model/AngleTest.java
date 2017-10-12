@@ -29,6 +29,9 @@ public class AngleTest
 		assertEquals(1.0, Angle.fromDegree(0).x, 0.001);
 		assertEquals(0.0, Angle.fromDegree(0).y, 0.001);
 
+		assertEquals(0.707, Angle.fromDegree(45).x, 0.001);
+		assertEquals(0.707, Angle.fromDegree(45).y, 0.001);
+		
 		assertEquals(0.0, Angle.fromDegree(90).x, 0.001);
 		assertEquals(1.0, Angle.fromDegree(90).y, 0.001);
 		

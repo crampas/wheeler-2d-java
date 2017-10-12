@@ -128,7 +128,7 @@ public class TempSceneObject extends SceneObject
         //=====================================================================
         // Check ob ein Object zu nahe ist  
         //---------------------------------------------------------------------
-        double rotationRad = - rotation / 180.0 * Math.PI;
+        double rotationRad = - getRotation() / 180.0 * Math.PI;
         float rotationSin = (float)Math.sin(rotationRad);
         float rotationCos = (float)Math.cos(rotationRad);
 
@@ -192,7 +192,7 @@ public class TempSceneObject extends SceneObject
         }
         targetRotation = (targetRotation + 180f) % 360 - 180f;
 
-        float dRotation = targetRotation + 360f - (rotation + 360f);
+        float dRotation = targetRotation + 360f - (getRotation() + 360f);
         dRotation = (dRotation + 180f) % 360f - 180f;
         
         float alteredRotation = Math.min(Math.abs(dRotation), 10.0f) * Math.signum(dRotation);

@@ -7,7 +7,8 @@ import java.util.List;
 
 public class SceneObject implements SceneListener, Serializable
 {
-    protected float rotation = 0f;
+	public Vector direction = new Vector(1f, 0f);
+	
     public float x = 0f;
     public float y = 0f;
     
@@ -44,12 +45,8 @@ public class SceneObject implements SceneListener, Serializable
      */
     public void addPositionRelative(float dx, float dy)
     {
-        double rotationRad = rotation / 180.0 * Math.PI;
-        double s = Math.sin(rotationRad);
-        double c = Math.cos(rotationRad);
-        
-        double ax = c * dx - s * dy;
-        double ay = s * dx + c * dy;
+        double ax = direction.x * dx - direction.y * dy;
+        double ay = direction.y * dx + direction.x * dy;
 
         x += ax;
         y += ay;
@@ -57,12 +54,8 @@ public class SceneObject implements SceneListener, Serializable
 
     public Vector getAbsolute(Vector p)
     {
-        double rotationRad = rotation / 180.0 * Math.PI;
-        double s = Math.sin(rotationRad);
-        double c = Math.cos(rotationRad);
-
-        double ax = c * p.x - s * p.y;
-        double ay = s * p.x + c * p.y;
+        double ax = direction.x * p.x - direction.y * p.y;
+        double ay = direction.y * p.x + direction.x * p.y;
         
         Vector result = new Vector((float)ax, (float)ay);
         return result;
@@ -70,12 +63,8 @@ public class SceneObject implements SceneListener, Serializable
 
     public Point getAbsolute(Point p)
     {
-        double rotationRad = rotation / 180.0 * Math.PI;
-        double s = Math.sin(rotationRad);
-        double c = Math.cos(rotationRad);
-
-        double ax = c * p.x - s * p.y + x;
-        double ay = s * p.x + c * p.y + y;
+        double ax = direction.x * p.x - direction.y * p.y + x;
+        double ay = direction.y * p.x + direction.x * p.y + y;
         
         Point result = new Point((float)ax, (float)ay);
         return result;
@@ -83,12 +72,8 @@ public class SceneObject implements SceneListener, Serializable
 
     public Point getRelative(Point p)
     {
-        double rotationRad = rotation / 180.0 * Math.PI;
-        double s = Math.sin(rotationRad);
-        double c = Math.cos(rotationRad);
-
-        double ax =  c * p.x + s * p.y - (c * x + s * y);
-        double ay = -s * p.x + c * p.y + (s * x - c * y);
+        double ax =  direction.x * p.x + direction.y * p.y - (direction.x * x + direction.y * y);
+        double ay = -direction.y * p.x + direction.x * p.y + (direction.y * x - direction.x * y);
         
         Point result = new Point((float)ax, (float)ay);
         return result;
@@ -100,17 +85,17 @@ public class SceneObject implements SceneListener, Serializable
     
     public float getRotation()
     {
-        return rotation;
+        return Angle.getDegree(direction);
     }
 
-    public void setRotation(float rotation)
+    public void setRotation(float angle)
     {
-        this.rotation = rotation;
+    	this.direction = Angle.fromDegree(angle);
     }
 
     public void rotate(float rotation)
     {
-        this.rotation += rotation;
-        this.rotation = (this.rotation + 180f) % 360 - 180f;
+    	float newRotation = Angle.getDegree(direction) + rotation; 
+    	this.setRotation(newRotation);
     }
 }

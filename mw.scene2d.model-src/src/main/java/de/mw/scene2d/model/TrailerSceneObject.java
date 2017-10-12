@@ -53,7 +53,7 @@ public class TrailerSceneObject extends SceneObject
         {
             angle = 180 - angle;
         }
-        rotation = (float)angle;
+        setRotation((float)angle);
     }
     
 }
