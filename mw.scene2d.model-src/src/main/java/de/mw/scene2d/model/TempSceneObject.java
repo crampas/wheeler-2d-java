@@ -117,8 +117,9 @@ public class TempSceneObject extends SceneObject
         return greater;
     }
     
+    
     @Override
-    public void update(float time, float td)
+    public void update(float time, float dt)
     {
         if(nextNavPoint == null)
         {
@@ -168,7 +169,7 @@ public class TempSceneObject extends SceneObject
         float navDx = nextNavPoint.x - x;
         float navDy = nextNavPoint.y - y;
         float navD = navDx * navDx + navDy * navDy;
-        if(navD < 1.0f)
+        if(navD < velocity * dt)
         {
             // Navigationspunkt erreicht, nächsten Navigationspunkt einstellen
             nextNavPoint = nextNavPoint(nextNavPoint);
@@ -184,18 +185,11 @@ public class TempSceneObject extends SceneObject
         // Ausrichtung auf den nächsten Navigationspunkt  
         //---------------------------------------------------------------------
         
-        float tanRotation = navDy / navDx;
-        float targetRotation = (float)(Math.atan(tanRotation) / Math.PI * 180.0);
-        if(navDx < 0)
-        {
-            targetRotation = 180.0f + targetRotation;
-        }
-        targetRotation = (targetRotation + 180f) % 360 - 180f;
-
-        float dRotation = targetRotation + 360f - (getRotation() + 360f);
-        dRotation = (dRotation + 180f) % 360f - 180f;
-        
-        float alteredRotation = Math.min(Math.abs(dRotation), 10.0f) * Math.signum(dRotation);
+        Point nextNavPointRelative = getRelative(nextNavPoint);
+        Vector nextNavPointRelativeDirection = new Vector(nextNavPointRelative.x, nextNavPointRelative.y).normalize();
+        float dRotation = Angle.getDegree(nextNavPointRelativeDirection);
+        float maxRotation = 360 * dt;
+        float alteredRotation = Math.min(Math.abs(dRotation), maxRotation) * Math.signum(dRotation);
         rotate(alteredRotation);
 
         //=====================================================================
@@ -203,7 +197,7 @@ public class TempSceneObject extends SceneObject
         //---------------------------------------------------------------------
         
         double v = velocity; // m/s
-        double dx = v * td;
+        double dx = v * dt;
         addPositionRelative((float)dx, 0f);
 
         //=====================================================================
