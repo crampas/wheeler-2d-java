@@ -129,11 +129,11 @@ public class SceneFrame extends JFrame
             mAcceleratorControl.update();
 
             double steeringAngle = mSteeringWheelControl.getSteeringAngle();
-            double velocity = mAcceleratorControl.getActualValue();
+//            double velocity = mAcceleratorControl.getActualValue();
             
             CarSceneObject car = mScenePanel.getCar();
             car.steeringAngle = (float)steeringAngle;
-            car.velocity = (float)velocity;
+            // car.velocity = (float)velocity;
             mScenePanel.update();
             mSceneMapView.repaint();
 

@@ -3,7 +3,6 @@ package de.mw.scene2d.model;
 import java.util.List;
 
 
-
 public class CarSceneObject extends SceneObject
 {
     private Scene mScene;
@@ -19,7 +18,7 @@ public class CarSceneObject extends SceneObject
     public float back = -1f;
     public float damaged = 0f;
     
-    
+    public CarEngine engine = new CarEngine();
     
     public CarSceneObject(Scene scene, ObjectConfig config)
     {

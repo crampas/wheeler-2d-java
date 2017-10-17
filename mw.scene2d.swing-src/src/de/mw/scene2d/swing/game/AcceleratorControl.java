@@ -32,18 +32,13 @@ public class AcceleratorControl extends JPanel implements CarDamageListener
     private Color mSpeedColor = Color.decode("#20e000");
     private Font mDirectionFont = new Font("Arial", Font.BOLD, 72);
     
-    private double mForceMax = 100.0;
-    private double mForceMin = -100.0;
-    private double mForce = 0.0;
-    private double mBackForce = 0.0;
-    private double mDirection = 1;
-    private double mTargetValue = 0.0; 
-    private double mActualValue = 0.0;
+    private double mTargetValue = 0.0; // to remove 
+    private double mActualValue = 0.0; // to remove
     
     private GaugePanel mGauge = new GaugePanel(); 
     
     private ScenePanel mScenePanel;
-    private boolean mHold = false;
+    private boolean mHold = false; // to remove?
     
     public AcceleratorControl(ScenePanel scenePanel, int preferredWidth)
     {
@@ -63,7 +58,7 @@ public class AcceleratorControl extends JPanel implements CarDamageListener
                 if(e.getKeyChar() == ' ')
                 {
                     mTargetValue = 0;
-                    mDirection *= -1;
+                    getCar().engine.direction *= -1;
                 }
             }
             
@@ -120,40 +115,40 @@ public class AcceleratorControl extends JPanel implements CarDamageListener
         float dt = ((float)(currentTimeMillis - mLastUpdateTimeMillis)) / 1000f;
         mLastUpdateTimeMillis = currentTimeMillis; 
 
-        CarSceneObject car = mScenePanel.getCar();
-        mBackForce = 0.1 * car.velocity * car.velocity;
+        CarSceneObject car = getCar();
+        double backForce = 0.1 * car.velocity * car.velocity;
         
+        double force = getCar().engine.force;
         if(mUpPressed)
         {
             mHold = false; 
-            mForce = Math.min(mForce + 2.0, mForceMax);
+            force = Math.min(force + 2.0, car.engine.forceMax);
         }
         else if(mDownPressed)
         {
             mHold = false;
 //            mTargetValue *= 0.95;
-            mForce = Math.max(mForce - 2.0, mForceMin);
+            force = Math.max(force - 2.0, car.engine.forceMin);
         }
         else
         {
             // keine automatische Rückstellung 
-//            mTargetValue = mTargetValue * 0.95;
-            if(mForce > mBackForce)
+            if(force > backForce)
             {
                 mHold = true;
             }
             if(mHold)
             {
-                mForce = Math.max(mForce - 2.0, mBackForce);
+                force = Math.max(force - 2.0, backForce);
             }
             else
             {
-                mForce = (int)(mForce / 2);
+                force = (int)(force / 2);
             }
-
         }
+        car.engine.force = (float)force;
   
-        double effectiveForce = mForce - mBackForce;
+        double effectiveForce = force - backForce;
         
         double a = effectiveForce / (effectiveForce > 0 ? 40 : 10); // Beschleunigung
         double dv = a * dt; // Geschwindigkeitszunahme
@@ -161,13 +156,22 @@ public class AcceleratorControl extends JPanel implements CarDamageListener
 
         
         mTargetValue = Math.max(mTargetValue, 0);
-        mTargetValue = Math.min(mTargetValue, 100);
+        mTargetValue = Math.min(mTargetValue, car.engine.velocityMax);
         
-        mActualValue = mTargetValue * mDirection;
+        mActualValue = mTargetValue * car.engine.direction;
         
         mGauge.setValue(mActualValue * 3.6);
+        
+        car.velocity = (float)mActualValue;
+        
         repaint();
     }
+
+	private CarSceneObject getCar()
+	{
+		CarSceneObject car = mScenePanel.getCar();
+		return car;
+	}
 
     private Stroke mStroke1 = new BasicStroke(1);
     private Stroke mStroke2 = new BasicStroke(2);
@@ -175,7 +179,7 @@ public class AcceleratorControl extends JPanel implements CarDamageListener
     
     @Override
     protected void paintComponent(Graphics g)
-    {
+    {    	
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -188,7 +192,7 @@ public class AcceleratorControl extends JPanel implements CarDamageListener
 //        g.drawLine(0, height / 2, width, position);
         
         g.setFont(mDirectionFont);
-        String directionIndicator = mDirection > 0 ? "\u2191" : "\u2193";
+        String directionIndicator = getCar().engine.direction > 0 ? "\u2191" : "\u2193";
         g.drawString(directionIndicator, 30, height / 2);
         
         
@@ -197,7 +201,7 @@ public class AcceleratorControl extends JPanel implements CarDamageListener
             g2.setStroke(mStroke1);
             g2.setColor(Color.ORANGE);
             g.drawRect(0, 0, 20, height -1);
-            int forceSize = (int)(mForce / mForceMax * height / 2);
+            int forceSize = (int)(getCar().engine.force / getCar().engine.forceMax * height / 2);
             g.fillRect(2, height / 2 - Math.max(forceSize, 0), 17, Math.abs(forceSize));
         }
         
@@ -237,7 +241,7 @@ public class AcceleratorControl extends JPanel implements CarDamageListener
 	{
 		if (damage > 0)
 		{
-			mForce = 0;
+			getCar().engine.force = 0;
 			mActualValue = 0;
 			mTargetValue = 0;
 			mScenePanel.getCar().velocity = 0;
