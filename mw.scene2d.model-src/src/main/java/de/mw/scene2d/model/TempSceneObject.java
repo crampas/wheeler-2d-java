@@ -21,7 +21,6 @@ public class TempSceneObject extends SceneObject
     {
         id = firstNavPointIndex;
         mGround = ground;
-//        Point startPoint = mGround.mNavPathEdgeList.get(firstNavPointIndex).p0;
         
         Point startPoint = mGround.getNavPointList().get(firstNavPointIndex);
         
@@ -31,24 +30,12 @@ public class TempSceneObject extends SceneObject
         targetNavPoint = nextTargetPoint();
         nextNavPoint = mGround.getNextTrackPoint(startPoint, targetNavPoint);
         
-//        nextNavPoint = nextNavPoint(startPoint);
-
         //=====================================================================
         // Initiale Ausrichtung einstellen  
         //---------------------------------------------------------------------
-        float navDx = nextNavPoint.x - x;
-        float navDy = nextNavPoint.y - y;
-        float tanRotation = navDy / navDx;
-        float targetRotation = (float)(Math.atan(tanRotation) / Math.PI * 180.0);
-        if(navDx < 0)
-        {
-            targetRotation = 180.0f + targetRotation;
-        }
-        targetRotation = (targetRotation + 180f) % 360 - 180f;
+        float targetRotation = getAngle(nextNavPoint);
         setRotation(targetRotation);
         //=====================================================================
-        
-        System.out.println("first  " + x + ";" + y);
         
         mSceneObjectList = sceneObjectList;
     }
@@ -185,9 +172,7 @@ public class TempSceneObject extends SceneObject
         // Ausrichtung auf den nächsten Navigationspunkt  
         //---------------------------------------------------------------------
         
-        Point nextNavPointRelative = getRelative(nextNavPoint);
-        Vector nextNavPointRelativeDirection = new Vector(nextNavPointRelative.x, nextNavPointRelative.y).normalize();
-        float dRotation = Angle.getDegree(nextNavPointRelativeDirection);
+        float dRotation = getAngle(nextNavPoint);
         float maxRotation = 360 * dt;
         float alteredRotation = Math.min(Math.abs(dRotation), maxRotation) * Math.signum(dRotation);
         rotate(alteredRotation);
@@ -201,5 +186,13 @@ public class TempSceneObject extends SceneObject
         addPositionRelative((float)dx, 0f);
 
         //=====================================================================
+    }
+    
+    private float getAngle(Point point)
+    {
+        Point pointRelative = getRelative(point);
+        Vector relativeDirection = new Vector(pointRelative.x, pointRelative.y).normalize();
+        float angle = Angle.getDegree(relativeDirection);
+        return angle;
     }
 }
