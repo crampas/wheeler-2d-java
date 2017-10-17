@@ -57,7 +57,7 @@ public class SceneFrame extends JFrame
         mScenePanel = new ScenePanel();
         contentPane.add(mScenePanel, BorderLayout.CENTER);
         CarDamageNoiseGenerator damageNoiseGenerator = new CarDamageNoiseGenerator();
-        mScenePanel.setCarDamageListener(damageNoiseGenerator);
+        mScenePanel.addCarDamageListener(damageNoiseGenerator);
         
         JPanel rightPanel = new JPanel(new BorderLayout());
         rightPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));

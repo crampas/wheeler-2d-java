@@ -16,15 +16,17 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Rectangle2D;
+import java.io.Console;
 
 import javax.swing.JPanel;
 
+import de.mw.scene2d.model.CarDamageListener;
 import de.mw.scene2d.model.CarSceneObject;
 
 /**
  * Gaspedal.
  */
-public class AcceleratorControl extends JPanel
+public class AcceleratorControl extends JPanel implements CarDamageListener
 {
     private Font mSpeedFont = new Font("Arial", 0, 25);
     private Color mSpeedColor = Color.decode("#20e000");
@@ -50,6 +52,8 @@ public class AcceleratorControl extends JPanel
         
         add(mGauge);
         
+        
+        scenePanel.addCarDamageListener(this);
         
         addKeyListener(new KeyListener()
         {
@@ -176,7 +180,6 @@ public class AcceleratorControl extends JPanel
         Graphics2D g2 = (Graphics2D)g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         
-        int width = getWidth();
         int height = getHeight();
         
 //        double yvalue = 0.5 * height * mActualValue / 100;
@@ -228,4 +231,16 @@ public class AcceleratorControl extends JPanel
     {
         mTargetValue = targetValue;
     }
+
+	@Override
+	public void onCarDamaged(CarSceneObject car, float damage)
+	{
+		if (damage > 0)
+		{
+			mForce = 0;
+			mActualValue = 0;
+			mTargetValue = 0;
+			mScenePanel.getCar().velocity = 0;
+		}
+	}
 }

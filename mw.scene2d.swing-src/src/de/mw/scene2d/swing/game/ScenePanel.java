@@ -22,6 +22,7 @@ import de.mw.scene2d.swing.view.SwingSceneView;
 public class ScenePanel extends SwingSceneView implements CarDamageListener
 {
     public static boolean ViewportRotateToHeading = true;
+    public static boolean ViewportRotateToHelmHeading = false;
     public static double ViewportScale = 20; // 20; // 5
     public static boolean ViewportVelocityScale = true;
     
@@ -142,10 +143,10 @@ public class ScenePanel extends SwingSceneView implements CarDamageListener
     
                 CarSceneObject car = new CarSceneObject(mScene, carConfig);
                 mCar = car;
-                car.setPosition(0f, 0f);
-                car.rotate(180);
+                car.setPosition(20f, 7.5f);
+                // car.rotate(180);
                 mSceneObjectList.add(car);
-//                car.setDamageListener(this);
+                car.setDamageListener(this);
                 mCarList.add(car);
                 
 //                Driver driver = new Driver(mScene, car);
@@ -192,10 +193,17 @@ public class ScenePanel extends SwingSceneView implements CarDamageListener
         if(ViewportRotateToHeading)
         {
             // auf Blickrichtung des Steuerräder rotieren
-            float viewportRotation = -(mCar.getRotation() + mCar.steeringAngle + 90); 
+            float viewportRotation = -(mCar.getRotation() + 90); 
             setViewportRotation(viewportRotation);
         }
 
+        if(ViewportRotateToHelmHeading)
+        {
+            // auf Blickrichtung des Steuerräder rotieren
+            float viewportRotation = -(mCar.getRotation() + mCar.steeringAngle + 90); 
+            setViewportRotation(viewportRotation);
+        }
+        
         // auf Wagen zentrieren
         getViewportPosition().set(mCar.x, mCar.y);
 
@@ -211,24 +219,22 @@ public class ScenePanel extends SwingSceneView implements CarDamageListener
         mCar = mCarList.get(nextIndex);
     }
 
-    private CarDamageListener mCarDamageListener;
+    private List<CarDamageListener> mCarDamageListener = new ArrayList<CarDamageListener>();
     
     @Override
     public void onCarDamaged(CarSceneObject car, float damage)
     {
         if(mCarDamageListener != null)
         {
-            mCarDamageListener.onCarDamaged(car, damage);
+        	for (CarDamageListener carDamageListener : mCarDamageListener)
+        	{
+        		carDamageListener.onCarDamaged(car, damage);
+			}
         }
     }
 
-    public CarDamageListener getCarDamageListener()
+    public void addCarDamageListener(CarDamageListener carDamageListener)
     {
-        return mCarDamageListener;
-    }
-
-    public void setCarDamageListener(CarDamageListener carDamageListener)
-    {
-        mCarDamageListener = carDamageListener;
+        mCarDamageListener.add(carDamageListener);
     }
 }
