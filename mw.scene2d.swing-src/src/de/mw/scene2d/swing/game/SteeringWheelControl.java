@@ -82,40 +82,31 @@ public class SteeringWheelControl extends JPanel
     double forceMax = 200.0;
     double backForce = 0.0;
     
-    public void update()
+    public void update(float dt)
     {
-        long currentTimeMillis = System.currentTimeMillis();
-        float dt = ((float)(currentTimeMillis - mLastUpdateTimeMillis)) / 1000f;
-        mLastUpdateTimeMillis = currentTimeMillis; 
-        
-        double angle = mSteeringAngle;
+    	float forceStep = dt * 40;
+    	
         if(mLeftPressed)
         {
-//            hold = angle < 0.0 && angle < -5.0; 
-//            angle -= 0.03 * Math.abs(angle) + 0.1;
-            force = Math.max(force - 2.0, -forceMax);
+            force = Math.max(force - forceStep, -forceMax);
         }
         else if(mRightPressed)
         {
-//            hold = angle > 0.0 && angle > 5.0;
-//            angle += 0.03 * Math.abs(angle) + 0.1;
-            force = Math.min(force + 2.0, forceMax);
+            force = Math.min(force + forceStep, forceMax);
         }
         else
         {
-            if(!hold)
-            {
-//                angle = angle * 0.95;
-                force = (int)(force / 2);
-            }
+            force = 0;
         }
+
+        double angle = mSteeringAngle;
         
         // automatische Rückstellung der Lenkung
         CarSceneObject car = mScenePanel.getCar();
-        backForce = angle * car.velocity * car.velocity / 10;
+        backForce = angle * car.velocity * 100 * dt;
         double effectiveForce = force - backForce;
         
-        angle = angle + effectiveForce / 200.0;
+        angle = angle + effectiveForce * dt * 2;
         
         angle = Math.max(angle, -40);
         angle = Math.min(angle, 40);

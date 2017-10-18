@@ -165,13 +165,10 @@ public class ScenePanel extends SwingSceneView implements CarDamageListener
         return mCar;
     }
 
-    long mLastUpdateTimeMillis = 0;
 
-    public void update()
+    public void update(float dt)
     {
-        long currentTimeMillis = System.currentTimeMillis();
-        float dt = ((float)(currentTimeMillis - mLastUpdateTimeMillis)) / 1000f;
-        dt = Math.min(dt, 0.1f);
+//        dt = Math.min(dt, 0.1f);
         
         for (SceneObject object : mScene.getSceneObjectList())
         {
@@ -208,7 +205,6 @@ public class ScenePanel extends SwingSceneView implements CarDamageListener
         getViewportPosition().set(mCar.position.x, mCar.position.y);
 
         
-        mLastUpdateTimeMillis = currentTimeMillis;
         repaint();
     }
 

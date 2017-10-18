@@ -119,14 +119,22 @@ public class SceneFrame extends JFrame
             }
         });
     }
+
+    
     
     private class UpdateListener implements ActionListener
     {
+        long mLastUpdateTimeMillis = 0;
+    	
         @Override
         public void actionPerformed(ActionEvent e)
         {
-            mSteeringWheelControl.update();
-            mAcceleratorControl.update();
+            long currentTimeMillis = System.currentTimeMillis();
+            float dt = ((float)(currentTimeMillis - mLastUpdateTimeMillis)) / 1000f;
+            mLastUpdateTimeMillis = currentTimeMillis;
+        	
+            mSteeringWheelControl.update(dt);
+            mAcceleratorControl.update(dt);
 
             double steeringAngle = mSteeringWheelControl.getSteeringAngle();
 //            double velocity = mAcceleratorControl.getActualValue();
@@ -134,7 +142,7 @@ public class SceneFrame extends JFrame
             CarSceneObject car = mScenePanel.getCar();
             car.steeringAngle = (float)steeringAngle;
             // car.velocity = (float)velocity;
-            mScenePanel.update();
+            mScenePanel.update(dt);
             mSceneMapView.repaint();
 
             mInfoControl.update();

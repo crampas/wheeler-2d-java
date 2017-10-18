@@ -106,15 +106,9 @@ public class AcceleratorControl extends JPanel implements CarDamageListener
     private boolean mDownPressed = false;
     
     
-    long mLastUpdateTimeMillis = System.currentTimeMillis();
-    float mLastDT;
     
-    public void update()
+    public void update(float dt)
     {
-        long currentTimeMillis = System.currentTimeMillis();
-        float dt = ((float)(currentTimeMillis - mLastUpdateTimeMillis)) / 1000f;
-        mLastUpdateTimeMillis = currentTimeMillis; 
-
         CarSceneObject car = getCar();
         double backForce = 0.1 * car.velocity * car.velocity;
         
