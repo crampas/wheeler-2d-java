@@ -58,23 +58,19 @@ public class CarSceneObject extends SceneObject
     @Override
     public void update(float time, float td)
     {
-        double v = velocity; // m/s
-        double s = v * td;
-        
-        double helmSin = Math.sin(steeringAngle / 180.0 * Math.PI);
-        double rotationSin = s / front * helmSin;
-        double rotation = Math.asin(rotationSin) / Math.PI * 180.0;
-        
         Point[] childPositionList = new Point[childList.size()]; 
         for(int index = 0; index < childList.size(); index++)
         {
             SceneObject childObject = childList.get(index);
-            Point p0 = new Point(childObject.x, childObject.y);
+            Point p0 = new Point(childObject.position.x, childObject.position.y);
             childPositionList[index] = getRelative(p0);
         }
-        
-        addPositionRelative((float)s, 0f);
-        rotate((float)rotation);
+
+
+        Vector helmDirection = Angle.fromDegree(steeringAngle);
+        Vector helmPull = helmDirection.multiply(velocity * td);
+        Vector pull = this.getAbsolute(helmPull);
+        pull(pull);
         
         
         boolean hitFL = checkDamageHit(axis, left);
@@ -98,13 +94,24 @@ public class CarSceneObject extends SceneObject
             Point pr = childPositionList[index];
             Point paNew = getAbsolute(pr);
             
-            Point paOld = new Point(childObject.x, childObject.y);
+            Point paOld = new Point(childObject.position.x, childObject.position.y);
             Vector diff = paNew.sub(paOld);
 //            System.out.println(pr + " : " + paNew + " - " + paOld + " = " + diff);
             childObject.pull(diff);
         }
     }
 
+    
+    @Override
+    public void pull(Vector d)
+    {
+    	this.position.x += d.x;
+    	this.position.y += d.y;
+    	
+    	Vector axisVector = this.direction.multiply(-axis);
+    	direction = axisVector.add(d).normalize(); 
+    }
+    
     public CarDamageListener getDamageListener()
     {
         return mDamageListener;

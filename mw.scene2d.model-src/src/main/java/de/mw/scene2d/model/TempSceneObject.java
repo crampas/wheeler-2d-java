@@ -24,8 +24,8 @@ public class TempSceneObject extends SceneObject
         
         Point startPoint = mGround.getNavPointList().get(firstNavPointIndex);
         
-        this.x = startPoint.x;
-        this.y = startPoint.y;
+        this.position.x = startPoint.x;
+        this.position.y = startPoint.y;
         
         targetNavPoint = nextTargetPoint();
         nextNavPoint = mGround.getNextTrackPoint(startPoint, targetNavPoint);
@@ -129,8 +129,8 @@ public class TempSceneObject extends SceneObject
                 continue;
             }
             
-            float objectDx = object.x - x;
-            float objectDy = object.y - y;
+            float objectDx = object.position.x - position.x;
+            float objectDy = object.position.y - position.y;
 
             float objectX = objectDx * rotationCos - objectDy * rotationSin;
             float objectY = objectDx * rotationSin + objectDy * rotationCos;
@@ -153,8 +153,8 @@ public class TempSceneObject extends SceneObject
         //=====================================================================
         // nächsten Navigationspunkt prüfen  
         //---------------------------------------------------------------------
-        float navDx = nextNavPoint.x - x;
-        float navDy = nextNavPoint.y - y;
+        float navDx = nextNavPoint.x - position.x;
+        float navDy = nextNavPoint.y - position.y;
         float navD = navDx * navDx + navDy * navDy;
         if(navD < velocity * dt)
         {
@@ -164,8 +164,8 @@ public class TempSceneObject extends SceneObject
             {
                 return;
             }
-            navDx = nextNavPoint.x - x;
-            navDy = nextNavPoint.y - y;
+            navDx = nextNavPoint.x - position.x;
+            navDy = nextNavPoint.y - position.y;
         }
         
         //=====================================================================

@@ -78,7 +78,7 @@ public class CarSceneObjectSwingRenderer extends SceneObjectSwingRenderer
         double steeringX = Math.cos(steeringAngle / 180.0 * Math.PI);
         double steeringY = Math.sin(steeringAngle / 180.0 * Math.PI);
         graphics.setColor(Color.BLUE);
-        Line2D steering = new Line2D.Double(car.axis, 0f, car.axis + steeringX * 2, steeringY * 2);
+        Line2D steering = new Line2D.Double(0f, 0f, steeringX * 2, steeringY * 2);
         graphics.draw(steering);
 
         AffineTransform transform = AffineTransform.getTranslateInstance(car.back - 0.2, car.left - 0.15);

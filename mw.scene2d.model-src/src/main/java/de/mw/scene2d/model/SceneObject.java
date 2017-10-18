@@ -7,10 +7,12 @@ import java.util.List;
 
 public class SceneObject implements SceneListener, Serializable
 {
+	public Point position = new Point(0f, 0f);
 	public Vector direction = new Vector(1f, 0f);
 	
-    public float x = 0f;
-    public float y = 0f;
+	
+//    public float x = 0f;
+//    public float y = 0f;
     
     public boolean active = false;
     
@@ -30,14 +32,14 @@ public class SceneObject implements SceneListener, Serializable
     
     public void setPosition(float x, float y)
     {
-        this.x = x;
-        this.y = y;
+        this.position.x = x;
+        this.position.y = y;
     }
 
     public void addPosition(float x, float y)
     {
-        this.x += x;
-        this.y += y;
+        this.position.x += x;
+        this.position.y += y;
     }
 
     /**
@@ -48,8 +50,8 @@ public class SceneObject implements SceneListener, Serializable
         double ax = direction.x * dx - direction.y * dy;
         double ay = direction.y * dx + direction.x * dy;
 
-        x += ax;
-        y += ay;
+        position.x += ax;
+        position.y += ay;
     }
 
     public Vector getAbsolute(Vector p)
@@ -63,8 +65,8 @@ public class SceneObject implements SceneListener, Serializable
 
     public Point getAbsolute(Point p)
     {
-        double ax = direction.x * p.x - direction.y * p.y + x;
-        double ay = direction.y * p.x + direction.x * p.y + y;
+        double ax = direction.x * p.x - direction.y * p.y + position.x;
+        double ay = direction.y * p.x + direction.x * p.y + position.y;
         
         Point result = new Point((float)ax, (float)ay);
         return result;
@@ -72,8 +74,8 @@ public class SceneObject implements SceneListener, Serializable
 
     public Point getRelative(Point p)
     {
-        double ax =  direction.x * p.x + direction.y * p.y - (direction.x * x + direction.y * y);
-        double ay = -direction.y * p.x + direction.x * p.y + (direction.y * x - direction.x * y);
+        double ax =  direction.x * p.x + direction.y * p.y - (direction.x * position.x + direction.y * position.y);
+        double ay = -direction.y * p.x + direction.x * p.y + (direction.y * position.x - direction.x * position.y);
         
         Point result = new Point((float)ax, (float)ay);
         return result;

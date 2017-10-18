@@ -52,7 +52,7 @@ public class InfoPanel extends JPanel
     {
         public void update(CarSceneObject car)
         {
-            String text = String.format("x=%.2fm y=%.2fm", car.x, car.y);
+            String text = String.format("x=%.2fm y=%.2fm", car.position.x, car.position.y);
             setText(text);
         }
     }

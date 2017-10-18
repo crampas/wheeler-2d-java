@@ -205,7 +205,7 @@ public class ScenePanel extends SwingSceneView implements CarDamageListener
         }
         
         // auf Wagen zentrieren
-        getViewportPosition().set(mCar.x, mCar.y);
+        getViewportPosition().set(mCar.position.x, mCar.position.y);
 
         
         mLastUpdateTimeMillis = currentTimeMillis;

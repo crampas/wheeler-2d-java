@@ -15,11 +15,25 @@ public class Vector implements Serializable
         this.x = x;
         this.y = y;
     }
+
+    public Vector add(Vector rhs)
+    {
+        float x = this.x + rhs.x;
+        float y = this.y + rhs.y;
+        return new Vector(x, y);
+    }
     
     public Vector sub(Vector rhs)
     {
         float x = this.x - rhs.x;
         float y = this.y - rhs.y;
+        return new Vector(x, y);
+    }
+
+    public Vector multiply(float f)
+    {
+        float x = this.x * f;
+        float y = this.y * f;
         return new Vector(x, y);
     }
     

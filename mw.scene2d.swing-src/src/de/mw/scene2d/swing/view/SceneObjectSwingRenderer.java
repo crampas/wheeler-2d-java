@@ -37,7 +37,7 @@ public class SceneObjectSwingRenderer extends SceneObjectRenderer
         AffineTransform oldTransform = graphics.getTransform();
         
         AffineTransform m = graphics.getTransform();
-        m.translate(object.x , object.y);
+        m.translate(object.position.x , object.position.y);
         m.rotate(object.getRotation() / 180.0 * Math.PI);
         
         graphics.setTransform(m);

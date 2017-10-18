@@ -15,10 +15,10 @@ public class ObstacleSceneObject extends SceneObject
     @Override
     public void update(float time, float td)
     {
-        float xMin = x - 5f;
-        float xMax = x + 5f;
-        float yMin = y - 5f;
-        float yMax = y + 5f;
+        float xMin = position.x - 5f;
+        float xMax = position.x + 5f;
+        float yMin = position.y - 5f;
+        float yMax = position.y + 5f;
         
         
         for (SceneObject object : mSceneObjectList)
@@ -28,8 +28,8 @@ public class ObstacleSceneObject extends SceneObject
                 continue;
             }
             
-            boolean inFrame = object.x >= xMin && object.x <= xMax &&
-                object.y >= yMin && object.y <= yMax;
+            boolean inFrame = object.position.x >= xMin && object.position.x <= xMax &&
+                object.position.y >= yMin && object.position.y <= yMax;
             active = inFrame;
             if(active)
             {

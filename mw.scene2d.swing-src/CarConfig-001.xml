@@ -2,7 +2,7 @@
 <objectConfig>
 	<left>-1.0</left>
 	<right>1.0</right>
-	<front>3.5</front>
-	<back>-1.0</back>
-	<axis>3.0</axis>
+	<front>0.5</front>
+	<back>-4.0</back>
+	<axis>-3.0</axis>
 </objectConfig>

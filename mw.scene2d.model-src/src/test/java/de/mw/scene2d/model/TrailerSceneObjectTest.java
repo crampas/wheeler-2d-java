@@ -11,8 +11,8 @@ public class TrailerSceneObjectTest
     {
         TrailerSceneObject trailer = new TrailerSceneObject(new ObjectConfig());
         trailer.pull(new Vector(1.0f, 0f));
-        assertEquals(1.0f, trailer.x, 0.01);
-        assertEquals(0.0f, trailer.y, 0.01);
+        assertEquals(1.0f, trailer.position.x, 0.01);
+        assertEquals(0.0f, trailer.position.y, 0.01);
         assertEquals(0.0f, trailer.getRotation(), 0.01);
     }
 
@@ -21,8 +21,8 @@ public class TrailerSceneObjectTest
     {
         TrailerSceneObject trailer = new TrailerSceneObject(new ObjectConfig());
         trailer.pull(new Vector(-1.0f, 0f));
-        assertEquals(-1.0f, trailer.x, 0.01);
-        assertEquals(0.0f, trailer.y, 0.01);
+        assertEquals(-1.0f, trailer.position.x, 0.01);
+        assertEquals(0.0f, trailer.position.y, 0.01);
         assertEquals(0.0f, trailer.getRotation(), 0.01);
     }
 
@@ -31,8 +31,8 @@ public class TrailerSceneObjectTest
     {
         TrailerSceneObject trailer = new TrailerSceneObject(new ObjectConfig());
         trailer.pull(new Vector(0.0f, 1.0f));
-        assertEquals(0.0f, trailer.x, 0.01);
-        assertEquals(1.0f, trailer.y, 0.01);
+        assertEquals(0.0f, trailer.position.x, 0.01);
+        assertEquals(1.0f, trailer.position.y, 0.01);
         assertEquals(15.94f, trailer.getRotation(), 0.01);
     }
 
@@ -41,8 +41,8 @@ public class TrailerSceneObjectTest
     {
         TrailerSceneObject trailer = new TrailerSceneObject(new ObjectConfig());
         trailer.pull(new Vector(0.0f, -1.0f));
-        assertEquals(0.0f, trailer.x, 0.01);
-        assertEquals(-1.0f, trailer.y, 0.01);
+        assertEquals(0.0f, trailer.position.x, 0.01);
+        assertEquals(-1.0f, trailer.position.y, 0.01);
         assertEquals(-15.94f, trailer.getRotation(), 0.01);
     }
 

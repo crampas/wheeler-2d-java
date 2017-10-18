@@ -40,8 +40,8 @@ public class TrailerSceneObject extends SceneObject
     @Override
     public void pull(Vector d)
     {
-        this.x += d.x;
-        this.y += d.y;
+        this.position.x += d.x;
+        this.position.y += d.y;
         
         Vector rotorI = new Vector(axis, 0);
         Vector rotor = getAbsolute(rotorI);

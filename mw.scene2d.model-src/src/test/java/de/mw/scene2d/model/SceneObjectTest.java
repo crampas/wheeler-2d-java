@@ -31,8 +31,8 @@ public class SceneObjectTest
 		
 		o.addPositionRelative(1, 0);
 		
-		assertEquals(0.707, o.x, 0.001);
-		assertEquals(0.707, o.y, 0.001);
+		assertEquals(0.707, o.position.x, 0.001);
+		assertEquals(0.707, o.position.y, 0.001);
 	}
 
 
@@ -40,8 +40,8 @@ public class SceneObjectTest
 	public void getAbsolute_Vector()
 	{
 		SceneObject o = new SceneObject();
-		o.x = 3;
-		o.y = 1;
+		o.position.x = 3;
+		o.position.y = 1;
 		o.rotate((float)30);
 		
 		assertEquals(0.0, o.getAbsolute(new Vector(0, 0)).x, 0.001);
@@ -55,8 +55,8 @@ public class SceneObjectTest
 	public void getAbsolute_Point()
 	{
 		SceneObject o = new SceneObject();
-		o.x = 3;
-		o.y = 1;
+		o.position.x = 3;
+		o.position.y = 1;
 		o.rotate((float)30);
 		
 		assertEquals(3.0, o.getAbsolute(new Point(0, 0)).x, 0.001);
@@ -71,8 +71,8 @@ public class SceneObjectTest
 	public void getRelative()
 	{
 		SceneObject o = new SceneObject();
-		o.x = 1;
-		o.y = 3;
+		o.position.x = 1;
+		o.position.y = 3;
 		o.rotate((float)30);
 		
 		assertEquals(-2.366, o.getRelative(new Point(0, 0)).x, 0.001);
