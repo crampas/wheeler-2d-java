@@ -236,9 +236,9 @@ public class AcceleratorControl extends JPanel implements CarDamageListener
 		if (damage > 0)
 		{
 			getCar().engine.force = 0;
-			mActualValue = 0;
-			mTargetValue = 0;
-			mScenePanel.getCar().velocity = 0;
+//			mActualValue = 0;
+//			mTargetValue = 0;
+//			mScenePanel.getCar().velocity = 0;
 		}
 	}
 }
