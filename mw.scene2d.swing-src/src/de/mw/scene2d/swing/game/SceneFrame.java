@@ -131,17 +131,19 @@ public class SceneFrame extends JFrame
         {
             long currentTimeMillis = System.currentTimeMillis();
             float dt = ((float)(currentTimeMillis - mLastUpdateTimeMillis)) / 1000f;
+            boolean firstRun = mLastUpdateTimeMillis == 0;
             mLastUpdateTimeMillis = currentTimeMillis;
+            
+            if (firstRun)
+            	return;
         	
             mSteeringWheelControl.update(dt);
             mAcceleratorControl.update(dt);
 
             double steeringAngle = mSteeringWheelControl.getSteeringAngle();
-//            double velocity = mAcceleratorControl.getActualValue();
-            
             CarSceneObject car = mScenePanel.getCar();
             car.steeringAngle = (float)steeringAngle;
-            // car.velocity = (float)velocity;
+            
             mScenePanel.update(dt);
             mSceneMapView.repaint();
 

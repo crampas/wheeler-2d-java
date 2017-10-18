@@ -168,8 +168,6 @@ public class ScenePanel extends SwingSceneView implements CarDamageListener
 
     public void update(float dt)
     {
-//        dt = Math.min(dt, 0.1f);
-        
         for (SceneObject object : mScene.getSceneObjectList())
         {
             object.update(0, dt);
