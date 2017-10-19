@@ -79,14 +79,12 @@ public class ScenePanel extends SwingSceneView implements CarDamageListener
             Unmarshaller jaxbObjectConfigUnmarshaller = jaxbObjectConfigContext.createUnmarshaller();
             
             // Truck 
-            if(false)
+            if(true)
             {
-                ObjectConfig carConfig = (ObjectConfig)jaxbObjectConfigUnmarshaller.unmarshal(new File("CarConfig-002.xml"));
+                ObjectConfig carConfig = (ObjectConfig)jaxbObjectConfigUnmarshaller.unmarshal(new File("CarConfig-003.xml"));
     
                 mCar = new CarSceneObject(mScene, carConfig);
                 mCar.setPosition(20f, 7.5f);
-                mCar.setPosition(420f, 500f);
-                mCar.rotate(180);
                 mSceneObjectList.add(mCar);
                 mCar.setDamageListener(this);
                 
@@ -95,13 +93,11 @@ public class ScenePanel extends SwingSceneView implements CarDamageListener
             }
             
             // Truck trailer
-            if(false)
+            if(true)
             {
-                ObjectConfig trailerConfig = (ObjectConfig)jaxbObjectConfigUnmarshaller.unmarshal(new File("TrailerConfig-002.xml"));
+                ObjectConfig trailerConfig = (ObjectConfig)jaxbObjectConfigUnmarshaller.unmarshal(new File("TrailerConfig-003.xml"));
                 mTrailer = new TrailerSceneObject(trailerConfig);
-                mTrailer.setPosition(19f, 7.5f);
-                mTrailer.setPosition(421f, 500f);
-                mTrailer.rotate(180);
+                mTrailer.setPosition(17.9f, 7.5f);
                 mSceneObjectList.add(mTrailer);
                 mCar.childList.add(mTrailer);
             }
@@ -137,7 +133,7 @@ public class ScenePanel extends SwingSceneView implements CarDamageListener
 
             
             // small map - self-driving car
-            if(true)
+            if(false)
             {
                 ObjectConfig carConfig = (ObjectConfig)jaxbObjectConfigUnmarshaller.unmarshal(new File("CarConfig-001.xml"));
     

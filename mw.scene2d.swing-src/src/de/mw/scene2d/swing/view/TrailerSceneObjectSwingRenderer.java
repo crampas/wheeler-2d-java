@@ -6,7 +6,6 @@ import java.awt.Shape;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 
-import de.mw.scene2d.model.CarSceneObject;
 import de.mw.scene2d.model.SceneObject;
 import de.mw.scene2d.model.TrailerSceneObject;
 
