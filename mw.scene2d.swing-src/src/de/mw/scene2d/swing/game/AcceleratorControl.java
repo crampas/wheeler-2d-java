@@ -40,6 +40,9 @@ public class AcceleratorControl extends JPanel implements CarDamageListener
     private ScenePanel mScenePanel;
     private boolean mHold = false; // to remove?
     
+    private float mDamagePauseTime = 0;
+    
+    
     public AcceleratorControl(ScenePanel scenePanel, int preferredWidth)
     {
         mScenePanel = scenePanel;
@@ -109,6 +112,10 @@ public class AcceleratorControl extends JPanel implements CarDamageListener
     
     public void update(float dt)
     {
+    	mDamagePauseTime -= dt;
+    	if (mDamagePauseTime > 0)
+    		return;
+    	
         CarSceneObject car = getCar();
         double backForce = 0.1 * car.velocity * car.velocity;
         
@@ -235,9 +242,10 @@ public class AcceleratorControl extends JPanel implements CarDamageListener
 	{
 		if (damage > 0)
 		{
-			getCar().engine.force = 0;
-//			mActualValue = 0;
-//			mTargetValue = 0;
+			mDamagePauseTime = 1f;
+//			getCar().engine.force = 0;
+			mActualValue = 0;
+			mTargetValue = 0;
 //			mScenePanel.getCar().velocity = 0;
 		}
 	}

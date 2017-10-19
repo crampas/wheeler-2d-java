@@ -80,16 +80,17 @@ public class CarSceneObject extends SceneObject
         boolean hit = hitFL || hitFR || hitBL || hitBR;
         if(hit)
         {
-            Vector hitPull = new Vector(-1, 0).multiply(velocity * td * 1);
-            System.out.println(hitPull);
-            pull(getAbsolute(hitPull));
-
-        	float newDamage = td * velocity; 
+        	float newDamage = velocity; 
             damaged += newDamage;
             if(mDamageListener != null)
             {
                 mDamageListener.onCarDamaged(this, newDamage);
             }
+            
+            Vector hitPull = pull.multiply(-1);
+            pull(hitPull);
+            engine.force = 0;
+            velocity = 0;
             
         }
         
