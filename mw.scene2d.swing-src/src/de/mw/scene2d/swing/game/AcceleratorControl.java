@@ -117,41 +117,45 @@ public class AcceleratorControl extends JPanel implements CarDamageListener
     		return;
     	
         CarSceneObject car = getCar();
-        double backForce = 0.1 * car.velocity * car.velocity;
+        double backForce = 0.01 * car.velocity * car.velocity;
+        
         
         double force = getCar().engine.force;
         if(mUpPressed)
         {
+        	force = Math.max(force,  0);
             mHold = false; 
-            force = Math.min(force + 2.0, car.engine.forceMax);
+            double forceStep = dt * car.engine.forceMax / 3.0;
+            force = Math.min(force + forceStep, car.engine.forceMax);
         }
         else if(mDownPressed)
         {
+        	force = Math.min(force,  0);
             mHold = false;
-//            mTargetValue *= 0.95;
-            force = Math.max(force - 2.0, car.engine.forceMin);
+            double forceStep = dt * car.engine.forceMin / 2.0;
+            force = Math.max(force + forceStep, car.engine.forceMin);
         }
         else
         {
-            // keine automatische Rückstellung 
-            if(force > backForce)
-            {
-                mHold = true;
-            }
+            // keine automatische Rückstellung
+        	mHold = force > 0;
             if(mHold)
             {
-                force = Math.max(force - 2.0, backForce);
+            	double forceStep = dt * car.engine.forceMax;
+                force = Math.max(force - forceStep, backForce);
             }
             else
             {
-                force = (int)(force / 2);
+                force = 0;
             }
         }
         car.engine.force = (float)force;
+        
+        
   
         double effectiveForce = force - backForce;
         
-        double a = effectiveForce / (effectiveForce > 0 ? 40 : 10); // Beschleunigung
+        double a = effectiveForce; // Beschleunigung
         double dv = a * dt; // Geschwindigkeitszunahme
         mTargetValue += dv; 
 

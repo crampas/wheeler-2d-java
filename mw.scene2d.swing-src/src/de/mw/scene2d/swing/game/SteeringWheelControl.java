@@ -103,7 +103,7 @@ public class SteeringWheelControl extends JPanel
         
         // automatische Rückstellung der Lenkung
         CarSceneObject car = mScenePanel.getCar();
-        backForce = angle * car.velocity * 100 * dt;
+        backForce = angle * Math.abs(car.velocity) * 0.16;
         double effectiveForce = force - backForce;
         
         angle = angle + effectiveForce * dt * 2;
