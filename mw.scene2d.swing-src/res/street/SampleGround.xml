@@ -158,18 +158,6 @@
                 <y>0.0</y>
             </p1>
         </edge>
-        <damageRect>
-            <x>0.0</x>
-            <y>9.5</y>
-            <width>10.0</width>
-            <height>0.5</height>
-        </damageRect>
-        <damageRect>
-            <x>0.0</x>
-            <y>0.0</y>
-            <width>0.5</width>
-            <height>10.0</height>
-        </damageRect>
     </tile>
     <tile>
         <imageId>GroundTiles.png</imageId>
@@ -215,18 +203,6 @@
                 <y>2.5</y>
             </p1>
         </edge>
-        <damageRect>
-            <x>0.0</x>
-            <y>9.5</y>
-            <width>10.0</width>
-            <height>0.5</height>
-        </damageRect>
-        <damageRect>
-            <x>9.5</x>
-            <y>0.0</y>
-            <width>0.5</width>
-            <height>10.0</height>
-        </damageRect>
     </tile>
     <tile>
         <imageId>GroundTiles.png</imageId>
@@ -332,12 +308,6 @@
                 <y>2.5</y>
             </p1>
         </edge>
-        <damageRect>
-            <x>0.0</x>
-            <y>0.0</y>
-            <width>10.0</width>
-            <height>0.5</height>
-        </damageRect>
     </tile>
     <tile>
         <imageId>GroundTiles.png</imageId>
@@ -443,12 +413,6 @@
                 <y>7.5</y>
             </p1>
         </edge>
-        <damageRect>
-            <x>0.0</x>
-            <y>9.5</y>
-            <width>10.0</width>
-            <height>0.5</height>
-        </damageRect>
     </tile>
     <tile>
         <imageId>GroundTiles.png</imageId>
@@ -554,12 +518,6 @@
                 <y>0.0</y>
             </p1>
         </edge>
-        <damageRect>
-            <x>0.0</x>
-            <y>0.0</y>
-            <width>0.5</width>
-            <height>10.0</height>
-        </damageRect>
     </tile>
     <tile>
         <imageId>GroundTiles.png</imageId>
@@ -665,12 +623,6 @@
                 <y>0.0</y>
             </p1>
         </edge>
-        <damageRect>
-            <x>9.5</x>
-            <y>0.0</y>
-            <width>0.5</width>
-            <height>10.0</height>
-        </damageRect>
     </tile>
     <tile>
         <imageId>GroundTiles.png</imageId>
@@ -696,18 +648,6 @@
                 <y>0.0</y>
             </p1>
         </edge>
-        <damageRect>
-            <x>0.0</x>
-            <y>0.0</y>
-            <width>0.5</width>
-            <height>10.0</height>
-        </damageRect>
-        <damageRect>
-            <x>9.5</x>
-            <y>0.0</y>
-            <width>0.5</width>
-            <height>10.0</height>
-        </damageRect>
     </tile>
     <tile>
         <imageId>GroundTiles.png</imageId>
@@ -733,18 +673,6 @@
                 <y>7.5</y>
             </p1>
         </edge>
-        <damageRect>
-            <x>0.0</x>
-            <y>0.0</y>
-            <width>10.0</width>
-            <height>0.5</height>
-        </damageRect>
-        <damageRect>
-            <x>0.0</x>
-            <y>9.5</y>
-            <width>10.0</width>
-            <height>0.5</height>
-        </damageRect>
     </tile>
     <tile>
         <imageId>GroundTiles.png</imageId>
@@ -914,164 +842,461 @@
             <height>10.0</height>
         </damageRect>
     </tile>
+    
     <tile>
         <imageId>structure-01.png</imageId>
         <tileIndexX>0</tileIndexX>
         <tileIndexY>0</tileIndexY>
+        <damageRect>
+            <x>0.0</x>
+            <y>0.0</y>
+            <width>10.0</width>
+            <height>10.0</height>
+        </damageRect>
     </tile>
     <tile>
         <imageId>structure-01.png</imageId>
         <tileIndexX>1</tileIndexX>
         <tileIndexY>0</tileIndexY>
+        <damageRect>
+            <x>0.0</x>
+            <y>0.0</y>
+            <width>10.0</width>
+            <height>10.0</height>
+        </damageRect>
     </tile>
     <tile>
         <imageId>structure-01.png</imageId>
         <tileIndexX>2</tileIndexX>
         <tileIndexY>0</tileIndexY>
+        <damageRect>
+            <x>0.0</x>
+            <y>0.0</y>
+            <width>10.0</width>
+            <height>10.0</height>
+        </damageRect>
     </tile>
     <tile>
         <imageId>structure-01.png</imageId>
         <tileIndexX>3</tileIndexX>
         <tileIndexY>0</tileIndexY>
+        <damageRect>
+            <x>0.0</x>
+            <y>0.0</y>
+            <width>10.0</width>
+            <height>10.0</height>
+        </damageRect>
     </tile>
     <tile>
         <imageId>structure-01.png</imageId>
         <tileIndexX>0</tileIndexX>
         <tileIndexY>1</tileIndexY>
+        <damageRect>
+            <x>0.0</x>
+            <y>0.0</y>
+            <width>10.0</width>
+            <height>10.0</height>
+        </damageRect>
     </tile>
     <tile>
         <imageId>structure-01.png</imageId>
         <tileIndexX>1</tileIndexX>
         <tileIndexY>1</tileIndexY>
+        <damageRect>
+            <x>0.0</x>
+            <y>0.0</y>
+            <width>10.0</width>
+            <height>10.0</height>
+        </damageRect>
     </tile>
     <tile>
         <imageId>structure-01.png</imageId>
         <tileIndexX>2</tileIndexX>
         <tileIndexY>1</tileIndexY>
+        <damageRect>
+            <x>0.0</x>
+            <y>0.0</y>
+            <width>10.0</width>
+            <height>10.0</height>
+        </damageRect>
     </tile>
     <tile>
         <imageId>structure-01.png</imageId>
         <tileIndexX>3</tileIndexX>
         <tileIndexY>1</tileIndexY>
+        <damageRect>
+            <x>0.0</x>
+            <y>0.0</y>
+            <width>10.0</width>
+            <height>10.0</height>
+        </damageRect>
     </tile>
     <tile>
         <imageId>structure-01.png</imageId>
         <tileIndexX>0</tileIndexX>
         <tileIndexY>2</tileIndexY>
+        <damageRect>
+            <x>0.0</x>
+            <y>0.0</y>
+            <width>10.0</width>
+            <height>10.0</height>
+        </damageRect>
     </tile>
     <tile>
         <imageId>structure-01.png</imageId>
         <tileIndexX>1</tileIndexX>
         <tileIndexY>2</tileIndexY>
+        <damageRect>
+            <x>0.0</x>
+            <y>0.0</y>
+            <width>10.0</width>
+            <height>10.0</height>
+        </damageRect>
     </tile>
     <tile>
         <imageId>structure-01.png</imageId>
         <tileIndexX>2</tileIndexX>
         <tileIndexY>2</tileIndexY>
+        <damageRect>
+            <x>0.0</x>
+            <y>0.0</y>
+            <width>10.0</width>
+            <height>10.0</height>
+        </damageRect>
     </tile>
     <tile>
         <imageId>structure-01.png</imageId>
         <tileIndexX>3</tileIndexX>
         <tileIndexY>2</tileIndexY>
+        <damageRect>
+            <x>0.0</x>
+            <y>0.0</y>
+            <width>10.0</width>
+            <height>10.0</height>
+        </damageRect>
     </tile>
     <tile>
         <imageId>structure-01.png</imageId>
         <tileIndexX>0</tileIndexX>
         <tileIndexY>3</tileIndexY>
+        <damageRect>
+            <x>0.0</x>
+            <y>0.0</y>
+            <width>10.0</width>
+            <height>10.0</height>
+        </damageRect>
     </tile>
     <tile>
         <imageId>structure-01.png</imageId>
         <tileIndexX>1</tileIndexX>
         <tileIndexY>3</tileIndexY>
+        <damageRect>
+            <x>0.0</x>
+            <y>0.0</y>
+            <width>10.0</width>
+            <height>10.0</height>
+        </damageRect>
     </tile>
     <tile>
         <imageId>structure-01.png</imageId>
         <tileIndexX>2</tileIndexX>
         <tileIndexY>3</tileIndexY>
+        <damageRect>
+            <x>0.0</x>
+            <y>0.0</y>
+            <width>10.0</width>
+            <height>10.0</height>
+        </damageRect>
     </tile>
     <tile>
         <imageId>structure-01.png</imageId>
         <tileIndexX>3</tileIndexX>
         <tileIndexY>3</tileIndexY>
+        <damageRect>
+            <x>0.0</x>
+            <y>0.0</y>
+            <width>10.0</width>
+            <height>10.0</height>
+        </damageRect>
     </tile>
     <tile>
         <imageId>building-01.png</imageId>
         <tileIndexX>0</tileIndexX>
         <tileIndexY>0</tileIndexY>
+        <damageRect>
+            <x>0.0</x>
+            <y>0.0</y>
+            <width>10.0</width>
+            <height>10.0</height>
+        </damageRect>
     </tile>
     <tile>
         <imageId>building-01.png</imageId>
         <tileIndexX>1</tileIndexX>
         <tileIndexY>0</tileIndexY>
+        <damageRect>
+            <x>0.0</x>
+            <y>0.0</y>
+            <width>10.0</width>
+            <height>10.0</height>
+        </damageRect>
     </tile>
     <tile>
         <imageId>building-01.png</imageId>
         <tileIndexX>2</tileIndexX>
         <tileIndexY>0</tileIndexY>
+        <damageRect>
+            <x>0.0</x>
+            <y>0.0</y>
+            <width>10.0</width>
+            <height>10.0</height>
+        </damageRect>
     </tile>
     <tile>
         <imageId>building-01.png</imageId>
         <tileIndexX>3</tileIndexX>
         <tileIndexY>0</tileIndexY>
+        <damageRect>
+            <x>0.0</x>
+            <y>0.0</y>
+            <width>10.0</width>
+            <height>10.0</height>
+        </damageRect>
     </tile>
     <tile>
         <imageId>building-01.png</imageId>
         <tileIndexX>0</tileIndexX>
         <tileIndexY>1</tileIndexY>
+        <damageRect>
+            <x>0.0</x>
+            <y>0.0</y>
+            <width>10.0</width>
+            <height>10.0</height>
+        </damageRect>
     </tile>
     <tile>
         <imageId>building-01.png</imageId>
         <tileIndexX>1</tileIndexX>
         <tileIndexY>1</tileIndexY>
+        <damageRect>
+            <x>0.0</x>
+            <y>0.0</y>
+            <width>10.0</width>
+            <height>10.0</height>
+        </damageRect>
     </tile>
     <tile>
         <imageId>building-01.png</imageId>
         <tileIndexX>2</tileIndexX>
         <tileIndexY>1</tileIndexY>
+        <damageRect>
+            <x>0.0</x>
+            <y>0.0</y>
+            <width>10.0</width>
+            <height>10.0</height>
+        </damageRect>
     </tile>
     <tile>
         <imageId>building-01.png</imageId>
         <tileIndexX>3</tileIndexX>
         <tileIndexY>1</tileIndexY>
+        <damageRect>
+            <x>0.0</x>
+            <y>0.0</y>
+            <width>10.0</width>
+            <height>10.0</height>
+        </damageRect>
     </tile>
     <tile>
         <imageId>building-01.png</imageId>
         <tileIndexX>0</tileIndexX>
         <tileIndexY>2</tileIndexY>
+        <damageRect>
+            <x>0.0</x>
+            <y>0.0</y>
+            <width>10.0</width>
+            <height>10.0</height>
+        </damageRect>
     </tile>
     <tile>
         <imageId>building-01.png</imageId>
         <tileIndexX>1</tileIndexX>
         <tileIndexY>2</tileIndexY>
+        <damageRect>
+            <x>0.0</x>
+            <y>0.0</y>
+            <width>10.0</width>
+            <height>10.0</height>
+        </damageRect>
     </tile>
     <tile>
         <imageId>building-01.png</imageId>
         <tileIndexX>2</tileIndexX>
         <tileIndexY>2</tileIndexY>
+        <damageRect>
+            <x>0.0</x>
+            <y>0.0</y>
+            <width>10.0</width>
+            <height>10.0</height>
+        </damageRect>
     </tile>
     <tile>
         <imageId>building-01.png</imageId>
         <tileIndexX>3</tileIndexX>
         <tileIndexY>2</tileIndexY>
+        <damageRect>
+            <x>0.0</x>
+            <y>0.0</y>
+            <width>10.0</width>
+            <height>10.0</height>
+        </damageRect>
     </tile>
     <tile>
         <imageId>building-01.png</imageId>
         <tileIndexX>0</tileIndexX>
         <tileIndexY>3</tileIndexY>
+        <damageRect>
+            <x>0.0</x>
+            <y>0.0</y>
+            <width>10.0</width>
+            <height>10.0</height>
+        </damageRect>
     </tile>
     <tile>
         <imageId>building-01.png</imageId>
         <tileIndexX>1</tileIndexX>
         <tileIndexY>3</tileIndexY>
+        <damageRect>
+            <x>0.0</x>
+            <y>0.0</y>
+            <width>10.0</width>
+            <height>10.0</height>
+        </damageRect>
     </tile>
     <tile>
         <imageId>building-01.png</imageId>
         <tileIndexX>2</tileIndexX>
         <tileIndexY>3</tileIndexY>
+        <damageRect>
+            <x>0.0</x>
+            <y>0.0</y>
+            <width>10.0</width>
+            <height>10.0</height>
+        </damageRect>
     </tile>
     <tile>
         <imageId>building-01.png</imageId>
         <tileIndexX>3</tileIndexX>
         <tileIndexY>3</tileIndexY>
+        <damageRect>
+            <x>0.0</x>
+            <y>0.0</y>
+            <width>10.0</width>
+            <height>10.0</height>
+        </damageRect>
     </tile>
+    
+    <tile>
+        <imageId>structure-02.png</imageId>
+        <tileIndexX>0</tileIndexX>
+        <tileIndexY>0</tileIndexY>
+    </tile>
+    <tile>
+        <imageId>structure-02.png</imageId>
+        <tileIndexX>1</tileIndexX>
+        <tileIndexY>0</tileIndexY>
+    </tile>
+    <tile>
+        <imageId>structure-02.png</imageId>
+        <tileIndexX>2</tileIndexX>
+        <tileIndexY>0</tileIndexY>
+    </tile>
+    <tile>
+        <imageId>structure-02.png</imageId>
+        <tileIndexX>0</tileIndexX>
+        <tileIndexY>1</tileIndexY>
+    </tile>
+    <tile>
+        <imageId>structure-02.png</imageId>
+        <tileIndexX>1</tileIndexX>
+        <tileIndexY>1</tileIndexY>
+        <damageRect>
+            <x>0.0</x>
+            <y>5.0</y>
+            <width>10.0</width>
+            <height>5.0</height>
+        </damageRect>
+    </tile>
+    <tile>
+        <imageId>structure-02.png</imageId>
+        <tileIndexX>2</tileIndexX>
+        <tileIndexY>1</tileIndexY>
+    </tile>
+    <tile>
+        <imageId>structure-02.png</imageId>
+        <tileIndexX>0</tileIndexX>
+        <tileIndexY>2</tileIndexY>
+        <damageRect>
+            <x>0.0</x>
+            <y>9.0</y>
+            <width>1.0</width>
+            <height>10.0</height>
+        </damageRect>
+    </tile>
+    <tile>
+        <imageId>structure-02.png</imageId>
+        <tileIndexX>1</tileIndexX>
+        <tileIndexY>2</tileIndexY>
+        <damageRect>
+            <x>0.0</x>
+            <y>0.0</y>
+            <width>10.0</width>
+            <height>10.0</height>
+        </damageRect>
+    </tile>
+    <tile>
+        <imageId>structure-02.png</imageId>
+        <tileIndexX>2</tileIndexX>
+        <tileIndexY>2</tileIndexY>
+        <damageRect>
+            <x>0.0</x>
+            <y>9.0</y>
+            <width>10.0</width>
+            <height>1.0</height>
+        </damageRect>
+    </tile>
+    <tile>
+        <imageId>structure-02.png</imageId>
+        <tileIndexX>0</tileIndexX>
+        <tileIndexY>3</tileIndexY>
+        <damageRect>
+            <x>0.0</x>
+            <y>0.0</y>
+            <width>10.0</width>
+            <height>10.0</height>
+        </damageRect>
+    </tile>
+    <tile>
+        <imageId>structure-02.png</imageId>
+        <tileIndexX>1</tileIndexX>
+        <tileIndexY>3</tileIndexY>
+        <damageRect>
+            <x>0.0</x>
+            <y>0.0</y>
+            <width>10.0</width>
+            <height>10.0</height>
+        </damageRect>
+    </tile>
+    <tile>
+        <imageId>structure-02.png</imageId>
+        <tileIndexX>2</tileIndexX>
+        <tileIndexY>3</tileIndexY>
+        <damageRect>
+            <x>0.0</x>
+            <y>0.0</y>
+            <width>10.0</width>
+            <height>10.0</height>
+        </damageRect>
+    </tile>
+    
 </SampleGround>
