@@ -35,8 +35,10 @@ public class GroundEditorFrame extends JFrame
     {
 //        mGround = SampleGround.createSampleGround(new File("res/street/SampleGround.xml"),
 //                new File("res/street/Ground-100x100.bin"));
-        mGround = SampleGround.createSampleGround(new File("res/street/SampleGround.xml"),
-                new File("res/street/Ground-10x10.bin"));
+//        mGround = SampleGround.createSampleGround(new File("res/street/SampleGround.xml"),
+//                new File("res/street/Ground-10x10.bin"));
+	    mGround = SampleGround.createSampleGround(new File("res/street/SampleGround.xml"),
+	    		new File("res/games/delivery/ground-40x40.bin"));
         
         this.setTitle(mGround.getBasleLocation().toString() + " / " + mGround.getGroundMapFile().toString());
         

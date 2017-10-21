@@ -1,10 +1,14 @@
 package de.mw.scene2d.swing.util;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Unmarshaller;
+
+import de.mw.scene2d.model.ObjectConfig;
 
 public class IOUtilities
 {
@@ -31,5 +35,22 @@ public class IOUtilities
         {
             throw new RuntimeException(ex);
         }
+    }
+    
+    public static ObjectConfig readObjectConfig(String filename)
+    {
+    	try
+    	{
+	        JAXBContext jaxbObjectConfigContext = JAXBContext.newInstance(ObjectConfig.class);
+	        Unmarshaller jaxbObjectConfigUnmarshaller = jaxbObjectConfigContext.createUnmarshaller();
+			
+	        ObjectConfig carConfig = (ObjectConfig)jaxbObjectConfigUnmarshaller.unmarshal(new File(filename));
+	        return carConfig;
+    	}
+    	catch(Exception ex)
+    	{
+    		throw new RuntimeException(ex);
+    	}
+    	
     }
 }

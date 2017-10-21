@@ -25,7 +25,7 @@ import de.mw.scene2d.swing.game.SampleGround;
 
 public class SwingSceneView extends JPanel implements SwingRendererContext
 {
-    protected final Scene mScene;
+    public final Scene mScene;
     
     private Point mViewportPosition = new Point(0f, 0f);
     private double mViewportScale = 20;
