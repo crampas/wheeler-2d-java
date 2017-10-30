@@ -19,6 +19,7 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 
 import de.mw.scene2d.swing.game.SampleGround;
+import de.mw.scene2d.swing.util.GroundMapSerializer;
 
 public class SaveAction extends AbstractAction
 {
@@ -45,17 +46,8 @@ public class SaveAction extends AbstractAction
                 file.renameTo(bakFile);
             }
             OutputStream output = new FileOutputStream(file);
-            ground.getGroundMap().write(output);
+            GroundMapSerializer.writeGroundMap(output, ground.getGroundMap());
             output.close();
-
-            JAXBContext jaxbContext = JAXBContext.newInstance(SampleGround.class);
-//            jaxbContext.generateSchema(new MySchemaOutputResolver());
-            
-//            JAXBElement<SampleGround> jbSampleGround = new JAXBElement<SampleGround>(new QName("SampleGround"), SampleGround.class, ground);
-            
-//            Marshaller m = jaxbContext.createMarshaller();
-//            m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-//            m.marshal(ground, new File("SampleGround.xml"));
         }
         catch (Exception ex)
         {

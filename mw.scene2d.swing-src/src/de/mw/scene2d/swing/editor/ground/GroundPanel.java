@@ -15,8 +15,8 @@ import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.mw.scene2d.model.GroundMap;
 import de.mw.scene2d.model.Scene;
-import de.mw.scene2d.swing.game.GroundMap;
 import de.mw.scene2d.swing.game.SampleGround;
 import de.mw.scene2d.swing.view.SwingSceneView;
 
@@ -130,7 +130,7 @@ public class GroundPanel extends SwingSceneView
             return;
         }
         
-        if((e.getModifiersEx() & MouseEvent.BUTTON2_DOWN_MASK) != 0)
+        if((e.getModifiersEx() & MouseEvent.BUTTON3_DOWN_MASK) != 0)
         {
             Point newDragPoint = e.getPoint();
             int dx = newDragPoint.x - mDragPoint.x;
@@ -171,7 +171,7 @@ public class GroundPanel extends SwingSceneView
     
     private void onMousePressed(MouseEvent e)
     {
-        if((e.getModifiersEx() & MouseEvent.BUTTON2_DOWN_MASK) != 0)
+        if((e.getModifiersEx() & MouseEvent.BUTTON3_DOWN_MASK) != 0)
         {
             mDragPoint = e.getPoint();
             return;
@@ -243,7 +243,9 @@ public class GroundPanel extends SwingSceneView
             int tileIndexY = (int)Math.floor(mousePointWorld.getY() / 10.0);
 
             g.setColor(Color.RED);
-            String tooltip = String.format("(%d;%d) (%.1f;%.1f)", tileIndexX, tileIndexY, mousePointWorld.getX(), mousePointWorld.getY());
+            String tooltip = String.format("(%d;%d) (%.1f;%.1f) %d", tileIndexX, tileIndexY, 
+            		mousePointWorld.getX(), mousePointWorld.getY(), 
+            		mGround.getTileIndex(tileIndexX, tileIndexY));
             g.drawString(tooltip, mousePoint.x + 15, mousePoint.y + 15);
 
             g2.setTransform(transform);

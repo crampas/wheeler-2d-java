@@ -1,10 +1,4 @@
-package de.mw.scene2d.swing.game;
-
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+package de.mw.scene2d.model;
 
 public class GroundMap
 {
@@ -13,7 +7,12 @@ public class GroundMap
     private int[] mMapData;
     
     
-    public GroundMap()
+    public int[] getMapData()
+	{
+		return mMapData;
+	}
+
+	public GroundMap()
     {}
     
     public GroundMap(int width, int height)
@@ -77,30 +76,6 @@ public class GroundMap
         mMapData[index] = tileIndex;
     }
     
-    public void write(OutputStream stream) throws IOException
-    {
-        DataOutputStream dataStream = new DataOutputStream(stream);
-        dataStream.writeInt(mWidth);
-        dataStream.writeInt(mHeight);
-        for(int index = 0; index < mMapData.length; index++)
-        {
-            dataStream.writeInt(mMapData[index]);    
-        }
-        dataStream.flush();
-    }
-
-    public void read(InputStream stream) throws IOException
-    {
-        DataInputStream dataStream = new DataInputStream(stream);
-        mWidth = dataStream.readInt();
-        mHeight = dataStream.readInt();
-        mMapData = new int[mWidth * mHeight];
-        for(int index = 0; index < mMapData.length; index++)
-        {
-            mMapData[index] = dataStream.readInt();
-        }
-    }
-
     public int getWidth()
     {
         return mWidth;

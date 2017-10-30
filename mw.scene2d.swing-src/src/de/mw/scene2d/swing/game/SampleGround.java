@@ -2,9 +2,11 @@ package de.mw.scene2d.swing.game;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -24,17 +26,19 @@ import de.mw.scene2d.model.Edge;
 import de.mw.scene2d.model.FloatArray2;
 import de.mw.scene2d.model.FloatArray2.Callback;
 import de.mw.scene2d.model.Ground;
+import de.mw.scene2d.model.GroundMap;
 import de.mw.scene2d.model.GroundTile;
 import de.mw.scene2d.model.IntArray2;
 import de.mw.scene2d.model.Point;
 import de.mw.scene2d.model.Rect;
+import de.mw.scene2d.swing.util.GroundMapSerializer;
 
 @XmlRootElement(name = "SampleGround")
 public class SampleGround extends Ground implements Serializable
 {
     private File mBasleLocation;
     
-    private GroundMap mGroundMap = new GroundMap();
+    private GroundMap mGroundMap;
 
     private List<Edge>[] mTileNavPathList;
     
@@ -58,8 +62,9 @@ public class SampleGround extends Ground implements Serializable
             ground.mBasleLocation = groundFile.getParentFile();
             
             InputStream mapStream = new FileInputStream(mapFile);
-            ground.getGroundMap().read(mapStream);
+            ground.mGroundMap = GroundMapSerializer.readGroundMap(mapStream);
             mapStream.close();
+            
             ground.mGroundMapFile = mapFile;
             
             ground.init();
@@ -88,6 +93,9 @@ public class SampleGround extends Ground implements Serializable
         return mGroundMapFile;
     }
 
+
+
+    
     public SampleGround(String propertiesFileName)
     {
 //        try

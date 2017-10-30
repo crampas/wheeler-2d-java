@@ -17,12 +17,6 @@ public class GroundEditorFrame extends JFrame
     
     public static void main(String[] arguments) throws Exception
     {
-//        TrailerConfig t1c = new TrailerConfig();
-//        JAXBContext jaxbContext = JAXBContext.newInstance(TrailerConfig.class);
-//        Marshaller m = jaxbContext.createMarshaller();
-//        m.marshal(t1c, new File("TrailerConfig-001.xml"));
-
-        
         GroundEditorFrame mainFrame = new GroundEditorFrame();
 
         mainFrame.setSize(1200, 800);
@@ -37,8 +31,8 @@ public class GroundEditorFrame extends JFrame
 //                new File("res/street/Ground-100x100.bin"));
 //        mGround = SampleGround.createSampleGround(new File("res/street/SampleGround.xml"),
 //                new File("res/street/Ground-10x10.bin"));
-	    mGround = SampleGround.createSampleGround(new File("res/street/SampleGround.xml"),
-	    		new File("res/games/delivery/ground-40x40.bin"));
+	    mGround = SampleGround.createSampleGround(new File("res/city/road-tileset.xml"),
+	    		new File("res/city/map-16x16.bin"));
         
         this.setTitle(mGround.getBasleLocation().toString() + " / " + mGround.getGroundMapFile().toString());
         
@@ -69,10 +63,12 @@ public class GroundEditorFrame extends JFrame
         setJMenuBar(mainMenu);
         
         JMenu fileMenu = new JMenu("Datei");
+        fileMenu.add(new JMenuItem(new SaveAction(this)));
         mainMenu.add(fileMenu);
         
-        JMenuItem saveMenuItem = new JMenuItem(new SaveAction(this));
-        fileMenu.add(saveMenuItem);
+        JMenu operationsMenu = new JMenu("Operations");
+        operationsMenu.add(new JMenuItem(new CreateRandomGroundAction(this)));
+        mainMenu.add(operationsMenu);
     }
 
 

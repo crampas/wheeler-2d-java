@@ -4,7 +4,8 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.util.Properties;
 
-import de.mw.scene2d.swing.game.GroundMap;
+import de.mw.scene2d.model.GroundMap;
+import de.mw.scene2d.swing.util.GroundMapSerializer;
 
 public class GroundMapCreator
 {
@@ -19,7 +20,7 @@ public class GroundMapCreator
         
         GroundMap groundMap = new GroundMap(width, height);
         OutputStream stream = new FileOutputStream(targetFile);
-        groundMap.write(stream);
+        GroundMapSerializer.writeGroundMap(stream, groundMap);
         stream.close();
     }
     
