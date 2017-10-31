@@ -16,16 +16,16 @@ import javax.swing.JScrollPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import de.mw.scene2d.swing.game.SampleGround;
+import de.mw.scene2d.swing.game.SwingGround;
 
 public class TileSelectorPanel extends JPanel implements TileSelectionSource
 {
-    private SampleGround mGround;
+    private SwingGround mGround;
     private JList mListControl = new JList();
     
     private Icon[] mTileIconList;
     
-    public TileSelectorPanel(SampleGround ground)
+    public TileSelectorPanel(SwingGround ground)
     {
         mGround = ground;
         
@@ -33,8 +33,8 @@ public class TileSelectorPanel extends JPanel implements TileSelectionSource
         
         
         
-        mTileIconList = new Icon[mGround.tile.length];
-        mListControl.setListData(mGround.tile);
+        mTileIconList = new Icon[mGround.tileSet.tile.length];
+        mListControl.setListData(mGround.tileSet.tile);
         mListControl.setCellRenderer(new GroundTileListCellRenderer());
         mListControl.setDragEnabled(true);
         

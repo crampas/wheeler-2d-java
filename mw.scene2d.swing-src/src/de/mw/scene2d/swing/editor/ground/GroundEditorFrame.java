@@ -9,11 +9,12 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-import de.mw.scene2d.swing.game.SampleGround;
+import de.mw.scene2d.swing.game.SwingGround;
 
 public class GroundEditorFrame extends JFrame
 {
-    private SampleGround mGround;
+    private SwingGround mGround;
+    private File mTileMapFile;
     
     public static void main(String[] arguments) throws Exception
     {
@@ -31,11 +32,17 @@ public class GroundEditorFrame extends JFrame
 //                new File("res/street/Ground-100x100.bin"));
 //        mGround = SampleGround.createSampleGround(new File("res/street/SampleGround.xml"),
 //                new File("res/street/Ground-10x10.bin"));
-	    mGround = SampleGround.createSampleGround(new File("res/city/road-tileset.xml"),
-	    		new File("res/city/map-16x16.bin"));
+    	
+    	mTileMapFile = new File("res/city/map-16x16.bin");
+	    mGround = SwingGround.createSampleGround(new File("res/city/road-tileset.xml"), mTileMapFile);
         
-        this.setTitle(mGround.getBasleLocation().toString() + " / " + mGround.getGroundMapFile().toString());
+        this.setTitle(mGround.getBasleLocation().toString() + " / " + mTileMapFile.toString());
         
+        initContent();
+    }
+
+    private void initContent()
+    {
         Container contentPane = getContentPane();
         
         contentPane.setLayout(new BorderLayout());
@@ -62,7 +69,7 @@ public class GroundEditorFrame extends JFrame
         JMenuBar mainMenu = new JMenuBar();
         setJMenuBar(mainMenu);
         
-        JMenu fileMenu = new JMenu("Datei");
+        JMenu fileMenu = new JMenu("File");
         fileMenu.add(new JMenuItem(new SaveAction(this)));
         mainMenu.add(fileMenu);
         
@@ -76,9 +83,20 @@ public class GroundEditorFrame extends JFrame
         mainMenu.add(operationsMenu);
     }
 
-
-    public SampleGround getGround()
+    public SwingGround getGround()
     {
         return mGround;
     }
+
+
+	public File getTileMapFile()
+	{
+		return mTileMapFile;
+	}
+
+
+	public void setTileMapFile(File tileMapFile)
+	{
+		mTileMapFile = tileMapFile;
+	}
 }

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <SampleGround>
+	<name>road</name>
+	<id>0</id>
     <tile>
         <imageId>road-01.png</imageId>
         <tileIndexX>0</tileIndexX>

@@ -17,17 +17,17 @@ import java.util.List;
 
 import de.mw.scene2d.model.TileMap;
 import de.mw.scene2d.model.Scene;
-import de.mw.scene2d.swing.game.SampleGround;
+import de.mw.scene2d.swing.game.SwingGround;
 import de.mw.scene2d.swing.view.SwingSceneView;
 
 public class GroundPanel extends SwingSceneView
 {
-    private SampleGround mGround;
+    private SwingGround mGround;
     private TileSelectionSource mTileSelectionSource;
     
     private List<ReplaceRule> mReplaceRuleList = new ArrayList<ReplaceRule>();
     
-    public GroundPanel(SampleGround ground)
+    public GroundPanel(SwingGround ground)
     {
         super(new Scene());
 

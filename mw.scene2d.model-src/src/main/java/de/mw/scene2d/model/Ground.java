@@ -7,9 +7,9 @@ import java.util.Map;
 
 public abstract class Ground
 {
-    private int width = 0;
-    public int height = 0;
-    public GroundTile[] tile;
+    public TileSet tileSet;
+
+    protected TileMap mGroundMap;
     
     protected List<Edge> mNavPathEdgeList = new ArrayList<Edge>();
     protected Map<Point, List<Edge>> mNavPointEdgeListMap = new HashMap<Point, List<Edge>>();
@@ -22,7 +22,7 @@ public abstract class Ground
         int xIndex = (int)Math.floor(x / 10);
         int yIndex = (int)Math.floor(y / 10);
         int index = getTileIndex(xIndex, yIndex);
-        return tile[index];
+        return tileSet.tile[index];
     }
     
     public Vector getTileOffset(float x, float y)

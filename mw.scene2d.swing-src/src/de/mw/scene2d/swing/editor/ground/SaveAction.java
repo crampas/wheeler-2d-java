@@ -3,22 +3,11 @@ package de.mw.scene2d.swing.editor.ground;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.OutputStream;
 
 import javax.swing.AbstractAction;
-import javax.xml.XMLConstants;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.SchemaOutputResolver;
-import javax.xml.namespace.QName;
-import javax.xml.transform.Result;
-import javax.xml.transform.stream.StreamResult;
-import javax.xml.validation.Schema;
-import javax.xml.validation.SchemaFactory;
 
-import de.mw.scene2d.swing.game.SampleGround;
+import de.mw.scene2d.swing.game.SwingGround;
 import de.mw.scene2d.swing.util.GroundMapSerializer;
 
 public class SaveAction extends AbstractAction
@@ -36,8 +25,8 @@ public class SaveAction extends AbstractAction
     {
         try
         {
-            SampleGround ground = mApplication.getGround();
-            File file = ground.getGroundMapFile();
+            SwingGround ground = mApplication.getGround();
+            File file = mApplication.getTileMapFile();
             if (file.exists())
             {
                 String bakFilename = file.toString() + ".bak";
@@ -54,13 +43,4 @@ public class SaveAction extends AbstractAction
             throw new RuntimeException(ex);
         }
     }
-
-    class MySchemaOutputResolver extends SchemaOutputResolver
-    {
-        public Result createOutput(String namespaceUri, String suggestedFileName) throws IOException
-        {
-            return new StreamResult(new File(suggestedFileName));
-        }
-    }
-
 }

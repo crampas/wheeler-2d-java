@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 
 import de.mw.scene2d.model.TileMap;
-import de.mw.scene2d.swing.game.SampleGround;
+import de.mw.scene2d.swing.game.SwingGround;
 
 public class StretchTileMapAction extends AbstractAction
 {
@@ -22,7 +22,7 @@ public class StretchTileMapAction extends AbstractAction
     @Override
     public void actionPerformed(ActionEvent e)
     {
-    	SampleGround ground = mApplication.getGround();
+    	SwingGround ground = mApplication.getGround();
     	TileMap newMap = stretchTileMap(ground.getGroundMap(), mFactor);
     	ground.setGroundMap(newMap);
     	ground.init();

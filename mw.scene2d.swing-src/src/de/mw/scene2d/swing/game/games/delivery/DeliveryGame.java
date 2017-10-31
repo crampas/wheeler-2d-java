@@ -7,7 +7,7 @@ import de.mw.scene2d.model.CarSceneObject;
 import de.mw.scene2d.model.ObjectConfig;
 import de.mw.scene2d.model.Scene;
 import de.mw.scene2d.model.SceneObject;
-import de.mw.scene2d.swing.game.SampleGround;
+import de.mw.scene2d.swing.game.SwingGround;
 import de.mw.scene2d.swing.game.ScenePanel;
 import de.mw.scene2d.swing.util.IOUtilities;
 
@@ -17,7 +17,7 @@ public class DeliveryGame
 	{
 		ScenePanel.ViewportVelocityScale = false;
 		
-		SampleGround ground = SampleGround.createSampleGround(new File("res/street/SampleGround.xml"),
+		SwingGround ground = SwingGround.createSampleGround(new File("res/street/SampleGround.xml"),
                 new File("res/games/delivery/ground-40x40.bin"));
 		
 		scenePanel.mGround = ground;

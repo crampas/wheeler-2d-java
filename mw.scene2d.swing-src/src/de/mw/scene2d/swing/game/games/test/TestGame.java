@@ -15,14 +15,14 @@ import de.mw.scene2d.model.SignSceneObject;
 import de.mw.scene2d.model.TempSceneObject;
 import de.mw.scene2d.model.TrailerSceneObject;
 import de.mw.scene2d.swing.game.Driver;
-import de.mw.scene2d.swing.game.SampleGround;
+import de.mw.scene2d.swing.game.SwingGround;
 import de.mw.scene2d.swing.game.ScenePanel;
 
 public class TestGame
 {
 	public void setup(ScenePanel scenePanel)
 	{
-		SampleGround ground = SampleGround.createSampleGround(new File("res/city/road-tileset.xml"),
+		SwingGround ground = SwingGround.createSampleGround(new File("res/city/road-tileset.xml"),
                 new File("res/city/map-16x16.bin"));
 		
 		scenePanel.mGround = ground;

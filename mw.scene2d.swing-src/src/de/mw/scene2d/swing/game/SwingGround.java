@@ -2,12 +2,9 @@ package de.mw.scene2d.swing.game;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
@@ -18,27 +15,23 @@ import java.util.Map;
 import java.util.Properties;
 
 import javax.imageio.ImageIO;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import de.mw.scene2d.model.Edge;
 import de.mw.scene2d.model.FloatArray2;
 import de.mw.scene2d.model.FloatArray2.Callback;
 import de.mw.scene2d.model.Ground;
-import de.mw.scene2d.model.TileMap;
 import de.mw.scene2d.model.GroundTile;
 import de.mw.scene2d.model.IntArray2;
 import de.mw.scene2d.model.Point;
-import de.mw.scene2d.model.Rect;
+import de.mw.scene2d.model.TileMap;
 import de.mw.scene2d.swing.util.GroundMapSerializer;
+import de.mw.scene2d.swing.util.TileSetSerializer;
 
-@XmlRootElement(name = "SampleGround")
-public class SampleGround extends Ground implements Serializable
+
+public class SwingGround extends Ground implements Serializable
 {
-    private File mBasleLocation;
+    private File mBaseLocation;
     
-    private TileMap mGroundMap;
 
     private List<Edge>[] mTileNavPathList;
     
@@ -48,37 +41,27 @@ public class SampleGround extends Ground implements Serializable
     
     private Map<String, BufferedImage> mBackgroundImageMap = new HashMap<String, BufferedImage>();
     
-    private File mGroundMapFile;
     
     
-    public static SampleGround createSampleGround(File groundFile, File mapFile)
+    
+    public static SwingGround createSampleGround(File tileSetFile, File mapFile)
     {
-        try
-        {
-            JAXBContext jaxbContext = JAXBContext.newInstance(SampleGround.class);
-            Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-            SampleGround ground = (SampleGround)unmarshaller.unmarshal(groundFile);
-            
-            ground.mBasleLocation = groundFile.getParentFile();
-            
-            InputStream mapStream = new FileInputStream(mapFile);
-            ground.mGroundMap = GroundMapSerializer.readGroundMap(mapStream);
-            mapStream.close();
-            
-            ground.mGroundMapFile = mapFile;
-            
-            ground.init();
+    	SwingGround ground = new SwingGround();
+        
+        ground.mBaseLocation = mapFile.getParentFile();
+        
+        ground.mGroundMap = GroundMapSerializer.readGroundMap(mapFile);
 
-            return ground;
-        }
-        catch(Exception ex)
-        {
-            throw new RuntimeException(ex);
-        }
+    	ground.tileSet = TileSetSerializer.readTileSet(tileSetFile);
+
+        
+        ground.init();
+
+        return ground;
     }
     
     
-    public SampleGround()
+    public SwingGround()
     {
     }
 
@@ -88,15 +71,10 @@ public class SampleGround extends Ground implements Serializable
     }
 
     
-    public File getGroundMapFile()
-    {
-        return mGroundMapFile;
-    }
-
 
 
     
-    public SampleGround(String propertiesFileName)
+    public SwingGround(String propertiesFileName)
     {
     }
     
@@ -108,7 +86,7 @@ public class SampleGround extends Ground implements Serializable
             BufferedImage image = mBackgroundImageMap.get(imageId);
             if(image == null)
             {
-                File imageFile = new File(mBasleLocation, imageId);
+                File imageFile = new File(mBaseLocation, imageId);
                 image = ImageIO.read(imageFile);
                 mBackgroundImageMap.put(imageId, image);
             }
@@ -126,7 +104,7 @@ public class SampleGround extends Ground implements Serializable
     	if (tileIndex < 0)
     		return;
     	
-        GroundTile tile = this.tile[tileIndex];
+        GroundTile tile = this.tileSet.tile[tileIndex];
         BufferedImage backgroundImage = getBackgroundImage(tile.imageId);
         
 //        int px = (tileIndex % 4) * 100;
@@ -142,7 +120,7 @@ public class SampleGround extends Ground implements Serializable
     
     public BufferedImage getTileImage(int tileIndex)
     {
-        GroundTile tile = this.tile[tileIndex];
+        GroundTile tile = this.tileSet.tile[tileIndex];
         BufferedImage backgroundImage = getBackgroundImage(tile.imageId);
 
 //        int x = (tileIndex % 4) * 100;
@@ -171,7 +149,7 @@ public class SampleGround extends Ground implements Serializable
     public GroundTile getTileByIndex(int x, int y)
     {
         int index = getTileIndex(x, y);
-        return tile[index];
+        return tileSet.tile[index];
     }
     
     private void collectEdges()
@@ -406,7 +384,7 @@ public class SampleGround extends Ground implements Serializable
 
     public File getBasleLocation()
     {
-        return mBasleLocation;
+        return mBaseLocation;
     }
 
 }

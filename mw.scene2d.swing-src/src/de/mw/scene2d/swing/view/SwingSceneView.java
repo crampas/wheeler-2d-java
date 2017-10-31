@@ -21,7 +21,7 @@ import de.mw.scene2d.model.SceneObject;
 import de.mw.scene2d.model.SignSceneObject;
 import de.mw.scene2d.model.TempSceneObject;
 import de.mw.scene2d.model.TrailerSceneObject;
-import de.mw.scene2d.swing.game.SampleGround;
+import de.mw.scene2d.swing.game.SwingGround;
 
 public class SwingSceneView extends JPanel implements SwingRendererContext
 {
@@ -58,7 +58,7 @@ public class SwingSceneView extends JPanel implements SwingRendererContext
     protected void drawBackgroundPatch(Graphics2D graphics, int x0, int y0, int patch)
     {
         Ground mGround = mScene.getGround();
-        ((SampleGround)mGround).drawTile(graphics, x0 * 10, y0 * 10, x0 * 10 + 10, y0 * 10 + 10, patch);
+        ((SwingGround)mGround).drawTile(graphics, x0 * 10, y0 * 10, x0 * 10 + 10, y0 * 10 + 10, patch);
         
         if(x0 < 0 || x0 >= mGround.getWidth() || y0 < 0 || y0 >= mGround.getHeight())
         {
@@ -71,7 +71,7 @@ public class SwingSceneView extends JPanel implements SwingRendererContext
     protected void drawNavPaths(Graphics2D graphics, int tileX, int tileY)
     {
         Ground mGround = mScene.getGround();
-        List<Edge> navPathList = ((SampleGround)mGround).getTileNavPathList(tileX, tileY);
+        List<Edge> navPathList = ((SwingGround)mGround).getTileNavPathList(tileX, tileY);
         if(navPathList == null)
         {
             return;

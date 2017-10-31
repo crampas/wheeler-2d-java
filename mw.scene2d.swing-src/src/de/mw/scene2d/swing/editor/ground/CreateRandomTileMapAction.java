@@ -6,7 +6,7 @@ import java.util.Random;
 import javax.swing.AbstractAction;
 
 import de.mw.scene2d.model.TileMap;
-import de.mw.scene2d.swing.game.SampleGround;
+import de.mw.scene2d.swing.game.SwingGround;
 
 public class CreateRandomTileMapAction extends AbstractAction
 {
@@ -21,7 +21,7 @@ public class CreateRandomTileMapAction extends AbstractAction
     @Override
     public void actionPerformed(ActionEvent e)
     {
-    	SampleGround ground = mApplication.getGround();
+    	SwingGround ground = mApplication.getGround();
     	TileMap map = ground.getGroundMap();
     	int width = map.getWidth();
     	int height = map.getHeight();
