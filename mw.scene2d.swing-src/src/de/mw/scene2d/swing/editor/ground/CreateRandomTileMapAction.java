@@ -5,14 +5,14 @@ import java.util.Random;
 
 import javax.swing.AbstractAction;
 
-import de.mw.scene2d.model.GroundMap;
+import de.mw.scene2d.model.TileMap;
 import de.mw.scene2d.swing.game.SampleGround;
 
-public class CreateRandomGroundAction extends AbstractAction
+public class CreateRandomTileMapAction extends AbstractAction
 {
     private final GroundEditorFrame mApplication;
 
-    public CreateRandomGroundAction(GroundEditorFrame application)
+    public CreateRandomTileMapAction(GroundEditorFrame application)
     {
         super("Create Rendom Ground");
         mApplication = application;
@@ -22,7 +22,7 @@ public class CreateRandomGroundAction extends AbstractAction
     public void actionPerformed(ActionEvent e)
     {
     	SampleGround ground = mApplication.getGround();
-    	GroundMap map = ground.getGroundMap();
+    	TileMap map = ground.getGroundMap();
     	int width = map.getWidth();
     	int height = map.getHeight();
     	
@@ -78,10 +78,8 @@ public class CreateRandomGroundAction extends AbstractAction
     		}
     	}
     	
-    	ground.calcShortPaths();
-    	
+    	ground.init();
     	mApplication.repaint();
-    	
     }
 
 }

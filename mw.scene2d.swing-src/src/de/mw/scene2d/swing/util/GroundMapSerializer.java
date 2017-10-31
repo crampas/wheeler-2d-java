@@ -6,11 +6,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import de.mw.scene2d.model.GroundMap;
+import de.mw.scene2d.model.TileMap;
 
 public class GroundMapSerializer
 {
-    public static GroundMap readGroundMap(InputStream stream) throws IOException
+    public static TileMap readGroundMap(InputStream stream) throws IOException
     {
         DataInputStream dataStream = new DataInputStream(stream);
         int width = dataStream.readInt();
@@ -20,10 +20,10 @@ public class GroundMapSerializer
         {
         	mapData[index] = dataStream.readInt();
         }
-        return new GroundMap(width, height, mapData);
+        return new TileMap(width, height, mapData);
     }
 
-    public static void writeGroundMap(OutputStream stream, GroundMap map) throws IOException
+    public static void writeGroundMap(OutputStream stream, TileMap map) throws IOException
     {
         DataOutputStream dataStream = new DataOutputStream(stream);
         dataStream.writeInt(map.getWidth());

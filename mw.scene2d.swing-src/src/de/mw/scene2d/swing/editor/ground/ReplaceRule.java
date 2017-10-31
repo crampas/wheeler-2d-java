@@ -1,13 +1,13 @@
 package de.mw.scene2d.swing.editor.ground;
 
-import de.mw.scene2d.model.GroundMap;
+import de.mw.scene2d.model.TileMap;
 
 public class ReplaceRule
 {
-    GroundMap mLhs;
-    GroundMap mRhs;
+    TileMap mLhs;
+    TileMap mRhs;
     
-    public ReplaceRule(GroundMap lhs, GroundMap rhs)
+    public ReplaceRule(TileMap lhs, TileMap rhs)
     {
         mLhs = lhs;
         mRhs = rhs;

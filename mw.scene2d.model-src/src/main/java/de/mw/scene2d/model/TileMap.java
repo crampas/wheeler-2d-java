@@ -1,6 +1,6 @@
 package de.mw.scene2d.model;
 
-public class GroundMap
+public class TileMap
 {
     private int mWidth;
     private int mHeight;
@@ -12,24 +12,24 @@ public class GroundMap
 		return mMapData;
 	}
 
-	public GroundMap()
+	public TileMap()
     {}
     
-    public GroundMap(int width, int height)
+    public TileMap(int width, int height)
     {
         mWidth = width;
         mHeight = height;
         mMapData = new int[width * height];
     }
     
-    public GroundMap(int width, int height, int... tiles)
+    public TileMap(int width, int height, int... tiles)
     {
         mWidth = width;
         mHeight = height;
         mMapData = tiles;
     }
     
-    public boolean match(GroundMap rhs, int x, int y)
+    public boolean match(TileMap rhs, int x, int y)
     {
         for(int mapY = 0; mapY < rhs.mHeight; mapY++)
         {
@@ -46,7 +46,7 @@ public class GroundMap
         return true;
     }
 
-    public void replace(GroundMap rhs, int x, int y)
+    public void replace(TileMap rhs, int x, int y)
     {
         for(int mapY = 0; mapY < rhs.mHeight; mapY++)
         {
@@ -62,7 +62,7 @@ public class GroundMap
     {
         if(x < 0 || x >= mWidth || y < 0 || y >= mHeight)
         {
-            return 15;
+            return -1;
         }
         
         int index = y * mWidth + x;
@@ -72,6 +72,9 @@ public class GroundMap
 
     public void setTileIndex(int x, int y, int tileIndex)
     {
+    	if(x < 0 || x >= mWidth || y < 0 || y >= mHeight)
+    		return;
+    	
         int index = y * mWidth + x;
         mMapData[index] = tileIndex;
     }

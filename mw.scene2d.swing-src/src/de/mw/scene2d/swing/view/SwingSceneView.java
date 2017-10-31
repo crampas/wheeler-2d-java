@@ -43,7 +43,7 @@ public class SwingSceneView extends JPanel implements SwingRendererContext
     {
         mScene = scene;
         
-        setBackground(Color.WHITE);
+        setBackground(Color.decode("#3dc779"));
         setOpaque(true);
     }
     

@@ -67,7 +67,12 @@ public class GroundEditorFrame extends JFrame
         mainMenu.add(fileMenu);
         
         JMenu operationsMenu = new JMenu("Operations");
-        operationsMenu.add(new JMenuItem(new CreateRandomGroundAction(this)));
+        operationsMenu.add(new JMenuItem(new CreateRandomTileMapAction(this)));
+        JMenu stretchSubmenu = new JMenu("Stretch");
+        stretchSubmenu.add(new JMenuItem(new StretchTileMapAction(this, 2)));
+        stretchSubmenu.add(new JMenuItem(new StretchTileMapAction(this, 3)));
+        operationsMenu.add(stretchSubmenu);
+        operationsMenu.add(new JMenuItem(new AddFrameTileMapAction(this)));
         mainMenu.add(operationsMenu);
     }
 
@@ -76,5 +81,4 @@ public class GroundEditorFrame extends JFrame
     {
         return mGround;
     }
-    
 }

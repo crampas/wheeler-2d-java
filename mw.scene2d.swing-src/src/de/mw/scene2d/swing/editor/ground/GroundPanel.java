@@ -15,7 +15,7 @@ import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.mw.scene2d.model.GroundMap;
+import de.mw.scene2d.model.TileMap;
 import de.mw.scene2d.model.Scene;
 import de.mw.scene2d.swing.game.SampleGround;
 import de.mw.scene2d.swing.view.SwingSceneView;
@@ -73,33 +73,32 @@ public class GroundPanel extends SwingSceneView
         });
         
         
-        mReplaceRuleList.add(new ReplaceRule(
-                new GroundMap(1, 2, 9, 8), new GroundMap(1, 2, 4, 8)));
-        mReplaceRuleList.add(new ReplaceRule(
-                new GroundMap(1, 2, 8, 9), new GroundMap(1, 2, 8, 5)));
-
-        mReplaceRuleList.add(new ReplaceRule(
-                new GroundMap(2, 1, 8, 9), new GroundMap(2, 1, 6, 9)));
-        mReplaceRuleList.add(new ReplaceRule(
-                new GroundMap(2, 1, 9, 8), new GroundMap(2, 1, 9, 7)));
-        
-        mReplaceRuleList.add(new ReplaceRule(
-                new GroundMap(3, 1, 9, 8, 9), new GroundMap(3, 1, 9, 12, 9)));
-        mReplaceRuleList.add(new ReplaceRule(
-                new GroundMap(3, 1, 9, 7, 9), new GroundMap(3, 1, 9, 12, 9)));
-        mReplaceRuleList.add(new ReplaceRule(
-                new GroundMap(3, 1, 9, 6, 9), new GroundMap(3, 1, 9, 12, 9)));
-
-        mReplaceRuleList.add(new ReplaceRule(
-                new GroundMap(1, 3, 8, 4, 8), new GroundMap(1, 3, 8, 12, 8)));
+//        mReplaceRuleList.add(new ReplaceRule(
+//                new GroundMap(1, 2, 9, 8), new GroundMap(1, 2, 4, 8)));
+//        mReplaceRuleList.add(new ReplaceRule(
+//                new GroundMap(1, 2, 8, 9), new GroundMap(1, 2, 8, 5)));
+//
+//        mReplaceRuleList.add(new ReplaceRule(
+//                new GroundMap(2, 1, 8, 9), new GroundMap(2, 1, 6, 9)));
+//        mReplaceRuleList.add(new ReplaceRule(
+//                new GroundMap(2, 1, 9, 8), new GroundMap(2, 1, 9, 7)));
+//        
+//        mReplaceRuleList.add(new ReplaceRule(
+//                new GroundMap(3, 1, 9, 8, 9), new GroundMap(3, 1, 9, 12, 9)));
+//        mReplaceRuleList.add(new ReplaceRule(
+//                new GroundMap(3, 1, 9, 7, 9), new GroundMap(3, 1, 9, 12, 9)));
+//        mReplaceRuleList.add(new ReplaceRule(
+//                new GroundMap(3, 1, 9, 6, 9), new GroundMap(3, 1, 9, 12, 9)));
+//
+//        mReplaceRuleList.add(new ReplaceRule(
+//                new GroundMap(1, 3, 8, 4, 8), new GroundMap(1, 3, 8, 12, 8)));
     }
 
     private void onMouseWheelMoved(MouseWheelEvent e)
     {
         int distance = e.getWheelRotation();
         double scale = getViewportScale();
-        scale = Math.min(Math.max(scale + distance, 1.0), 100.0);
-        System.out.println(scale);
+        scale = Math.min(Math.max(scale - distance, 1.0), 100.0);
         setViewportScale(scale);
         repaint();
     }

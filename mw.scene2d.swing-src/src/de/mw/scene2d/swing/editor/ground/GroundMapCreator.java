@@ -4,7 +4,7 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.util.Properties;
 
-import de.mw.scene2d.model.GroundMap;
+import de.mw.scene2d.model.TileMap;
 import de.mw.scene2d.swing.util.GroundMapSerializer;
 
 public class GroundMapCreator
@@ -18,7 +18,7 @@ public class GroundMapCreator
         int width = Integer.parseInt(settings.getProperty("width"));
         int height = Integer.parseInt(settings.getProperty("height"));
         
-        GroundMap groundMap = new GroundMap(width, height);
+        TileMap groundMap = new TileMap(width, height);
         OutputStream stream = new FileOutputStream(targetFile);
         GroundMapSerializer.writeGroundMap(stream, groundMap);
         stream.close();

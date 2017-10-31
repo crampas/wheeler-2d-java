@@ -26,7 +26,7 @@ import de.mw.scene2d.model.Edge;
 import de.mw.scene2d.model.FloatArray2;
 import de.mw.scene2d.model.FloatArray2.Callback;
 import de.mw.scene2d.model.Ground;
-import de.mw.scene2d.model.GroundMap;
+import de.mw.scene2d.model.TileMap;
 import de.mw.scene2d.model.GroundTile;
 import de.mw.scene2d.model.IntArray2;
 import de.mw.scene2d.model.Point;
@@ -38,7 +38,7 @@ public class SampleGround extends Ground implements Serializable
 {
     private File mBasleLocation;
     
-    private GroundMap mGroundMap;
+    private TileMap mGroundMap;
 
     private List<Edge>[] mTileNavPathList;
     
@@ -82,7 +82,7 @@ public class SampleGround extends Ground implements Serializable
     {
     }
 
-    private void init()
+    public void init()
     {
         collectEdges();
     }
@@ -98,205 +98,8 @@ public class SampleGround extends Ground implements Serializable
     
     public SampleGround(String propertiesFileName)
     {
-//        try
-//        {
-//            {
-//                Reader reader = new FileReader(propertiesFileName);
-//                mGroundProperties.load(reader);
-//                reader.close();
-//            }
-//        
-//            width = Integer.parseInt(mGroundProperties.getProperty("ground.map.width"));
-//            height = Integer.parseInt(mGroundProperties.getProperty("ground.map.height"));
-////            mGroundMap = new int[mGroundWidth * mGroundHeight];
-//
-//            mGroundMapFile = mGroundProperties.getProperty("ground.map.file");
-//            byte[] groundMapData = IOUtilities.readFileAsByteArray(mGroundMapFile);
-//            setGroundMapBytes(groundMapData);
-            
-//            BufferedReader groundMapReader = new BufferedReader(new FileReader(groundMapFileName));
-//            for(int y = 0; ; y++)
-//            {
-//                String line = groundMapReader.readLine();
-//                if(line == null)
-//                {
-//                    break;
-//                }
-//                for(int x = 0; x < line.length(); x++)
-//                {
-//                    String tile = "" + line.charAt(x);
-//                    int tileIndex = Integer.parseInt(tile, 16);
-//                    setTileIndex(x, y, tileIndex);
-//                }
-//            }
-//            groundMapReader.close();
-            
-//            String groundTileImageFileName = mGroundProperties.getProperty("ground.tile.image");
-//            mTileImage = ImageIO.read(new File(groundTileImageFileName));
-//        }
-//        catch(Exception ex)
-//        {
-//            throw new RuntimeException(ex);
-//        }
-
-//        defineSampleGroundTiles();
-//        collectEdges();
-           
     }
     
-    private void defineSampleGroundTiles()
-    {
-        tile = new GroundTile[48];
-
-        {
-	        tile[0] = new GroundTile("street", 0, 0);
-	        tile[0].addPointPath(new Point(10f, 2.5f), new Point(2.5f, 2.5f), new Point(2.5f, 10f));
-            tile[0].addPointPath(new Point(7.5f, 10f), new Point(7.5f, 7.5f), new Point(10f, 7.5f));
-	        tile[0].addDamageRect(new Rect(0f, 0f, 10f, 0.5f));
-	        tile[0].addDamageRect(new Rect(0f, 0f, 0.5f, 10f));
-        }
-        {
-            tile[1] = new GroundTile("street", 1, 0);
-	        tile[1].addPointPath(new Point(7.5f, 10f), new Point(7.5f, 2.5f), new Point(0f, 2.5f));
-            tile[1].addPointPath(new Point(0.0f, 7.5f), new Point(2.5f, 7.5f), new Point(2.5f, 10.0f));
-	        tile[1].addDamageRect(new Rect(0f, 0f, 10f, 0.5f));
-	        tile[1].addDamageRect(new Rect(9.5f, 0f, 0.5f, 10f));
-        }
-        {
-            tile[2] = new GroundTile("street", 2, 0);
-        	tile[2].addPointPath(new Point(2.5f, 0f), new Point(2.5f, 7.5f), new Point(10f, 7.5f));
-            tile[2].addPointPath(new Point(10.0f, 2.5f), new Point(7.5f, 2.5f), new Point(7.5f, 0.0f));
-	        tile[2].addDamageRect(new Rect(0f, 9.5f, 10f, 0.5f));
-	        tile[2].addDamageRect(new Rect(0f, 0f, 0.5f, 10f));
-        }
-        {
-	        tile[3] = new GroundTile("street", 3, 0);
-	        tile[3].addPointPath(new Point(0f, 7.5f), new Point(7.5f, 7.5f), new Point(7.5f, 0.0f));
-            tile[3].addPointPath(new Point(2.5f, 0.0f), new Point(2.5f, 2.5f), new Point(0.0f, 2.5f));
-	        tile[3].addDamageRect(new Rect(0f, 9.5f, 10f, 0.5f));
-	        tile[3].addDamageRect(new Rect(9.5f, 0f, 0.5f, 10f));
-        }
-
-        {
-            tile[4] = new GroundTile("street", 0, 1);
-            tile[4].addPointPath(new Point(10.0f, 2.5f), new Point(7.5f, 2.5f), new Point(2.5f, 2.5f), new Point(0.0f, 2.5f));
-            tile[4].addPointPath(new Point(0.0f, 7.5f), new Point(2.5f, 7.5f), new Point(7.5f, 7.5f), new Point(10.0f, 7.5f));
-            tile[4].addPointPath(new Point(2.5f, 2.5f), new Point(2.5f, 7.5f), new Point(2.5f, 10.0f));
-            tile[4].addPointPath(new Point(7.5f, 10.0f), new Point(7.5f, 7.5f), new Point(7.5f, 2.5f));
-	        tile[4].addDamageRect(new Rect(0f, 0f, 10f, 0.5f));
-        }
-        {
-            tile[5] = new GroundTile("street", 1, 1);
-	        tile[5].addDamageRect(new Rect(0f, 9.5f, 10f, 0.5f));
-            tile[5].addPointPath(new Point(0.0f, 7.5f), new Point(2.5f, 7.5f), new Point(7.5f, 7.5f), new Point(10.0f, 7.5f));
-            tile[5].addPointPath(new Point(7.5f, 7.5f), new Point(7.5f, 2.5f), new Point(7.5f, 0.0f));
-            tile[5].addPointPath(new Point(10.0f, 2.5f), new Point(7.5f, 2.5f), new Point(2.5f, 2.5f), new Point(0.0f, 2.5f));
-            tile[5].addPointPath(new Point(2.5f, 0.0f), new Point(2.5f, 2.5f), new Point(2.5f, 7.5f));
-        }
-        {
-            tile[6] = new GroundTile("street", 2, 1);
-	        tile[6].addDamageRect(new Rect(0f, 0f, 0.5f, 10f));
-            tile[6].addPointPath(new Point(10.0f, 2.5f), new Point(7.5f, 2.5f), new Point(2.5f, 2.5f));
-            tile[6].addPointPath(new Point(2.5f, 7.5f), new Point(7.5f, 7.5f), new Point(10.0f, 7.5f));
-            tile[6].addPointPath(new Point(2.5f, 0.0f), new Point(2.5f, 2.5f), new Point(2.5f, 7.5f), new Point(2.5f, 10.0f));
-            tile[6].addPointPath(new Point(7.5f, 10.0f), new Point(7.5f, 7.5f), new Point(7.5f, 2.5f), new Point(7.5f, 0.0f));
-        }
-        {
-            tile[7] = new GroundTile("street", 3, 1);
-	        tile[7].addDamageRect(new Rect(9.5f, 0f, 0.5f, 10f));
-            tile[7].addPointPath(new Point(7.5f, 2.5f), new Point(2.5f, 2.5f), new Point(0.0f, 2.5f));
-            tile[7].addPointPath(new Point(0.0f, 7.5f), new Point(2.5f, 7.5f), new Point(7.5f, 7.5f));
-            tile[7].addPointPath(new Point(2.5f, 0.0f), new Point(2.5f, 2.5f), new Point(2.5f, 7.5f), new Point(2.5f, 10.0f));
-            tile[7].addPointPath(new Point(7.5f, 10.0f), new Point(7.5f, 7.5f), new Point(7.5f, 2.5f), new Point(7.5f, 0.0f));
-        }
-
-        {
-            tile[8] = new GroundTile("street", 0, 2);
-            tile[8].addPointPath(new Point(2.5f, 0.0f), new Point(2.5f, 10.0f));
-            tile[8].addPointPath(new Point(7.5f, 10.0f), new Point(7.5f, 0.0f));
-	        tile[8].addDamageRect(new Rect(0f, 0f, 0.5f, 10f));
-	        tile[8].addDamageRect(new Rect(9.5f, 0f, 0.5f, 10f));
-        }
-        {
-            tile[9] = new GroundTile("street", 1, 2);
-            tile[9].addPointPath(new Point(10.0f, 2.5f), new Point(0.0f, 2.5f));
-            tile[9].addPointPath(new Point(0.0f, 7.5f), new Point(10.0f, 7.5f));
-	        tile[9].addDamageRect(new Rect(0f, 0f, 10f, 0.5f));
-	        tile[9].addDamageRect(new Rect(0f, 9.5f, 10f, 0.5f));
-        }
-        {
-            tile[10] = new GroundTile("street", 2, 2);
-            Point p1 = new Point(2.5f, 7.5f);
-//            tile[10].addPointPath(new Point(2.5f, 10f), p1, new Point(2.5f, 0f));
-//            tile[10].addPointPath(new Point(10f, 7.5f), p1, new Point(0f, 7.5f));
-        }
-        {
-            tile[11] = new GroundTile("street", 3, 2);
-            Point p1 = new Point(7.5f, 7.5f);
-//            tile[11].addPointPath(new Point(10f, 7.5f), p1, new Point(0f, 7.5f));
-//            tile[11].addPointPath(new Point(7.5f, 0f), p1, new Point(7.5f, 10f));
-        }
-        {
-            tile[12] = new GroundTile("street", 0, 3);
-            tile[12].addPointPath(new Point(10.0f, 2.5f), new Point(7.5f, 2.5f), new Point(2.5f, 2.5f), new Point(0.0f, 2.5f));
-            tile[12].addPointPath(new Point(0.0f, 7.5f), new Point(2.5f, 7.5f), new Point(7.5f, 7.5f), new Point(10.0f, 7.5f));
-            tile[12].addPointPath(new Point(2.5f, 0.0f), new Point(2.5f, 2.5f), new Point(2.5f, 7.5f), new Point(2.5f, 10.0f));
-            tile[12].addPointPath(new Point(7.5f, 10.0f), new Point(7.5f, 7.5f), new Point(7.5f, 2.5f), new Point(7.5f, 0.0f));
-        }
-        {
-            tile[13] = new GroundTile("street", 1, 3);
-            tile[13].addDamageRect(new Rect(0f, 0f, 10f, 10f));
-        }
-        {
-            tile[14] = new GroundTile("street", 2, 3);
-            tile[14].addDamageRect(new Rect(0f, 0f, 10f, 10f));
-        }
-        {
-            tile[15] = new GroundTile("street", 3, 3);
-            tile[15].addDamageRect(new Rect(0f, 0f, 10f, 10f));
-        }
-        
-        // Structure
-        {
-            tile[16] = new GroundTile("structure-01", 0, 0);
-            tile[17] = new GroundTile("structure-01", 1, 0);
-            tile[18] = new GroundTile("structure-01", 2, 0);
-            tile[19] = new GroundTile("structure-01", 3, 0);
-            tile[20] = new GroundTile("structure-01", 0, 1);
-            tile[21] = new GroundTile("structure-01", 1, 1);
-            tile[22] = new GroundTile("structure-01", 2, 1);
-            tile[23] = new GroundTile("structure-01", 3, 1);
-            tile[24] = new GroundTile("structure-01", 0, 2);
-            tile[25] = new GroundTile("structure-01", 1, 2);
-            tile[26] = new GroundTile("structure-01", 2, 2);
-            tile[27] = new GroundTile("structure-01", 3, 2);
-            tile[28] = new GroundTile("structure-01", 0, 3);
-            tile[29] = new GroundTile("structure-01", 1, 3);
-            tile[30] = new GroundTile("structure-01", 2, 3);
-            tile[31] = new GroundTile("structure-01", 3, 3);
-        }
-
-        // building-01
-        {
-            tile[32] = new GroundTile("building-01", 0, 0);
-            tile[33] = new GroundTile("building-01", 1, 0);
-            tile[34] = new GroundTile("building-01", 2, 0);
-            tile[35] = new GroundTile("building-01", 3, 0);
-            tile[36] = new GroundTile("building-01", 0, 1);
-            tile[37] = new GroundTile("building-01", 1, 1);
-            tile[38] = new GroundTile("building-01", 2, 1);
-            tile[39] = new GroundTile("building-01", 3, 1);
-            tile[40] = new GroundTile("building-01", 0, 2);
-            tile[41] = new GroundTile("building-01", 1, 2);
-            tile[42] = new GroundTile("building-01", 2, 2);
-            tile[43] = new GroundTile("building-01", 3, 2);
-            tile[44] = new GroundTile("building-01", 0, 3);
-            tile[45] = new GroundTile("building-01", 1, 3);
-            tile[46] = new GroundTile("building-01", 2, 3);
-            tile[47] = new GroundTile("building-01", 3, 3);
-        }
-
-    }
 
     private BufferedImage getBackgroundImage(String imageId)
     {
@@ -317,46 +120,12 @@ public class SampleGround extends Ground implements Serializable
         }
     }
     
-//    @XmlTransient
-//    public byte[] getGroundMapBytes()
-//    {
-//        byte[] data = new byte[mGroundMap.length * 4];
-//        int dataIndex = 0;
-//        for (int patch : mGroundMap)
-//        {
-//            data[dataIndex++] = (byte)(patch >>> 0);
-//            data[dataIndex++] = (byte)(patch >>> 8);
-//            data[dataIndex++] = (byte)(patch >>> 16);
-//            data[dataIndex++] = (byte)(patch >>> 24);
-//        }
-//        return data;
-//    }
-
-//    public void setGroundMapBytes(byte[] data)
-//    {
-//        mGroundMap = ArrayUtilities.toIntArray(data);
-//        
-////        try
-////        {
-////            int[] targetMap = ArrayUtilities.remapGroundMap(mGroundMap, mGroundWidth, mGroundHeight, 100, 100, 20, 40, 10);
-////            FileOutputStream output = new FileOutputStream("Ground-100x100.bin");
-////            byte[] targetData = ArrayUtilities.toByteArray(targetMap);
-////            output.write(targetData);
-////            output.close();
-////        }
-////        catch(Exception ex)
-////        {
-////            throw new RuntimeException(ex);
-////        }
-//    }
-    
-//    public int[] getGroundMap()
-//    {
-//        return mGroundMap;
-//    }
     
     public void drawTile(Graphics2D graphics, int x0, int y0, int x1, int y1, int tileIndex)
     {
+    	if (tileIndex < 0)
+    		return;
+    	
         GroundTile tile = this.tile[tileIndex];
         BufferedImage backgroundImage = getBackgroundImage(tile.imageId);
         
@@ -612,9 +381,14 @@ public class SampleGround extends Ground implements Serializable
     }
 
 
-    public GroundMap getGroundMap()
+    public TileMap getGroundMap()
     {
         return mGroundMap;
+    }
+
+    public void setGroundMap(TileMap groundMap)
+    {
+        mGroundMap = groundMap;
     }
     
     @Override
