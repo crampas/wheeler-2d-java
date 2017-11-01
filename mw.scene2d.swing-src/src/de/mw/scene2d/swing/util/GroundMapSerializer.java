@@ -4,6 +4,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -40,6 +41,20 @@ public class GroundMapSerializer
 		return new TileMap(width, height, mapData);
 	}
 
+	public static void writeTileMap(File file, TileMap map)
+	{
+        try
+        {
+	        OutputStream output = new FileOutputStream(file);
+	        GroundMapSerializer.writeGroundMap(output, map);
+	        output.close();
+        }
+        catch(IOException ex)
+        {
+        	throw new RuntimeException(ex);
+        }
+	}
+	
 	public static void writeGroundMap(OutputStream stream, TileMap map) throws IOException
 	{
 		DataOutputStream dataStream = new DataOutputStream(stream);

@@ -24,6 +24,7 @@ import de.mw.scene2d.model.GroundTile;
 import de.mw.scene2d.model.IntArray2;
 import de.mw.scene2d.model.Point;
 import de.mw.scene2d.model.TileMap;
+import de.mw.scene2d.model.TileSet;
 import de.mw.scene2d.swing.util.GroundMapSerializer;
 import de.mw.scene2d.swing.util.TileSetSerializer;
 
@@ -44,7 +45,7 @@ public class SwingGround extends Ground implements Serializable
     
     
     
-    public static SwingGround createSampleGround(File tileSetFile, File mapFile)
+    public static SwingGround createSampleGround(File mapFile, File ... tileSetFileList)
     {
     	SwingGround ground = new SwingGround();
         
@@ -52,9 +53,12 @@ public class SwingGround extends Ground implements Serializable
         
         ground.mGroundMap = GroundMapSerializer.readGroundMap(mapFile);
 
-    	ground.tileSet = TileSetSerializer.readTileSet(tileSetFile);
+        for (File tileSetFile : tileSetFileList)
+		{
+        	TileSet tileSet = TileSetSerializer.readTileSet(tileSetFile);
+        	ground.tileSet.addTileSet(tileSet);
+		}
 
-        
         ground.init();
 
         return ground;
@@ -104,7 +108,7 @@ public class SwingGround extends Ground implements Serializable
     	if (tileIndex < 0)
     		return;
     	
-        GroundTile tile = this.tileSet.tile[tileIndex];
+        GroundTile tile = this.tileSet.getTile(tileIndex);
         BufferedImage backgroundImage = getBackgroundImage(tile.imageId);
         
 //        int px = (tileIndex % 4) * 100;
@@ -120,7 +124,7 @@ public class SwingGround extends Ground implements Serializable
     
     public BufferedImage getTileImage(int tileIndex)
     {
-        GroundTile tile = this.tileSet.tile[tileIndex];
+        GroundTile tile = this.tileSet.getTile(tileIndex);
         BufferedImage backgroundImage = getBackgroundImage(tile.imageId);
 
 //        int x = (tileIndex % 4) * 100;
@@ -134,12 +138,6 @@ public class SwingGround extends Ground implements Serializable
         return tileImage;
     }
     
-    @Override
-    public int getTileIndex(int x, int y)
-    {
-        return mGroundMap.getTileIndex(x, y);
-    }
-
     public void setTileIndex(int x, int y, int tileIndex)
     {
         mGroundMap.setTileIndex(x, y, tileIndex);
@@ -149,7 +147,7 @@ public class SwingGround extends Ground implements Serializable
     public GroundTile getTileByIndex(int x, int y)
     {
         int index = getTileIndex(x, y);
-        return tileSet.tile[index];
+        return tileSet.getTile(index);
     }
     
     private void collectEdges()
@@ -369,19 +367,6 @@ public class SwingGround extends Ground implements Serializable
         mGroundMap = groundMap;
     }
     
-    @Override
-    public int getWidth()
-    {
-        return mGroundMap.getWidth();
-    }
-    
-    @Override
-    public int getHeight()
-    {
-        return mGroundMap.getHeight();
-    }
-
-
     public File getBasleLocation()
     {
         return mBaseLocation;

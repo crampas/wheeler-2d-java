@@ -22,8 +22,8 @@ public class TestGame
 {
 	public void setup(ScenePanel scenePanel)
 	{
-		SwingGround ground = SwingGround.createSampleGround(new File("res/city/road-tileset.xml"),
-                new File("res/city/map-16x16.bin"));
+		SwingGround ground = SwingGround.createSampleGround(new File("res/city/map-16x16.bin"),
+                new File("res/city/road-tileset.xml"));
 		
 		scenePanel.mGround = ground;
 		scenePanel.mScene.setGround(ground);

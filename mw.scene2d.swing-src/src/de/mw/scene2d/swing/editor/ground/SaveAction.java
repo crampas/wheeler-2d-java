@@ -23,24 +23,21 @@ public class SaveAction extends AbstractAction
     @Override
     public void actionPerformed(ActionEvent e)
     {
-        try
-        {
-            SwingGround ground = mApplication.getGround();
-            File file = mApplication.getTileMapFile();
-            if (file.exists())
-            {
-                String bakFilename = file.toString() + ".bak";
-                File bakFile = new File(bakFilename);
-                bakFile.delete();
-                file.renameTo(bakFile);
-            }
-            OutputStream output = new FileOutputStream(file);
-            GroundMapSerializer.writeGroundMap(output, ground.getGroundMap());
-            output.close();
-        }
-        catch (Exception ex)
-        {
-            throw new RuntimeException(ex);
-        }
+        SwingGround ground = mApplication.getGround();
+        File file = mApplication.getTileMapFile();
+        
+        backupFile(file);
+        GroundMapSerializer.writeTileMap(file, ground.getGroundMap());
     }
+
+	private void backupFile(File file)
+	{
+		if (file.exists())
+        {
+            String bakFilename = file.toString() + ".bak";
+            File bakFile = new File(bakFilename);
+            bakFile.delete();
+            file.renameTo(bakFile);
+        }
+	}
 }

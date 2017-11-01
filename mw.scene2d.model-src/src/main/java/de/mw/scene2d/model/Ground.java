@@ -7,7 +7,8 @@ import java.util.Map;
 
 public abstract class Ground
 {
-    public TileSet tileSet;
+    // public TileSet tileSet;
+	public final TileSetCollection tileSet = new TileSetCollection();
 
     protected TileMap mGroundMap;
     
@@ -22,7 +23,7 @@ public abstract class Ground
         int xIndex = (int)Math.floor(x / 10);
         int yIndex = (int)Math.floor(y / 10);
         int index = getTileIndex(xIndex, yIndex);
-        return tileSet.tile[index];
+        return tileSet.getTile(index);
     }
     
     public Vector getTileOffset(float x, float y)
@@ -32,10 +33,20 @@ public abstract class Ground
         return new Vector(xOffset, yOffset);
     }
     
+    public int getWidth()
+    {
+        return mGroundMap.getWidth();
+    }
     
-    public abstract int getWidth();
-    public abstract int getHeight();
-    public abstract int getTileIndex(int x, int y);
+    public int getHeight()
+    {
+        return mGroundMap.getHeight();
+    }
+
+    public int getTileIndex(int x, int y)
+    {
+        return mGroundMap.getTileIndex(x, y);
+    }
 
     
     public void addNavPathEdge(Edge edge)

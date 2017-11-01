@@ -34,7 +34,8 @@ public class GroundEditorFrame extends JFrame
 //                new File("res/street/Ground-10x10.bin"));
     	
     	mTileMapFile = new File("res/city/map-16x16.bin");
-	    mGround = SwingGround.createSampleGround(new File("res/city/road-tileset.xml"), mTileMapFile);
+	    mGround = SwingGround.createSampleGround(mTileMapFile, 
+	    		new File("res/city/road-tileset.xml"), new File("res/city/roof-tileset.xml"));
         
         this.setTitle(mGround.getBasleLocation().toString() + " / " + mTileMapFile.toString());
         
@@ -55,15 +56,12 @@ public class GroundEditorFrame extends JFrame
         contentPane.add(selectorGroup, BorderLayout.EAST);
         
         
-        TileSelectorPanel tileSelector1 = new TileSelectorPanel(mGround);
+        TileSelectorPanel tileSelector1 = new TileSelectorPanel(mGround, 0);
         groundView.setTileSelectionSource(tileSelector1);
         selectorGroup.addTileSelector("Straﬂen", tileSelector1);
         
-        TileSelectorPanel tileSelector2 = new TileSelectorPanel(mGround);
+        TileSelectorPanel tileSelector2 = new TileSelectorPanel(mGround, 1000);
         selectorGroup.addTileSelector("Geb‰ude", tileSelector2);
-
-        TileSelectorPanel tileSelector3 = new TileSelectorPanel(mGround);
-        selectorGroup.addTileSelector("Landschaft", tileSelector3);
 
         
         JMenuBar mainMenu = new JMenuBar();

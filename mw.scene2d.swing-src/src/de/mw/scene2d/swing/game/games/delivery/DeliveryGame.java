@@ -17,8 +17,8 @@ public class DeliveryGame
 	{
 		ScenePanel.ViewportVelocityScale = false;
 		
-		SwingGround ground = SwingGround.createSampleGround(new File("res/street/SampleGround.xml"),
-                new File("res/games/delivery/ground-40x40.bin"));
+		SwingGround ground = SwingGround.createSampleGround(new File("res/games/delivery/ground-40x40.bin"),
+                new File("res/street/SampleGround.xml"));
 		
 		scenePanel.mGround = ground;
 		scenePanel.mScene.setGround(ground);

@@ -13,28 +13,29 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 
+import de.mw.scene2d.model.TileSet;
 import de.mw.scene2d.swing.game.SwingGround;
 
 public class TileSelectorPanel extends JPanel implements TileSelectionSource
 {
     private SwingGround mGround;
+    private TileSet mTileSet;
     private JList mListControl = new JList();
     
     private Icon[] mTileIconList;
     
-    public TileSelectorPanel(SwingGround ground)
+    public TileSelectorPanel(SwingGround ground, int tileSetId)
     {
         mGround = ground;
         
         setLayout(new BorderLayout());
         
         
+        mTileSet = mGround.tileSet.getTileSet(tileSetId);
         
-        mTileIconList = new Icon[mGround.tileSet.tile.length];
-        mListControl.setListData(mGround.tileSet.tile);
+        mTileIconList = new Icon[mTileSet.getTileCount()];
+        mListControl.setListData(mTileSet.getTileArray());
         mListControl.setCellRenderer(new GroundTileListCellRenderer());
         mListControl.setDragEnabled(true);
         
@@ -47,7 +48,9 @@ public class TileSelectorPanel extends JPanel implements TileSelectionSource
     @Override
     public int getSelectedTileIndex()
     {
-        return mListControl.getSelectedIndex();
+        int index = mListControl.getSelectedIndex();
+        int tileIndex = mTileSet.getUniqueTileIndex(index);
+        return tileIndex;
     }
     
     private Icon getTileIcon(int index)
@@ -55,7 +58,8 @@ public class TileSelectorPanel extends JPanel implements TileSelectionSource
         Icon tileIcon = mTileIconList[index];
         if(tileIcon == null)
         {
-            BufferedImage tileImage = mGround.getTileImage(index);
+        	int tileIndex = mTileSet.getUniqueTileIndex(index);
+            BufferedImage tileImage = mGround.getTileImage(tileIndex);
             tileIcon = new ImageIcon(tileImage);
             mTileIconList[index] = tileIcon;
         }
