@@ -14,25 +14,22 @@ import java.awt.event.MouseWheelListener;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.NoninvertibleTransformException;
 import java.awt.geom.Point2D;
-import java.util.ArrayList;
-import java.util.List;
 
-import de.mw.scene2d.model.TileMap;
 import de.mw.scene2d.model.Scene;
 import de.mw.scene2d.swing.game.SwingGround;
 import de.mw.scene2d.swing.view.SwingSceneView;
 
-public class GroundPanel extends SwingSceneView
+public class GroundEditorPanel extends SwingSceneView
 {
     private SwingGround mGround;
     private TileSelectionSource mTileSelectionSource;
     
-    private List<ReplaceRule> mReplaceRuleList = new ArrayList<ReplaceRule>();
-    
     protected static Stroke CURSOR_STROKE = new BasicStroke(1.0f);
+
+    private GroundEditorTool mTool = new TileTool(this);
+
     
-    
-    public GroundPanel(SwingGround ground)
+    public GroundEditorPanel(SwingGround ground)
     {
         super(new Scene());
 
@@ -76,27 +73,6 @@ public class GroundPanel extends SwingSceneView
                 onMouseWheelMoved(e);
             }
         });
-        
-        
-//        mReplaceRuleList.add(new ReplaceRule(
-//                new GroundMap(1, 2, 9, 8), new GroundMap(1, 2, 4, 8)));
-//        mReplaceRuleList.add(new ReplaceRule(
-//                new GroundMap(1, 2, 8, 9), new GroundMap(1, 2, 8, 5)));
-//
-//        mReplaceRuleList.add(new ReplaceRule(
-//                new GroundMap(2, 1, 8, 9), new GroundMap(2, 1, 6, 9)));
-//        mReplaceRuleList.add(new ReplaceRule(
-//                new GroundMap(2, 1, 9, 8), new GroundMap(2, 1, 9, 7)));
-//        
-//        mReplaceRuleList.add(new ReplaceRule(
-//                new GroundMap(3, 1, 9, 8, 9), new GroundMap(3, 1, 9, 12, 9)));
-//        mReplaceRuleList.add(new ReplaceRule(
-//                new GroundMap(3, 1, 9, 7, 9), new GroundMap(3, 1, 9, 12, 9)));
-//        mReplaceRuleList.add(new ReplaceRule(
-//                new GroundMap(3, 1, 9, 6, 9), new GroundMap(3, 1, 9, 12, 9)));
-//
-//        mReplaceRuleList.add(new ReplaceRule(
-//                new GroundMap(1, 3, 8, 4, 8), new GroundMap(1, 3, 8, 12, 8)));
     }
 
     private void onMouseWheelMoved(MouseWheelEvent e)
@@ -119,16 +95,12 @@ public class GroundPanel extends SwingSceneView
     {
         if((e.getModifiersEx() & MouseEvent.BUTTON1_DOWN_MASK) != 0)
         {
-            int tileIndex = mTileSelectionSource.getSelectedTileIndex();
-            if(tileIndex < 0)
-            {
-                return;
-            }
-            
             Point2D p2 = translateView(e.getPoint());
             int x = (int)Math.floor(p2.getX() / 10);
             int y = (int)Math.floor(p2.getY() / 10);
-            changePatch(x, y, tileIndex);
+            
+            mTool.processAddTile(x, y);
+
             repaint();
             
             return;
@@ -150,27 +122,16 @@ public class GroundPanel extends SwingSceneView
         }
     }
     
-    private void changePatch(int x, int y, int tileIndex)
+    public int getSelectedTileIndex()
+    {
+    	return mTileSelectionSource.getSelectedTileIndex();
+    }
+    
+    
+    
+    public void changePatch(int x, int y, int tileIndex)
     {
         mGround.setTileIndex(x, y, tileIndex);
-        
-
-        for (ReplaceRule rule : mReplaceRuleList)
-        {
-            for(int mapY = 0; mapY < rule.mLhs.getHeight(); mapY++)
-            {
-                for(int mapX = 0; mapX < rule.mLhs.getWidth(); mapX++)
-                {
-                    boolean match = mGround.getGroundMap().match(rule.mLhs, x - mapX, y - mapY);
-                    if(match)
-                    {
-                        mGround.getGroundMap().replace(rule.mRhs, x - mapX, y - mapY);
-                    }
-                }
-            }
-        }
-        
-        
     }
     
     private void onMousePressed(MouseEvent e)
@@ -183,16 +144,12 @@ public class GroundPanel extends SwingSceneView
         
         if((e.getModifiersEx() & MouseEvent.BUTTON1_DOWN_MASK) != 0)
         {
-            int tileIndex = mTileSelectionSource.getSelectedTileIndex();
-            if(tileIndex < 0)
-            {
-                return;
-            }
-            
             Point2D p2 = translateView(e.getPoint());
             int x = (int)Math.floor(p2.getX() / 10);
             int y = (int)Math.floor(p2.getY() / 10);
-            changePatch(x, y, tileIndex);
+            
+            mTool.processSetTile(x, y);
+            
             repaint();
             
             return;

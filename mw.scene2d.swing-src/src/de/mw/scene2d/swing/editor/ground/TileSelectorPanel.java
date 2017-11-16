@@ -14,6 +14,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import de.mw.scene2d.model.GroundTile;
 import de.mw.scene2d.model.TileSet;
 import de.mw.scene2d.swing.game.SwingGround;
 
@@ -21,7 +22,7 @@ public class TileSelectorPanel extends JPanel implements TileSelectionSource
 {
     private SwingGround mGround;
     private TileSet mTileSet;
-    private JList mListControl = new JList();
+    private JList<GroundTile> mListControl = new JList<GroundTile>();
     
     private Icon[] mTileIconList;
     
@@ -82,20 +83,6 @@ public class TileSelectorPanel extends JPanel implements TileSelectionSource
              return retValue; 
          } 
      } 
-    
-    protected void paintComponent(java.awt.Graphics g) 
-    {
-        super.paintComponent(g);
-        
-        Graphics2D g2 = (Graphics2D)g;
-        
-        
-//        for(int tileIndex = 0; tileIndex < 16; tileIndex++)
-//        {
-//            int y = tileIndex * 110 + 10;
-//            mGround.drawGroundPatch(g2, 10, y, 110, y + 100, tileIndex);
-//        }
-    }
     
     private static Dimension PREFERRED_SIZE = new Dimension(150, 150); 
     

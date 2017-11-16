@@ -48,7 +48,7 @@ public class GroundEditorFrame extends JFrame
         
         contentPane.setLayout(new BorderLayout());
 
-        GroundPanel groundView = new GroundPanel(mGround);
+        GroundEditorPanel groundView = new GroundEditorPanel(mGround);
         contentPane.add(groundView, BorderLayout.CENTER);
         
         TileSelectorGroup selectorGroup = new TileSelectorGroup();
