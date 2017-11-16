@@ -4,10 +4,12 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.io.File;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JToolBar;
 
 import de.mw.scene2d.swing.game.SwingGround;
 
@@ -54,7 +56,6 @@ public class GroundEditorFrame extends JFrame
         TileSelectorGroup selectorGroup = new TileSelectorGroup();
         contentPane.add(selectorGroup, BorderLayout.EAST);
         
-        
         TileSelectorPanel tileSelector1 = new TileSelectorPanel(mGround, 0);
         selectorGroup.addTileSelector("Straﬂen", tileSelector1);
         
@@ -79,6 +80,12 @@ public class GroundEditorFrame extends JFrame
         operationsMenu.add(stretchSubmenu);
         operationsMenu.add(new JMenuItem(new AddFrameTileMapAction(this)));
         mainMenu.add(operationsMenu);
+        
+        JToolBar toolBar = new JToolBar("Tools", JToolBar.HORIZONTAL);
+        toolBar.setFloatable(false);
+        JButton button = new JButton("Hallo");
+        toolBar.add(button);
+        contentPane.add(toolBar, BorderLayout.PAGE_START);
     }
 
     public SwingGround getGround()
