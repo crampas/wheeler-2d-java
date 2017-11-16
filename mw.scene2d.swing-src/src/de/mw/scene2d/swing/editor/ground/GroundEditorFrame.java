@@ -51,18 +51,18 @@ public class GroundEditorFrame extends JFrame
         GroundPanel groundView = new GroundPanel(mGround);
         contentPane.add(groundView, BorderLayout.CENTER);
         
-        
         TileSelectorGroup selectorGroup = new TileSelectorGroup();
         contentPane.add(selectorGroup, BorderLayout.EAST);
         
         
         TileSelectorPanel tileSelector1 = new TileSelectorPanel(mGround, 0);
-        groundView.setTileSelectionSource(tileSelector1);
         selectorGroup.addTileSelector("Straﬂen", tileSelector1);
         
         TileSelectorPanel tileSelector2 = new TileSelectorPanel(mGround, 1000);
         selectorGroup.addTileSelector("Geb‰ude", tileSelector2);
 
+        groundView.setTileSelectionSource(selectorGroup);
+        
         
         JMenuBar mainMenu = new JMenuBar();
         setJMenuBar(mainMenu);

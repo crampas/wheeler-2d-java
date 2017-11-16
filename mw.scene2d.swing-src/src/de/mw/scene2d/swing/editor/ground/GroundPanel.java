@@ -1,9 +1,11 @@
 package de.mw.scene2d.swing.editor.ground;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.Stroke;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
@@ -26,6 +28,9 @@ public class GroundPanel extends SwingSceneView
     private TileSelectionSource mTileSelectionSource;
     
     private List<ReplaceRule> mReplaceRuleList = new ArrayList<ReplaceRule>();
+    
+    protected static Stroke CURSOR_STROKE = new BasicStroke(1.0f);
+    
     
     public GroundPanel(SwingGround ground)
     {
@@ -242,13 +247,14 @@ public class GroundPanel extends SwingSceneView
             int tileIndexY = (int)Math.floor(mousePointWorld.getY() / 10.0);
 
             g.setColor(Color.RED);
-            String tooltip = String.format("(%d;%d) (%.1f;%.1f) %d", tileIndexX, tileIndexY, 
+            int tileIndex = mGround.getTileIndex(tileIndexX, tileIndexY);
+            String tooltip = String.format("(%d;%d) (%.1f;%.1f) %d %d", tileIndexX, tileIndexY, 
             		mousePointWorld.getX(), mousePointWorld.getY(), 
-            		mGround.getTileIndex(tileIndexX, tileIndexY));
+            		tileIndex >> 16, tileIndex & 0xffff);
             g.drawString(tooltip, mousePoint.x + 15, mousePoint.y + 15);
 
             g2.setTransform(transform);
-            g2.setStroke(GRID_STROKE);
+            g2.setStroke(CURSOR_STROKE);
             g.drawRect(tileIndexX * 10, tileIndexY * 10, 10, 10);
             
         }
