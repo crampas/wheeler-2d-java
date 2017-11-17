@@ -7,40 +7,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.File;
 
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Marshaller;
 
 import de.mw.scene2d.model.CarSceneObject;
-import de.mw.scene2d.model.ObjectConfig;
 import de.mw.scene2d.model.Point;
-import de.mw.scene2d.model.Scene;
+import de.mw.scene2d.swing.game.games.Game;
 import de.mw.scene2d.swing.view.SwingSceneView;
 
 public class SceneFrame extends JFrame
 {
-    
-
-    public static void main(String[] arguments) throws Exception
-    {
-//        TrailerConfig t1c = new TrailerConfig();
-//        JAXBContext jaxbContext = JAXBContext.newInstance(TrailerConfig.class);
-//        Marshaller m = jaxbContext.createMarshaller();
-//        m.marshal(t1c, new File("TrailerConfig-001.xml"));
-
-        
-        SceneFrame mainFrame = new SceneFrame();
-
-        mainFrame.setSize(1200, 800);
-        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.setVisible(true);
-    }
-    
     private ScenePanel mScenePanel;
     private SteeringWheelControl mSteeringWheelControl;
     private AcceleratorControl mAcceleratorControl;
@@ -55,6 +35,7 @@ public class SceneFrame extends JFrame
         contentPane.setLayout(new BorderLayout());
         
         mScenePanel = new ScenePanel();
+
         contentPane.add(mScenePanel, BorderLayout.CENTER);
         CarDamageNoiseGenerator damageNoiseGenerator = new CarDamageNoiseGenerator();
         mScenePanel.addCarDamageListener(damageNoiseGenerator);
@@ -72,24 +53,23 @@ public class SceneFrame extends JFrame
         
         mSteeringWheelControl = new SteeringWheelControl(mScenePanel, 200);
         rightPanel.add(mSteeringWheelControl, BorderLayout.NORTH);
+
+        JButton testButton = new JButton("Show Map");
+        testButton.addActionListener((ActionEvent arg) -> mSceneMapView.repaint());
+        testButton.setFocusable(false);
+        rightBottomPanel.add(testButton, BorderLayout.NORTH);
+        
+	    mSceneMapView = new SwingSceneView(mScenePanel.getScene());
+	    mSceneMapView.setPaintGrid(false);
+	    mSceneMapView.setPreferredSize(new Dimension(200, 200));
+	    rightBottomPanel.add(mSceneMapView, BorderLayout.CENTER);
         
         mAcceleratorControl = new AcceleratorControl(mScenePanel, 200);
         rightBottomPanel.add(mAcceleratorControl, BorderLayout.SOUTH);
-        
-        
-        mSceneMapView = new SwingSceneView(mScenePanel.getScene());
-        mSceneMapView.setPaintGrid(true);
-        mSceneMapView.setViewportScale(2);
-        mSceneMapView.setViewportPosition(new Point(50, 50));
-        mSceneMapView.setPreferredSize(new Dimension(200, 200));
-        rightBottomPanel.add(mSceneMapView, BorderLayout.CENTER);
-        
+
         mInfoControl = new InfoPanel(mScenePanel);
         rightPanel.add(mInfoControl, BorderLayout.CENTER);
-        
-        Timer updateTimer = new Timer(1, new UpdateListener());
-        updateTimer.start();
-        
+
         addKeyListener(new KeyListener()
         {
             @Override
@@ -121,6 +101,20 @@ public class SceneFrame extends JFrame
     }
 
     
+    public void startSimulation()
+    {
+        {
+		    int width = mScenePanel.getScene().getGround().getWidth();
+		    int height = mScenePanel.getScene().getGround().getHeight();
+		    
+		    mSceneMapView.setViewportScale(200.0 / (10.0 * width));
+		    mSceneMapView.setViewportPosition(new Point(width * 10 / 2, height * 10 / 2));
+        }
+
+    	
+    	Timer updateTimer = new Timer(1, new UpdateListener());
+        updateTimer.start();
+    }
     
     private class UpdateListener implements ActionListener
     {
@@ -145,7 +139,7 @@ public class SceneFrame extends JFrame
             car.steeringAngle = (float)steeringAngle;
             
             mScenePanel.update(dt);
-            mSceneMapView.repaint();
+            // mSceneMapView.repaint();
 
             mInfoControl.update();
         }
@@ -155,5 +149,10 @@ public class SceneFrame extends JFrame
     {
         return mAcceleratorControl;
     }
+
+	public ScenePanel getScenePanel()
+	{
+		return mScenePanel;
+	}
 
 }

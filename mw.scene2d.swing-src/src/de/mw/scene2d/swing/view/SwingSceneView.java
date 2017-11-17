@@ -37,6 +37,7 @@ public class SwingSceneView extends JPanel implements SwingRendererContext
     private int mFps;
 
     private boolean mPaintGrid = false;
+    private boolean mPaintNavPaths = false;
     
     
     public SwingSceneView(Scene scene)
@@ -65,7 +66,8 @@ public class SwingSceneView extends JPanel implements SwingRendererContext
             return;
         }
         
-        drawNavPaths(graphics, x0, y0);
+        if (mPaintNavPaths)
+        	drawNavPaths(graphics, x0, y0);
     }
 
     protected void drawNavPaths(Graphics2D graphics, int tileX, int tileY)
@@ -326,4 +328,14 @@ public class SwingSceneView extends JPanel implements SwingRendererContext
     {
         mPaintGrid = paintGrid;
     }
+
+	public boolean isPaintNavPaths()
+	{
+		return mPaintNavPaths;
+	}
+
+	public void setPaintNavPaths(boolean paintNavPaths)
+	{
+		mPaintNavPaths = paintNavPaths;
+	}
 }

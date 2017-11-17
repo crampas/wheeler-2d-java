@@ -7,18 +7,25 @@ import de.mw.scene2d.model.CarSceneObject;
 import de.mw.scene2d.model.ObjectConfig;
 import de.mw.scene2d.model.Scene;
 import de.mw.scene2d.model.SceneObject;
-import de.mw.scene2d.swing.game.SwingGround;
 import de.mw.scene2d.swing.game.ScenePanel;
+import de.mw.scene2d.swing.game.SwingGround;
+import de.mw.scene2d.swing.game.games.Game;
 import de.mw.scene2d.swing.util.IOUtilities;
 
-public class DeliveryGame
+public class DeliveryGame extends Game
 {
+    public static void main(String[] arguments) throws Exception
+    {
+    	Game game = new DeliveryGame();
+    	game.run();
+    }
+	
 	public void setup(ScenePanel scenePanel)
 	{
 		ScenePanel.ViewportVelocityScale = false;
 		
-		SwingGround ground = SwingGround.createSampleGround(new File("res/games/delivery/ground-40x40.bin"),
-                new File("res/street/SampleGround.xml"));
+		SwingGround ground = SwingGround.createSampleGround(new File("res/city/map-48x48.bin"),
+				new File("res/city/road-tileset.xml"), new File("res/city/roof-tileset.xml"));
 		
 		scenePanel.mGround = ground;
 		scenePanel.mScene.setGround(ground);
@@ -29,7 +36,7 @@ public class DeliveryGame
 		
         ObjectConfig carConfig = IOUtilities.readObjectConfig("CarConfig-001.xml");
         scenePanel.mCar = new CarSceneObject(scene, carConfig);
-        scenePanel.mCar.setPosition(20f, 25f);
+        scenePanel.mCar.setPosition(15f, 25f);
         scenePanel.mCar.setRotation(-90);
         mSceneObjectList.add(scenePanel.mCar);
         scenePanel.mCar.setDamageListener(scenePanel);

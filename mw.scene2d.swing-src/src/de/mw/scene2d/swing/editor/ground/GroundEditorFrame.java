@@ -36,6 +36,7 @@ public class GroundEditorFrame extends JFrame
 //                new File("res/street/Ground-10x10.bin"));
     	
     	mTileMapFile = new File("res/city/map-16x16.bin");
+    	mTileMapFile = new File("res/city/map-48x48.bin");
 	    mGround = SwingGround.createSampleGround(mTileMapFile, 
 	    		new File("res/city/road-tileset.xml"), new File("res/city/roof-tileset.xml"));
         
