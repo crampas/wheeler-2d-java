@@ -3,20 +3,13 @@ package de.mw.scene2d.model;
 import java.util.List;
 
 
-public class CarSceneObject extends SceneObject
+public class CarSceneObject extends VehicleSceneObject
 {
     private Scene mScene;
     private CarDamageListener mDamageListener;
     
     public float steeringAngle = 0.0f;
     public float velocity = 0.0f;
-    
-    public float left = -1.0f;
-    public float right = 1.0f;
-    public float front = 3.5f; 
-    public float axis = 3.0f;
-    public float back = -1f;
-    public float damaged = 0f;
     
     public CarEngine engine = new CarEngine();
     

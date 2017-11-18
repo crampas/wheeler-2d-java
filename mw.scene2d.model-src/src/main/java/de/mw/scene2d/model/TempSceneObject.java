@@ -1,6 +1,5 @@
 package de.mw.scene2d.model;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 

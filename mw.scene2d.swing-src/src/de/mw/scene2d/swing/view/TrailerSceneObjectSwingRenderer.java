@@ -25,9 +25,9 @@ public class TrailerSceneObjectSwingRenderer extends SceneObjectSwingRenderer
         Line2D axis = new Line2D.Float(car.axis, car.left, car.axis, car.right);
         graphics.draw(axis);
         
-        Line2D a1 = new Line2D.Float(car.axis, car.left, car.ancor, 0);
+        Line2D a1 = new Line2D.Float(car.axis, car.left, 0, 0);
         graphics.draw(a1);
-        Line2D a2 = new Line2D.Float(car.axis, car.right, car.ancor, 0);
+        Line2D a2 = new Line2D.Float(car.axis, car.right, 0, 0);
         graphics.draw(a2);
         
         

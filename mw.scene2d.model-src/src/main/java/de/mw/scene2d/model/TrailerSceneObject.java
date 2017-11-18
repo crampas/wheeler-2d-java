@@ -1,17 +1,8 @@
 package de.mw.scene2d.model;
 
 
-public class TrailerSceneObject extends SceneObject
+public class TrailerSceneObject extends VehicleSceneObject
 {
-    public float left = -1.1f;
-    public float right = 1.1f;
-    public float front = -0.75f; 
-    public float back = -7.0f;
-    public float ancor = 0f;
-    public float axis = -3.5f;
-    
-//    private PointF mAncor = new PointF(mFront, 0f);
-    
     
     public TrailerSceneObject(ObjectConfig config)
     {
@@ -21,14 +12,6 @@ public class TrailerSceneObject extends SceneObject
         back = config.back;
         axis = config.axis;
     }
-    
-//    @Override
-//    protected void drawObject(Canvas canvas)
-//    {
-//        canvas.drawLine(0f, mLeft, 0f, mRight, DEFAULT_PAINT);
-//        canvas.drawLine(0f, mLeft, mFront, 0f, DEFAULT_PAINT);
-//        canvas.drawLine(0f, mRight, mFront, 0f, DEFAULT_PAINT);
-//    }
     
     @Override
     public void update(float time, float td)
@@ -55,5 +38,4 @@ public class TrailerSceneObject extends SceneObject
         }
         setRotation((float)angle);
     }
-    
 }

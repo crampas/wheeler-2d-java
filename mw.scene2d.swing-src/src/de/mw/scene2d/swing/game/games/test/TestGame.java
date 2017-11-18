@@ -79,10 +79,10 @@ public class TestGame extends Game
 		if (true)
 		{
 			ObjectConfig trailerConfig = IOUtilities.readObjectConfig("TrailerConfig-003.xml");
-			scenePanel.mTrailer = new TrailerSceneObject(trailerConfig);
-			scenePanel.mTrailer.setPosition(27.9f, 17.5f);
-			mSceneObjectList.add(scenePanel.mTrailer);
-			scenePanel.mCar.childList.add(scenePanel.mTrailer);
+			TrailerSceneObject trailer = new TrailerSceneObject(trailerConfig);
+			trailer.setPosition(27.9f, 17.5f);
+			mSceneObjectList.add(trailer);
+			scenePanel.mCar.childList.add(trailer);
 		}
 
 		// car 1

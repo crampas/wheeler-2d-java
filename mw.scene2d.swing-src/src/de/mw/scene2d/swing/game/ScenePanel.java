@@ -21,8 +21,6 @@ public class ScenePanel extends SwingSceneView implements CarDamageListener
     public CarSceneObject mCar;
     public List<CarSceneObject> mCarList = new ArrayList<CarSceneObject>();
     
-    public TrailerSceneObject mTrailer;
-
     public SwingGround mGround;
 
     
