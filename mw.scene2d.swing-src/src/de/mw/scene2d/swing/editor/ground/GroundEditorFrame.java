@@ -38,7 +38,7 @@ public class GroundEditorFrame extends JFrame
     	mTileMapFile = new File("res/city/map-16x16.bin");
     	mTileMapFile = new File("res/city/map-48x48.bin");
 	    mGround = SwingGround.createSampleGround(mTileMapFile, 
-	    		new File("res/city/road-tileset.xml"), new File("res/city/roof-tileset.xml"));
+	    		new File("res/city/road-tileset.xml"), new File("res/city/roof-tileset.xml"), new File("res/city/floor-tileset.xml"));
         
         this.setTitle(mGround.getBasleLocation().toString() + " / " + mTileMapFile.toString());
         
@@ -62,6 +62,9 @@ public class GroundEditorFrame extends JFrame
         
         TileSelectorPanel tileSelector2 = new TileSelectorPanel(mGround, 1000);
         selectorGroup.addTileSelector("Gebäude", tileSelector2);
+
+        TileSelectorPanel tileSelector3 = new TileSelectorPanel(mGround, 2000);
+        selectorGroup.addTileSelector("Boden", tileSelector3);
 
         groundView.setTileSelectionSource(selectorGroup);
         

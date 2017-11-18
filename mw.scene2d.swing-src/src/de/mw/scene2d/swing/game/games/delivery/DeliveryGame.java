@@ -27,7 +27,7 @@ public class DeliveryGame extends Game
 		ScenePanel.ViewportVelocityScale = false;
 		
 		SwingGround ground = SwingGround.createSampleGround(new File("res/city/map-48x48.bin"),
-				new File("res/city/road-tileset.xml"), new File("res/city/roof-tileset.xml"));
+				new File("res/city/road-tileset.xml"), new File("res/city/roof-tileset.xml"), new File("res/city/floor-tileset.xml"));
 		
 		scenePanel.mGround = ground;
 		scenePanel.mScene.setGround(ground);
@@ -37,17 +37,15 @@ public class DeliveryGame extends Game
 		
 		
         ObjectConfig carConfig = IOUtilities.readObjectConfig("CarConfig-001.xml");
-        scenePanel.mCar = new CarSceneObject(scene, carConfig);
-        scenePanel.mCar.setPosition(15f, 25f);
-        scenePanel.mCar.setRotation(-90);
-        mSceneObjectList.add(scenePanel.mCar);
-        scenePanel.mCar.setDamageListener(scenePanel);
-        scenePanel.mCarList.add(scenePanel.mCar);
+        CarSceneObject car = new CarSceneObject(scene, carConfig);
+        car.setPosition(20f, 17.5f);
+        scenePanel.mCar = car; 
+        mSceneObjectList.add(car);
+        car.setDamageListener(scenePanel);
         
 		ObjectConfig trailerConfig = IOUtilities.readObjectConfig("TrailerConfig-001.xml");
 		TrailerSceneObject trailer = new TrailerSceneObject(trailerConfig);
-		trailer.setPosition(15f, 29f);
-		trailer.setRotation(-90);
+		trailer.setPosition(16f, 17.5f);
 		mSceneObjectList.add(trailer);
 		scenePanel.mCar.childList.add(trailer);
         
@@ -55,7 +53,5 @@ public class DeliveryGame extends Game
 		ParkingRectSceneObject parking = new ParkingRectSceneObject(45, 50, 4.5f, 8f);
 		parking.addVehicle(trailer);
 		mSceneObjectList.add(parking);
-
-        
 	}
 }

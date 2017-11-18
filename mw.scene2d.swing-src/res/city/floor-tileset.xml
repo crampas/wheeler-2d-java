@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SampleGround>
+	<name>floor</name>
+	<id>2000</id>
+    <tile>
+        <imageId>floor.png</imageId>
+        <tileIndexX>0</tileIndexX>
+        <tileIndexY>0</tileIndexY>
+    </tile>
+</SampleGround>
