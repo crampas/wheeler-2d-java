@@ -27,7 +27,8 @@ public class DeliveryGame extends Game
 		ScenePanel.ViewportVelocityScale = false;
 		
 		SwingGround ground = SwingGround.createSampleGround(new File("res/city/map-48x48.bin"),
-				new File("res/city/road-tileset.xml"), new File("res/city/roof-tileset.xml"), new File("res/city/floor-tileset.xml"));
+				new File("res/city/road-tileset.xml"), new File("res/city/roof-tileset.xml"), new File("res/city/floor-tileset.xml"),
+				new File("res/city/hedge-tileset.xml"));
 		
 		scenePanel.mGround = ground;
 		scenePanel.mScene.setGround(ground);
@@ -50,7 +51,7 @@ public class DeliveryGame extends Game
 		scenePanel.mCar.childList.add(trailer);
         
         
-		ParkingRectSceneObject parking = new ParkingRectSceneObject(45, 50, 4.5f, 8f);
+		ParkingRectSceneObject parking = new ParkingRectSceneObject(55, 61, 4f, 8f);
 		parking.addVehicle(trailer);
 		mSceneObjectList.add(parking);
 	}
