@@ -20,6 +20,7 @@ import de.mw.scene2d.model.Point;
 import de.mw.scene2d.model.Scene;
 import de.mw.scene2d.model.SceneObject;
 import de.mw.scene2d.model.SignSceneObject;
+import de.mw.scene2d.model.SpriteSceneObject;
 import de.mw.scene2d.model.TempSceneObject;
 import de.mw.scene2d.model.TrailerSceneObject;
 import de.mw.scene2d.swing.game.SwingGround;
@@ -245,6 +246,7 @@ public class SwingSceneView extends JPanel implements SwingRendererContext
     TempSceneObjectRenderer mTempRenderer = new TempSceneObjectRenderer();
     SignSceneObjectRenderer mSignRenderer = new SignSceneObjectRenderer();
     ParkingRectSceneObjectSwingRenderer mParkingRectRenderer = new ParkingRectSceneObjectSwingRenderer();
+    SpriteSceneObjectSwingRenderer mSpriteRenderer = new SpriteSceneObjectSwingRenderer(); 
     
     public SceneObjectSwingRenderer getSceneObjectRenderer(SceneObject object)
     {
@@ -272,6 +274,10 @@ public class SwingSceneView extends JPanel implements SwingRendererContext
         if(ParkingRectSceneObject.class.equals(objectType))
         {
             return mParkingRectRenderer;
+        }
+        if(SpriteSceneObject.class.equals(objectType))
+        {
+            return mSpriteRenderer;
         }
         
         return mSceneObjectRenderer;
