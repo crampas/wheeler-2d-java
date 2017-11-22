@@ -8,8 +8,15 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.Line2D;
 import java.awt.geom.NoninvertibleTransformException;
 import java.awt.geom.Point2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import de.mw.scene2d.model.CarSceneObject;
@@ -240,13 +247,13 @@ public class SwingSceneView extends JPanel implements SwingRendererContext
     }
     
     
-    SceneObjectSwingRenderer mSceneObjectRenderer = new SceneObjectSwingRenderer(); 
-    CarSceneObjectSwingRenderer mCarSceneObjectRenderer = new CarSceneObjectSwingRenderer();
-    TrailerSceneObjectSwingRenderer mTrailerSceneObjectRenderer = new TrailerSceneObjectSwingRenderer();
-    TempSceneObjectRenderer mTempRenderer = new TempSceneObjectRenderer();
-    SignSceneObjectRenderer mSignRenderer = new SignSceneObjectRenderer();
-    ParkingRectSceneObjectSwingRenderer mParkingRectRenderer = new ParkingRectSceneObjectSwingRenderer();
-    SpriteSceneObjectSwingRenderer mSpriteRenderer = new SpriteSceneObjectSwingRenderer(); 
+    SceneObjectSwingRenderer<SceneObject> mSceneObjectRenderer = new SceneObjectSwingRenderer<SceneObject>(this); 
+    CarSceneObjectSwingRenderer mCarSceneObjectRenderer = new CarSceneObjectSwingRenderer(this);
+    TrailerSceneObjectSwingRenderer mTrailerSceneObjectRenderer = new TrailerSceneObjectSwingRenderer(this);
+    TempSceneObjectRenderer mTempRenderer = new TempSceneObjectRenderer(this);
+    SignSceneObjectRenderer mSignRenderer = new SignSceneObjectRenderer(this);
+    ParkingRectSceneObjectSwingRenderer mParkingRectRenderer = new ParkingRectSceneObjectSwingRenderer(this);
+    SpriteSceneObjectSwingRenderer mSpriteRenderer = new SpriteSceneObjectSwingRenderer(this); 
     
     public SceneObjectSwingRenderer getSceneObjectRenderer(SceneObject object)
     {
@@ -283,6 +290,32 @@ public class SwingSceneView extends JPanel implements SwingRendererContext
         return mSceneObjectRenderer;
     }
 
+    private Map<String, BufferedImage> mImageCache = new HashMap<String, BufferedImage>();
+    
+    public BufferedImage getImage(String imageId)
+    {
+    	BufferedImage image = mImageCache.get(imageId);
+    	if (image == null)
+    	{
+        	image = readImage(imageId);
+        	mImageCache.put(imageId, image);
+    	}
+    	return image;
+    }
+
+	private BufferedImage readImage(String imageId)
+	{
+		try
+		{
+		    URL groundUrl = new File("res/sprites/" + imageId).toURI().toURL();
+		    return ImageIO.read(groundUrl);
+		}
+		catch(IOException ex)
+		{
+		    throw new RuntimeException(ex);
+		}
+	}
+    
     @Override
     public void renderObject(Graphics2D graphics, SceneObject object)
     {

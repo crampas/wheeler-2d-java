@@ -8,7 +8,6 @@ import de.mw.scene2d.model.CarSceneObject;
 import de.mw.scene2d.model.Scene;
 import de.mw.scene2d.model.SceneListener;
 import de.mw.scene2d.model.SceneObject;
-import de.mw.scene2d.model.TrailerSceneObject;
 import de.mw.scene2d.swing.view.SwingSceneView;
 
 public class ScenePanel extends SwingSceneView implements CarDamageListener
@@ -27,7 +26,6 @@ public class ScenePanel extends SwingSceneView implements CarDamageListener
     public ScenePanel()
     {
         super(new Scene());
-        // new DeliveryGame().setup(this);
     }
     
     public CarSceneObject getCar()

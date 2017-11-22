@@ -25,7 +25,7 @@ public class TestGame extends Game
     	game.run();
     }
 	
-	public void setup(ScenePanel scenePanel)
+	public void setup()
 	{
 		SwingGround ground = SwingGround.createSampleGround(new File("res/city/map-48x48.bin"),
 				new File("res/city/road-tileset.xml"), new File("res/city/roof-tileset.xml"));
@@ -42,7 +42,7 @@ public class TestGame extends Game
 		}
 
 		{
-			SignSceneObject sign1 = new SignSceneObject();
+			SignSceneObject sign1 = new SignSceneObject("Sign1");
 			sign1.setPosition(34f, 20f);
 			mSceneObjectList.add(sign1);
 		}
@@ -131,6 +131,13 @@ public class TestGame extends Game
 			// mScene.getSceneListenerList().add(driver);
 		}
 
+	}
+	
+	@Override
+	public void start()
+	{
+		// TODO Auto-generated method stub
+		
 	}
 
 }

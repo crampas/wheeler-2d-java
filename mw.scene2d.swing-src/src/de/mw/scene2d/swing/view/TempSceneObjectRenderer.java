@@ -21,8 +21,9 @@ public class TempSceneObjectRenderer extends SceneObjectSwingRenderer
     private Shape mObjectShape = new Ellipse2D.Float(-1f, -1f, 2f, 2f);
     private Shape mObjectLook = new Line2D.Float(0f, 0f, 2f, 0f);
     
-    public TempSceneObjectRenderer()
+    public TempSceneObjectRenderer(SwingRendererContext context)
     {
+    	super(context);
     }
     
     @Override

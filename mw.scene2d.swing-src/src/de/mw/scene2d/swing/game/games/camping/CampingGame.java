@@ -1,7 +1,9 @@
-package de.mw.scene2d.swing.game.games.delivery;
+package de.mw.scene2d.swing.game.games.camping;
 
 import java.io.File;
 import java.util.List;
+
+import javax.swing.JOptionPane;
 
 import de.mw.scene2d.model.CarSceneObject;
 import de.mw.scene2d.model.ObjectConfig;
@@ -17,15 +19,15 @@ import de.mw.scene2d.swing.game.SwingGround;
 import de.mw.scene2d.swing.game.games.Game;
 import de.mw.scene2d.swing.util.IOUtilities;
 
-public class DeliveryGame extends Game
+public class CampingGame extends Game
 {
 	public static void main(String[] arguments) throws Exception
 	{
-		Game game = new DeliveryGame();
+		Game game = new CampingGame();
 		game.run();
 	}
 
-	public void setup(ScenePanel scenePanel)
+	public void setup()
 	{
 		ScenePanel.ViewportVelocityScale = false;
 
@@ -56,28 +58,58 @@ public class DeliveryGame extends Game
 		parking.addVehicle(trailer);
 		mSceneObjectList.add(parking);
 		
-		SignSceneObject sign = new SignSceneObject();
+		SignSceneObject sign = new SignSceneObject("Hier her ...");
 		sign.position = new Point(50, 60);
 		sign.active = true;
+		sign.childList.add(car);
 		mSceneObjectList.add(sign);
 
 		{
-			SpriteSceneObject sprite1 = new SpriteSceneObject();
+			SpriteSceneObject sprite1 = new SpriteSceneObject("taxi-2.png");
 			sprite1.position = new Point(30f, 18.5f);
 			sprite1.setRotation(90);
 			mSceneObjectList.add(sprite1);
 		}
 		{
-			SpriteSceneObject sprite = new SpriteSceneObject();
+			SpriteSceneObject sprite = new SpriteSceneObject("taxi-2.png");
 			sprite.position = new Point(40f, 18.5f);
 			sprite.setRotation(90);
 			mSceneObjectList.add(sprite);
 		}
 		{
-			SpriteSceneObject sprite = new SpriteSceneObject();
+			SpriteSceneObject sprite = new SpriteSceneObject("taxi-2.png");
 			sprite.position = new Point(45f, 18.5f);
 			sprite.setRotation(90);
 			mSceneObjectList.add(sprite);
 		}
+		{
+			SpriteSceneObject sprite = new SpriteSceneObject("caravan.png");
+			sprite.position = new Point(55f, 81f);
+			mSceneObjectList.add(sprite);
+		}
+		{
+			SpriteSceneObject sprite = new SpriteSceneObject("deck-chair.png");
+			sprite.position = new Point(52f, 83f);
+			sprite.setRotation(160);
+			mSceneObjectList.add(sprite);
+		}
+		{
+			SpriteSceneObject sprite = new SpriteSceneObject("deck-chair.png");
+			sprite.position = new Point(52f, 85f);
+			sprite.setRotation(190);
+			mSceneObjectList.add(sprite);
+		}
+		{
+			SpriteSceneObject sprite = new SpriteSceneObject("tent.png");
+			sprite.position = new Point(33f, 42f);
+			sprite.setRotation(-25);
+			mSceneObjectList.add(sprite);
+		}
+	}
+
+	@Override
+	public void start()
+	{
+		JOptionPane.showMessageDialog(scenePanel, "Stell deinen Wohnwagen auf den Platz dort drüben.");
 	}
 }

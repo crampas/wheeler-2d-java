@@ -23,9 +23,11 @@ public class CarSceneObjectSwingRenderer extends SceneObjectSwingRenderer
     private Color mColorLines = Color.GRAY;
     private BufferedImage mCarImage;
     
-    public CarSceneObjectSwingRenderer()
+    public CarSceneObjectSwingRenderer(SwingRendererContext context)
     {
-        try
+    	super(context);
+
+    	try
         {
             URL groundUrl = new File("res/bilder/audi-frei-100.png").toURI().toURL();
             mCarImage = ImageIO.read(groundUrl);
@@ -34,21 +36,6 @@ public class CarSceneObjectSwingRenderer extends SceneObjectSwingRenderer
         {
             throw new RuntimeException(ex);
         }
-
-    }
-    
-    @Override
-    public void renderObject(SwingRendererContext context, Graphics2D graphics, SceneObject object)
-    {
-        super.renderObject(context, graphics, object);
-        
-        // Hilfslinie vom Ursprung (0,0) zur aktuellen Position
-//        CarSceneObject car = (CarSceneObject)object;
-//        graphics.setColor(Color.RED);
-//        Point carPoint = car.getAbsolute(new Point(car.front, 0));
-//        Line2D originLine = new Line2D.Float(0f, 0f, carPoint.x, carPoint.y);
-//        graphics.draw(originLine);
-        
     }
     
     protected void drawObject(Graphics2D graphics, SceneObject object)

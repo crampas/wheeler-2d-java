@@ -8,4 +8,9 @@ public class SpriteSceneObject extends SceneObject
     public float bottom = 4.5f;
     
     public String imageId;
+    
+    public SpriteSceneObject(String imageId)
+	{
+    	this.imageId = imageId;    	
+	}
 }

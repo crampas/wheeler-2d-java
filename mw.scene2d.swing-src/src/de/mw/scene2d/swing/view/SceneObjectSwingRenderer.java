@@ -7,11 +7,6 @@ import java.awt.Shape;
 import java.awt.Stroke;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-
-import javax.imageio.ImageIO;
 
 import de.mw.scene2d.model.SceneObject;
 import de.mw.scene2d.model.SceneObjectRenderer;
@@ -22,8 +17,11 @@ public class SceneObjectSwingRenderer<T extends SceneObject> extends SceneObject
     private static Color LINE_COLOR = Color.BLACK;
     private static Color ACTIVE_FILL_COLOR = Color.RED;
     
-    public SceneObjectSwingRenderer()
+    protected SwingRendererContext mContext;
+    
+    public SceneObjectSwingRenderer(SwingRendererContext context)
     {
+    	mContext = context;
     }
     
     @Override

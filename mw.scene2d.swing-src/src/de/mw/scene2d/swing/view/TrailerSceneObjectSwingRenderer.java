@@ -6,28 +6,30 @@ import java.awt.Shape;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 
-import de.mw.scene2d.model.SceneObject;
 import de.mw.scene2d.model.TrailerSceneObject;
 
-public class TrailerSceneObjectSwingRenderer extends SceneObjectSwingRenderer
+public class TrailerSceneObjectSwingRenderer extends SceneObjectSwingRenderer<TrailerSceneObject>
 {
-
-    protected void drawObject(Graphics2D graphics, SceneObject object)
+	public TrailerSceneObjectSwingRenderer(SwingRendererContext context)
     {
-        TrailerSceneObject car = (TrailerSceneObject)object;
-        
-        Shape rect = new Rectangle2D.Float(car.back, car.left, car.front - car.back, car.right - car.left);
+    	super(context);
+    }
+	
+	
+    protected void drawObject(Graphics2D graphics, TrailerSceneObject vehicle)
+    {
+        Shape rect = new Rectangle2D.Float(vehicle.back, vehicle.left, vehicle.front - vehicle.back, vehicle.right - vehicle.left);
         graphics.setColor(Color.WHITE);
         graphics.fill(rect);
         graphics.setColor(Color.DARK_GRAY);
         graphics.draw(rect);
 
-        Line2D axis = new Line2D.Float(car.axis, car.left, car.axis, car.right);
+        Line2D axis = new Line2D.Float(vehicle.axis, vehicle.left, vehicle.axis, vehicle.right);
         graphics.draw(axis);
         
-        Line2D a1 = new Line2D.Float(car.axis, car.left, 0, 0);
+        Line2D a1 = new Line2D.Float(vehicle.axis, vehicle.left, 0, 0);
         graphics.draw(a1);
-        Line2D a2 = new Line2D.Float(car.axis, car.right, 0, 0);
+        Line2D a2 = new Line2D.Float(vehicle.axis, vehicle.right, 0, 0);
         graphics.draw(a2);
         
         
@@ -37,6 +39,4 @@ public class TrailerSceneObjectSwingRenderer extends SceneObjectSwingRenderer
 //        canvas.drawLine(car.front, 0f, car.front + 1f, 0f, DEFAULT_PAINT);
 
     }
-
-    
 }
