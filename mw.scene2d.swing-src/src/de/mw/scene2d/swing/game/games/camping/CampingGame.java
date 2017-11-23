@@ -3,15 +3,11 @@ package de.mw.scene2d.swing.game.games.camping;
 import java.io.File;
 import java.util.List;
 
-import javax.swing.JOptionPane;
-
 import de.mw.scene2d.model.CarSceneObject;
-import de.mw.scene2d.model.ObjectConfig;
 import de.mw.scene2d.model.ParkingRectSceneObject;
 import de.mw.scene2d.model.Point;
 import de.mw.scene2d.model.Scene;
 import de.mw.scene2d.model.SceneObject;
-import de.mw.scene2d.model.SignSceneObject;
 import de.mw.scene2d.model.SpriteSceneObject;
 import de.mw.scene2d.model.TrailerSceneObject;
 import de.mw.scene2d.swing.game.ScenePanel;
@@ -21,9 +17,6 @@ import de.mw.scene2d.swing.util.IOUtilities;
 
 public class CampingGame extends Game
 {
-	public GameGoal tenderParkingGoal = new GameGoal("Tender parked", () -> checkTenderGoalFinished(), () -> onTenderGoalFinished());
-	public GameGoal carParkingGoal = new GameGoal("Car parked", () -> checkCarGoalFinished(), () -> onCarGoalFinished());
-	
 	
 	public static void main(String[] arguments) throws Exception
 	{
@@ -31,9 +24,9 @@ public class CampingGame extends Game
 		game.run();
 	}
 
-	private ParkingRectSceneObject tenderParking = new ParkingRectSceneObject(55, 61, 4f, 8f);
-	private ParkingRectSceneObject carParking = new ParkingRectSceneObject(62, 17, 6f, 2.5f);
-	private CarSceneObject car;
+	public ParkingRectSceneObject tenderParking = new ParkingRectSceneObject(55, 61, 4f, 8f);
+	public ParkingRectSceneObject carParking = new ParkingRectSceneObject(35.5f, 10.25f, 6f, 2.5f);
+	public CarSceneObject car;
 	
 	public void setup()
 	{
@@ -50,46 +43,36 @@ public class CampingGame extends Game
 
 		List<SceneObject> sceneObjectList = scenePanel.mScene.getSceneObjectList();
 
-		ObjectConfig carConfig = IOUtilities.readObjectConfig("CarConfig-001.xml");
-		car = new CarSceneObject(scene, carConfig);
+		car = new CarSceneObject(scene, IOUtilities.readObjectConfig("CarConfig-001.xml"));
 		car.setPosition(20f, 17.5f);
 		scenePanel.mCar = car;
 		sceneObjectList.add(car);
 		car.setDamageListener(scenePanel);
 
-		ObjectConfig trailerConfig = IOUtilities.readObjectConfig("TrailerConfig-001.xml");
-		TrailerSceneObject trailer = new TrailerSceneObject(trailerConfig);
+		TrailerSceneObject trailer = new TrailerSceneObject(IOUtilities.readObjectConfig("TrailerConfig-001.xml"));
 		trailer.setPosition(16f, 17.5f);
 		sceneObjectList.add(trailer);
 		car.childList.add(trailer);
 
-		tenderParking.addVehicle(trailer);
-		sceneObjectList.add(tenderParking);
-		
+		tenderParking.addVehicle(trailer);		
 		carParking.addVehicle(car);
 		
-		SignSceneObject sign = new SignSceneObject("Hier her ...");
-		sign.position = new Point(50, 60);
-		sign.active = true;
-		sign.childList.add(car);
-		sceneObjectList.add(sign);
-
 		{
 			SpriteSceneObject sprite1 = new SpriteSceneObject("taxi-2.png");
-			sprite1.position = new Point(30f, 18.5f);
-			sprite1.setRotation(90);
+			sprite1.position = new Point(30f, 11.5f);
+			sprite1.setRotation(-90);
 			sceneObjectList.add(sprite1);
 		}
 		{
 			SpriteSceneObject sprite = new SpriteSceneObject("taxi-2.png");
-			sprite.position = new Point(40f, 18.5f);
-			sprite.setRotation(90);
+			sprite.position = new Point(42f, 11.5f);
+			sprite.setRotation(-90);
 			sceneObjectList.add(sprite);
 		}
 		{
 			SpriteSceneObject sprite = new SpriteSceneObject("taxi-2.png");
-			sprite.position = new Point(45f, 18.5f);
-			sprite.setRotation(90);
+			sprite.position = new Point(48f, 11.5f);
+			sprite.setRotation(-90);
 			sceneObjectList.add(sprite);
 		}
 		{
@@ -115,40 +98,17 @@ public class CampingGame extends Game
 			sprite.setRotation(-25);
 			sceneObjectList.add(sprite);
 		}
+		{
+			SpriteSceneObject sprite = new SpriteSceneObject("bather.png");
+			sprite.position = new Point(39f, 43f);
+			sprite.setRotation(15);
+			sceneObjectList.add(sprite);
+		}
 	}
-	
-    public void update(float time, float td)
-    {
-    	this.tenderParkingGoal.isAccomplished();
-    	this.carParkingGoal.isAccomplished();
-    }
 
     @Override
 	public void start()
 	{
-		JOptionPane.showMessageDialog(scenePanel, "Stell deinen Wohnwagen auf den Platz dort drüben.");
+		setGoal(new TenderParkingGoal(this));
 	}
-
-    public boolean checkTenderGoalFinished()
-    {
-    	return tenderParking.active && car.childList.size() == 0;
-    }
-    
-    public void onTenderGoalFinished()
-    {
-    	scenePanel.mScene.getSceneObjectList().remove(tenderParking);
-    	scenePanel.mScene.getSceneObjectList().add(carParking);
-    }
-
-    public boolean checkCarGoalFinished()
-    {
-    	return carParking.active && car.velocity == 0;
-    }
-
-    public void onCarGoalFinished()
-    {
-		JOptionPane.showMessageDialog(scenePanel, "Erledigt!");
-    }
-    
-	
 }

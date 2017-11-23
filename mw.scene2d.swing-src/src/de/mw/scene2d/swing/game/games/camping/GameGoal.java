@@ -1,36 +1,33 @@
 package de.mw.scene2d.swing.game.games.camping;
 
-public class GameGoal
+import de.mw.scene2d.swing.game.games.Game;
+
+public abstract class GameGoal<T extends Game>
 {
+	public boolean started = false;
 	public String name;
-	private GoalCondition condition;
-	private GoalAction action;
 	private boolean isAccomplished = false;
 	
-	public GameGoal(String name, GoalCondition condition, GoalAction action)
+	protected final T game;
+	
+	public GameGoal(T game, String name)
 	{
+		this.game = game;
 		this.name = name;
-		this.condition = condition;
-		this.action = action;
 	}
 	
-	public boolean isAccomplished()
+	public GameGoal<T> update()
 	{
 		boolean oldValue = isAccomplished;
-		isAccomplished = isAccomplished || condition.calcCondition();
+		isAccomplished = isAccomplished || checkCondition();
 		if (isAccomplished && !oldValue)
-			action.action();
-		return isAccomplished;
+			return onFinished();
+		return this;
 	}
 	
-	public static interface GoalCondition
-	{
-		public abstract boolean calcCondition(); 
-	}
 
-	public static interface GoalAction
-	{
-		public abstract void action(); 
-	}
+	public abstract boolean checkCondition();
 
+	public abstract void onStart();
+	public abstract GameGoal<T> onFinished();
 }

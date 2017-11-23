@@ -5,11 +5,12 @@ import javax.swing.JFrame;
 import de.mw.scene2d.model.SceneListener;
 import de.mw.scene2d.swing.game.SceneFrame;
 import de.mw.scene2d.swing.game.ScenePanel;
+import de.mw.scene2d.swing.game.games.camping.GameGoal;
 
 public abstract class Game implements SceneListener
 {
 	public ScenePanel scenePanel;
-	
+	private GameGoal<?> currentGoal; 
 	
     public void run()
     {
@@ -30,7 +31,20 @@ public abstract class Game implements SceneListener
     
     public abstract void start();
     
+    public void setGoal(GameGoal<?> goal)
+    {
+    	currentGoal = goal;
+    }
+    
     @Override
     public void update(float time, float td)
-    {}
+    {
+    	if (currentGoal == null)
+    		return;
+    	
+    	if (!currentGoal.started)
+    		currentGoal.onStart();
+    	currentGoal.started = true;
+    	currentGoal = currentGoal.update();
+    }
 }

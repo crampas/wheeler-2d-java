@@ -1,47 +1,28 @@
 package de.mw.scene2d.swing.view;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Line2D;
-import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-
-import javax.imageio.ImageIO;
 
 import de.mw.scene2d.model.CarSceneObject;
-import de.mw.scene2d.model.SceneObject;
 
-public class CarSceneObjectSwingRenderer extends SceneObjectSwingRenderer
+public class CarSceneObjectSwingRenderer extends SceneObjectSwingRenderer<CarSceneObject>
 {
     private Color mColorCar = Color.decode("#f4e037");
     private Color mColorLines = Color.GRAY;
-    private BufferedImage mCarImage;
+    private Font mDirectionFont = new Font("Arial", Font.BOLD, 3);
     
     public CarSceneObjectSwingRenderer(SwingRendererContext context)
     {
     	super(context);
-
-    	try
-        {
-            URL groundUrl = new File("res/bilder/audi-frei-100.png").toURI().toURL();
-            mCarImage = ImageIO.read(groundUrl);
-        }
-        catch(IOException ex)
-        {
-            throw new RuntimeException(ex);
-        }
     }
     
-    protected void drawObject(Graphics2D graphics, SceneObject object)
+    protected void drawObject(Graphics2D graphics, CarSceneObject car)
     {
-        CarSceneObject car = (CarSceneObject)object;
-        
         Shape s = new Rectangle2D.Float(car.back, car.left, car.front - car.back, car.right - car.left);
         graphics.setColor(mColorCar);
         graphics.fill(s);
@@ -68,8 +49,18 @@ public class CarSceneObjectSwingRenderer extends SceneObjectSwingRenderer
         Line2D steering = new Line2D.Double(0f, 0f, steeringX * 2, steeringY * 2);
         graphics.draw(steering);
 
-        AffineTransform transform = AffineTransform.getTranslateInstance(car.back - 0.2, car.left - 0.15);
-        transform.scale(1.0/20.0, 1.0/20.0);
+        // Fahrtrichtung
+        graphics.setColor(Color.BLACK);
+        graphics.setFont(mDirectionFont);
+        String directionIndicator = car.engine.direction > 0 ? "\u2191" : "\u2193";
+        AffineTransform textTransform = graphics.getTransform();
+        textTransform.rotate(0.5 * Math.PI);
+        graphics.setTransform(textTransform);
+        graphics.drawString(directionIndicator, -0.75f, 2.1f);
+        
+        
+//        AffineTransform transform = AffineTransform.getTranslateInstance(car.back - 0.2, car.left - 0.15);
+//        transform.scale(1.0/20.0, 1.0/20.0);
 //        graphics.drawImage(mCarImage, transform, null);
         
 //        graphics.setColor(Color.GREEN);

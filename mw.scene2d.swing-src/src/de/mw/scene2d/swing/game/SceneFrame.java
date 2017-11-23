@@ -90,7 +90,7 @@ public class SceneFrame extends JFrame
 
 				if (e.getKeyChar() == KeyEvent.VK_ENTER)
 				{
-					mScenePanel.switchCar();
+					// mScenePanel.switchCar();
 				}
 			}
 

@@ -18,7 +18,6 @@ public class ScenePanel extends SwingSceneView implements CarDamageListener
     public static boolean ViewportVelocityScale = true;
     
     public CarSceneObject mCar;
-    public List<CarSceneObject> mCarList = new ArrayList<CarSceneObject>();
     
     public SwingGround mGround;
 
@@ -74,13 +73,6 @@ public class ScenePanel extends SwingSceneView implements CarDamageListener
         repaint();
     }
 
-    public void switchCar()
-    {
-        int currentIndex = mCarList.indexOf(mCar);
-        int nextIndex = (currentIndex + 1) % mCarList.size();
-        mCar = mCarList.get(nextIndex);
-    }
-    
     public void uncoupleTrailer()
     {
     	mCar.childList.clear();

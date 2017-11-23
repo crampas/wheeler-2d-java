@@ -71,7 +71,6 @@ public class TestGame extends Game
 			mSceneObjectList.add(scenePanel.mCar);
 			scenePanel.mCar.setDamageListener(scenePanel);
 
-			scenePanel.mCarList.add(scenePanel.mCar);
 			// mSignRenderer.setCar(mCar);
 		}
 
@@ -96,7 +95,7 @@ public class TestGame extends Game
 			mSceneObjectList.add(car);
 			car.setDamageListener(scenePanel);
 
-			scenePanel.mCarList.add(car);
+			// scenePanel.mCarList.add(car);
 		}
 
 		// self-driving car
@@ -125,7 +124,7 @@ public class TestGame extends Game
 			// car.rotate(180);
 			mSceneObjectList.add(car);
 			car.setDamageListener(scenePanel);
-			scenePanel.mCarList.add(car);
+			// scenePanel.mCarList.add(car);
 
 			// Driver driver = new Driver(mScene, car);
 			// mScene.getSceneListenerList().add(driver);
