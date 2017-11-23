@@ -2,10 +2,11 @@ package de.mw.scene2d.swing.game.games;
 
 import javax.swing.JFrame;
 
+import de.mw.scene2d.model.SceneListener;
 import de.mw.scene2d.swing.game.SceneFrame;
 import de.mw.scene2d.swing.game.ScenePanel;
 
-public abstract class Game
+public abstract class Game implements SceneListener
 {
 	public ScenePanel scenePanel;
 	
@@ -20,7 +21,7 @@ public abstract class Game
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setVisible(true);
         
-        mainFrame.startSimulation();
+        mainFrame.startSimulation(this);
         
         start();
     }
@@ -28,4 +29,8 @@ public abstract class Game
     public abstract void setup();
     
     public abstract void start();
+    
+    @Override
+    public void update(float time, float td)
+    {}
 }

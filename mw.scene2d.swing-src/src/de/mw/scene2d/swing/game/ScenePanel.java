@@ -80,6 +80,11 @@ public class ScenePanel extends SwingSceneView implements CarDamageListener
         int nextIndex = (currentIndex + 1) % mCarList.size();
         mCar = mCarList.get(nextIndex);
     }
+    
+    public void uncoupleTrailer()
+    {
+    	mCar.childList.clear();
+    }
 
     private List<CarDamageListener> mCarDamageListener = new ArrayList<CarDamageListener>();
     
