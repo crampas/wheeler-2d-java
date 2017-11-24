@@ -150,14 +150,14 @@ public class TempSceneObject extends SceneObject
         }
 
         //=====================================================================
-        // nächsten Navigationspunkt prüfen  
+        // naechsten Navigationspunkt pruefen  
         //---------------------------------------------------------------------
         float navDx = nextNavPoint.x - position.x;
         float navDy = nextNavPoint.y - position.y;
         float navD = navDx * navDx + navDy * navDy;
         if(navD < velocity * dt)
         {
-            // Navigationspunkt erreicht, nächsten Navigationspunkt einstellen
+            // Navigationspunkt erreicht, naechsten Navigationspunkt einstellen
             nextNavPoint = nextNavPoint(nextNavPoint);
             if(nextNavPoint == null)
             {
@@ -168,7 +168,7 @@ public class TempSceneObject extends SceneObject
         }
         
         //=====================================================================
-        // Ausrichtung auf den nächsten Navigationspunkt  
+        // Ausrichtung auf den naechsten Navigationspunkt  
         //---------------------------------------------------------------------
         
         float dRotation = getAngle(nextNavPoint);
