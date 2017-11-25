@@ -12,7 +12,6 @@ import de.mw.scene2d.model.SignSceneObject;
 import de.mw.scene2d.model.TempSceneObject;
 import de.mw.scene2d.model.TrailerSceneObject;
 import de.mw.scene2d.swing.game.Driver;
-import de.mw.scene2d.swing.game.ScenePanel;
 import de.mw.scene2d.swing.game.SwingGround;
 import de.mw.scene2d.swing.game.games.Game;
 import de.mw.scene2d.swing.util.IOUtilities;
@@ -28,7 +27,8 @@ public class TestGame extends Game
 	public void setup()
 	{
 		SwingGround ground = SwingGround.createSampleGround(new File("res/city/map-48x48.bin"),
-				new File("res/city/road-tileset.xml"), new File("res/city/roof-tileset.xml"));
+				new File("res/city/road-tileset.xml"), new File("res/city/roof-tileset.xml"), new File("res/city/floor-tileset.xml"), 
+				new File("res/city/hedge-tileset.xml"), new File("res/city/tree-tileset.xml"));
 
 		scenePanel.mGround = ground;
 		scenePanel.mScene.setGround(ground);
