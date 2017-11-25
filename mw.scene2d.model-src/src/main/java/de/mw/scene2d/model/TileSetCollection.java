@@ -26,4 +26,10 @@ public class TileSetCollection
 			throw new IllegalArgumentException(String.format("Unknown Tileset %d", tileSetId));
 		return tileSet.getTile(tileIndex);
 	}
+	
+	public TileSet getTileTileSet(int tileIndex)
+	{
+		int tileSetId = (tileIndex & 0xbfff0000) >> 16;
+		return mTileSets.get(tileSetId);
+	}
 }

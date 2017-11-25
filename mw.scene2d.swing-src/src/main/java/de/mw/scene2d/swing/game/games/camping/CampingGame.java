@@ -34,8 +34,8 @@ public class CampingGame extends Game
 		scenePanel.setViewportScale(30);
 
 		SwingGround ground = SwingGround.createSampleGround(new File("res/city/map-48x48.bin"),
-				new File("res/city/road-tileset.xml"), new File("res/city/roof-tileset.xml"),
-				new File("res/city/floor-tileset.xml"), new File("res/city/hedge-tileset.xml"));
+				new File("res/city/road-tileset.xml"), new File("res/city/roof-tileset.xml"), new File("res/city/floor-tileset.xml"), 
+				new File("res/city/hedge-tileset.xml"), new File("res/city/tree-tileset.xml"));
 
 		scenePanel.mGround = ground;
 		scenePanel.mScene.setGround(ground);

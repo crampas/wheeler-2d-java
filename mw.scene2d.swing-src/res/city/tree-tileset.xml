@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SampleGround>
+	<name>tree</name>
+	<id>4000</id>
+	<tileSize>128</tileSize>
+    <tile>
+        <imageId>palmtree2.png</imageId>
+        <tileIndexX>0</tileIndexX>
+        <tileIndexY>0</tileIndexY>
+        <damageRect>
+            <x>0.0</x>
+            <y>0.0</y>
+            <width>10.0</width>
+            <height>10.0</height>
+        </damageRect>
+    </tile>
+</SampleGround>

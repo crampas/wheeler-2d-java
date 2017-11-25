@@ -7,7 +7,7 @@ import java.util.Map;
 
 public abstract class Ground
 {
-    // public TileSet tileSet;
+	public float tileDimension = 10; // size of a tile in object space
 	public final TileSetCollection tileSet = new TileSetCollection();
 
     protected TileMap mGroundMap;
@@ -20,16 +20,16 @@ public abstract class Ground
 
     public GroundTile getTile(float x, float y)
     {
-        int xIndex = (int)Math.floor(x / 10);
-        int yIndex = (int)Math.floor(y / 10);
+        int xIndex = (int)Math.floor(x / tileDimension);
+        int yIndex = (int)Math.floor(y / tileDimension);
         int index = getTileIndex(xIndex, yIndex);
         return tileSet.getTile(index);
     }
     
     public Vector getTileOffset(float x, float y)
     {
-        float xOffset = (int)Math.floor(x / 10) * 10;
-        float yOffset = (int)Math.floor(y / 10) * 10;
+        float xOffset = (int)Math.floor(x / tileDimension) * tileDimension;
+        float yOffset = (int)Math.floor(y / tileDimension) * tileDimension;
         return new Vector(xOffset, yOffset);
     }
     

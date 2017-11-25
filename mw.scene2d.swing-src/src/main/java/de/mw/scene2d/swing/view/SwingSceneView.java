@@ -65,12 +65,13 @@ public class SwingSceneView extends JPanel implements SwingRendererContext
     private static Stroke NAVPATH_STROKE = new BasicStroke(0.01f);
     private static Color NAVPATH_COLOR = new Color(200, 100, 100);
     
-    protected void drawBackgroundPatch(Graphics2D graphics, int x0, int y0, int patch)
+    protected void drawBackgroundTile(Graphics2D graphics, int x0, int y0, int patch)
     {
-        Ground mGround = mScene.getGround();
-        ((SwingGround)mGround).drawTile(graphics, x0 * 10, y0 * 10, x0 * 10 + 10, y0 * 10 + 10, patch);
+        Ground ground = mScene.getGround();
+        float tileDimension = ground.tileDimension;
+        ((SwingGround)ground).drawTile(graphics, x0 * tileDimension, y0 * tileDimension, x0 * tileDimension + tileDimension, y0 * tileDimension + tileDimension, patch);
         
-        if(x0 < 0 || x0 >= mGround.getWidth() || y0 < 0 || y0 >= mGround.getHeight())
+        if(x0 < 0 || x0 >= ground.getWidth() || y0 < 0 || y0 >= ground.getHeight())
         {
             return;
         }
@@ -140,17 +141,12 @@ public class SwingSceneView extends JPanel implements SwingRendererContext
         //-----------------------------------------------------------------------------------------
         int width = getWidth();
         int height = getHeight();
-//        objectGraphics.translate(width / 2, height / 2);
-//        objectGraphics.scale(mViewportScale, mViewportScale);
-//        objectGraphics.rotate(getViewportRotation() / 180.0 * Math.PI);
-//        objectGraphics.translate(-mViewportPosition.x, -mViewportPosition.y);
         AffineTransform transform = getViewportTransform();
         objectGraphics.setTransform(transform);
         
         //=========================================================================================
         // sichtbarer Bereich in Objektkoordinaten berechnen
         //-----------------------------------------------------------------------------------------
-//        AffineTransform transform = objectGraphics.getTransform();
         AffineTransform inversTransform = null;
         try
         {
@@ -180,22 +176,22 @@ public class SwingSceneView extends JPanel implements SwingRendererContext
         //-----------------------------------------------------------------------------------------
         if(true)
         {
-            // wiederholter Flecken
-            int xIndexMin = (int)Math.floor(minX / 10);
-            int yIndexMin = (int)Math.floor(minY / 10);
-            int xIndexMax = (int)Math.floor(maxX / 10);
-            int yIndexMax = (int)Math.floor(maxY / 10);
+            Ground ground = mScene.getGround();
+            float tileDimension = ground.tileDimension;
+
+            int xIndexMin = (int)Math.floor(minX / tileDimension);
+            int yIndexMin = (int)Math.floor(minY / tileDimension);
+            int xIndexMax = (int)Math.floor(maxX / tileDimension);
+            int yIndexMax = (int)Math.floor(maxY / tileDimension);
             
-            Ground mGround = mScene.getGround();
             for(int yIndex = yIndexMin; yIndex <= yIndexMax; ++yIndex)
             {
                 for(int xIndex = xIndexMin; xIndex <= xIndexMax; ++xIndex)
                 {
-                    int tileIndex = mGround.getTileIndex(xIndex, yIndex);
-                    drawBackgroundPatch(objectGraphics, xIndex, yIndex, tileIndex);
+                    int tileIndex = ground.getTileIndex(xIndex, yIndex);
+                    drawBackgroundTile(objectGraphics, xIndex, yIndex, tileIndex);
                 }
             }
-//            drawNavPaths(objectGraphics);
         }
         //=========================================================================================
         // paint Grid
@@ -204,18 +200,20 @@ public class SwingSceneView extends JPanel implements SwingRendererContext
         {
             objectGraphics.setStroke(GRID_STROKE);
             objectGraphics.setColor(GRID_COLOR);
-    
-            double GRID_SPACE = 10; // 10m
-            double gridMinX = Math.ceil(minX / GRID_SPACE) * GRID_SPACE;
-            double gridMaxX = Math.floor(maxX / GRID_SPACE) * GRID_SPACE;
-            double gridMinY = Math.ceil(minY / GRID_SPACE) * GRID_SPACE;
-            double gridMaxY = Math.floor(maxY / GRID_SPACE) * GRID_SPACE;
+
+            Ground ground = mScene.getGround();
+
+            double tileDimension = ground.tileDimension;
+            double gridMinX = Math.ceil(minX / tileDimension) * tileDimension;
+            double gridMaxX = Math.floor(maxX / tileDimension) * tileDimension;
+            double gridMinY = Math.ceil(minY / tileDimension) * tileDimension;
+            double gridMaxY = Math.floor(maxY / tileDimension) * tileDimension;
             
-            for(int x = (int)gridMinX; x <= gridMaxX; x += GRID_SPACE)
+            for(int x = (int)gridMinX; x <= gridMaxX; x += tileDimension)
             {
                 objectGraphics.drawLine(x, (int)minY, x, (int)maxY);
             }
-            for(int y = (int)gridMinY; y <= gridMaxY; y += GRID_SPACE)
+            for(int y = (int)gridMinY; y <= gridMaxY; y += tileDimension)
             {
                 objectGraphics.drawLine((int)minX, y, (int)maxX, y);
             }

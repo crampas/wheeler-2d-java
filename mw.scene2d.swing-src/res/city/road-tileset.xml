@@ -2,6 +2,7 @@
 <SampleGround>
 	<name>road</name>
 	<id>0</id>
+	<tileSize>100</tileSize>
     <tile>
         <imageId>road-01.png</imageId>
         <tileIndexX>0</tileIndexX>

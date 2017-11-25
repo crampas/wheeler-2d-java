@@ -4,6 +4,7 @@ public class TileSet
 {
 	public int id;
 	public String name;
+	public int tileSize = 100;
 	public GroundTile[] tile;
 	
 	public GroundTile getTile(int index)

@@ -83,6 +83,26 @@ public class SwingGround extends Ground implements Serializable
     }
     
 
+    
+    
+    public void drawTile(Graphics2D graphics, float x0, float y0, float x1, float y1, int tileIndex)
+    {
+    	if (tileIndex < 0)
+    		return;
+    	
+    	TileSet tileSet = this.tileSet.getTileTileSet(tileIndex);
+        GroundTile tile = this.tileSet.getTile(tileIndex);
+        BufferedImage backgroundImage = getBackgroundImage(tile.imageId);
+        
+        int tileSize = tileSet.tileSize;
+        int px = tile.tileIndexX * tileSize;
+        int py = tile.tileIndexY * tileSize;
+        graphics.drawImage(backgroundImage, 
+        		(int)x0, (int)y0, (int)x1, (int)y1, 
+        		px, py, px + tileSize, py + tileSize, null);
+        
+    }
+
     private BufferedImage getBackgroundImage(String imageId)
     {
         try
@@ -102,38 +122,16 @@ public class SwingGround extends Ground implements Serializable
         }
     }
     
-    
-    public void drawTile(Graphics2D graphics, int x0, int y0, int x1, int y1, int tileIndex)
-    {
-    	if (tileIndex < 0)
-    		return;
-    	
-        GroundTile tile = this.tileSet.getTile(tileIndex);
-        BufferedImage backgroundImage = getBackgroundImage(tile.imageId);
-        
-//        int px = (tileIndex % 4) * 100;
-//        int py = (tileIndex / 4) * 100;
-//        int xOffset = x0 * 10;
-//        int yOffset = y0 * 10;
-        
-        int px = tile.tileIndexX * 100;
-        int py = tile.tileIndexY * 100;
-        graphics.drawImage(backgroundImage, x0, y0, x1, y1, px, py, px + 100, py + 100, null);
-        
-    }
-    
     public BufferedImage getTileImage(int tileIndex)
     {
+    	TileSet tileSet = this.tileSet.getTileTileSet(tileIndex);
         GroundTile tile = this.tileSet.getTile(tileIndex);
+
+        int tileSize = tileSet.tileSize;
+        int x = tile.tileIndexX * tileSize;
+        int y = tile.tileIndexY * tileSize;
         BufferedImage backgroundImage = getBackgroundImage(tile.imageId);
-
-//        int x = (tileIndex % 4) * 100;
-//        int y = (tileIndex / 4) * 100;
-        
-        int x = tile.tileIndexX * 100;
-        int y = tile.tileIndexY * 100;
-
-        BufferedImage tileImage = backgroundImage.getSubimage(x, y, 100, 100);
+        BufferedImage tileImage = backgroundImage.getSubimage(x, y, tileSize, tileSize);
         
         return tileImage;
     }
