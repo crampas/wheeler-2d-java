@@ -5,7 +5,6 @@ import javax.swing.JFrame;
 import de.mw.scene2d.model.SceneListener;
 import de.mw.scene2d.swing.game.SceneFrame;
 import de.mw.scene2d.swing.game.ScenePanel;
-import de.mw.scene2d.swing.game.games.camping.GameGoal;
 
 public abstract class Game implements SceneListener
 {

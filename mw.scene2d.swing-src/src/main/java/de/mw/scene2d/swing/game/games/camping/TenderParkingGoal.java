@@ -3,6 +3,7 @@ package de.mw.scene2d.swing.game.games.camping;
 import javax.swing.JOptionPane;
 
 import de.mw.scene2d.model.SignSceneObject;
+import de.mw.scene2d.swing.game.games.GameGoal;
 
 public class TenderParkingGoal extends GameGoal<CampingGame>
 {

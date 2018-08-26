@@ -1,6 +1,4 @@
-package de.mw.scene2d.swing.game.games.camping;
-
-import de.mw.scene2d.swing.game.games.Game;
+package de.mw.scene2d.swing.game.games;
 
 public abstract class GameGoal<T extends Game>
 {

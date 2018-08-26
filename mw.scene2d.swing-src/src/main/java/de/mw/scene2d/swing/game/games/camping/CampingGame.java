@@ -109,6 +109,7 @@ public class CampingGame extends Game
     @Override
 	public void start()
 	{
-		setGoal(new TenderParkingGoal(this));
+		 setGoal(new TenderParkingGoal(this));
+//		setGoal(new PickUpGoal(this));
 	}
 }

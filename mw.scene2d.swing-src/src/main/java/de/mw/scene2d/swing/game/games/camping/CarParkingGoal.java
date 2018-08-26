@@ -2,6 +2,8 @@ package de.mw.scene2d.swing.game.games.camping;
 
 import javax.swing.JOptionPane;
 
+import de.mw.scene2d.swing.game.games.GameGoal;
+
 public class CarParkingGoal extends GameGoal<CampingGame>
 {
 	public CarParkingGoal(CampingGame game)
@@ -24,6 +26,6 @@ public class CarParkingGoal extends GameGoal<CampingGame>
     {
     	game.scenePanel.mScene.getSceneObjectList().remove(game.carParking);
     	JOptionPane.showMessageDialog(game.scenePanel, "Erledigt - gut!");
-    	return null;
+    	return new PickUpGoal(game);
     }
 }
