@@ -16,7 +16,7 @@ public class TenderParkingGoal extends GameGoal<CampingGame>
     public void onStart()
     {
     	game.scenePanel.mScene.getSceneObjectList().add(game.tenderParking);
-		SignSceneObject sign = new SignSceneObject("Hier her ...");
+		sign = new SignSceneObject("Hier her ...");
 		sign.position = game.tenderParking.position;
 		sign.childList.add(game.car);
 		game.scenePanel.mScene.getSceneObjectList().add(sign);
