@@ -7,4 +7,9 @@
         <tileIndexX>0</tileIndexX>
         <tileIndexY>0</tileIndexY>
     </tile>
+    <tile>
+        <imageId>floor.png</imageId>
+        <tileIndexX>1</tileIndexX>
+        <tileIndexY>0</tileIndexY>
+    </tile>
 </SampleGround>
